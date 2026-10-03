@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manual Visual de Telefonía y Ventas — Gabriela Licona</title>
-  <meta name="description" content="Manual web interactivo de consulta rápida en especificaciones de celulares, argumentación para el cliente y financiamiento en pesos mexicanos.">
+  <title>Manual Visual de Telefonía — Gabriela Licona</title>
+  <meta name="description" content="Manual visual interactivo para consulta rápida de especificaciones de telefonía, argumentación de venta y financiamiento en pesos mexicanos.">
   <meta name="theme-color" content="#FFFFFF">
   
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230066CC%22 stroke-width=%222%22><rect x=%225%22 y=%222%22 width=%2214%22 height=%2220%22 rx=%222%22/></svg>">
@@ -13,198 +13,185 @@
 <body>
 
   <!-- Cabecera Superior Fija -->
-  <header class="manual-nav-header">
-    <div class="brand-row">
-      <div class="brand-badge-logo">GL</div>
+  <header class="manual-header">
+    <div class="brand-wrapper">
+      <div class="brand-monogram">GL</div>
       <div>
-        <div class="brand-title-txt">Gabriela Licona</div>
-        <div class="brand-sub-txt">Manual Visual de Telefonía</div>
+        <div class="brand-title">Gabriela Licona</div>
+        <div class="brand-subtitle">Manual Visual de Telefonía</div>
       </div>
     </div>
 
-    <nav class="nav-links-menu" aria-label="Navegación del manual">
-      <a href="#indice" class="nav-anchor-btn active">Conceptos</a>
-      <a href="#telefono-interactivo" class="nav-anchor-btn">Hardware Interactivo</a>
-      <a href="#comparador" class="nav-anchor-btn">Comparador</a>
-      <a href="#simulador-cuotas" class="nav-anchor-btn">Cuotas MXN</a>
+    <nav class="nav-anchors" aria-label="Navegación del manual">
+      <a href="#fichas-visuales" class="nav-link active">Conceptos Visuales</a>
+      <a href="#telefono-interactivo" class="nav-link">Hardware en Vivo</a>
+      <a href="#comparador-visual" class="nav-link">Comparador</a>
+      <a href="#simulador-cuotas" class="nav-link">Cuotas MXN</a>
     </nav>
   </header>
 
   <!-- Contenedor Principal del Manual -->
-  <main class="manual-wrapper">
+  <main class="manual-container">
 
-    <!-- 1. PORTADA HERO MINIMALISTA -->
-    <section class="hero-manual-banner" id="inicio">
-      <div class="hero-tag-pill">Guía de Consulta Rápida para Asesores</div>
-      <h1 class="hero-main-title">Aprende a explicar un celular en segundos.</h1>
-      <p class="hero-sub-text">
-        Consulta características técnicas, traduce especificaciones a beneficios reales para el comprador y simula cuotas en pesos mexicanos.
+    <!-- 1. PORTADA HERO EDITORIAL -->
+    <section class="hero-editorial-card" id="inicio">
+      <div class="hero-pill-tag">Manual Visual de Consulta Rápida</div>
+      <h1 class="hero-title">Aprende a explicar un celular viendo, no leyendo.</h1>
+      <p class="hero-description">
+        Fichas visuales, comparadores gráficos y traducción de especificaciones a argumentos directos para el cliente en piso de venta.
       </p>
 
-      <!-- Búsqueda Instantánea -->
-      <div class="hero-quick-search-box">
-        <span class="search-svg-pos">
+      <!-- Buscador Instantáneo -->
+      <div class="hero-search-wrapper">
+        <span class="search-icon-svg">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </span>
-        <input type="text" class="hero-search-input" id="heroSearchInput" placeholder="Buscar concepto (ej. RAM, 5G, 120 Hz, Batería, IP68, IMEI)...">
+        <input type="text" class="hero-search-box" id="heroSearchInput" placeholder="Buscar concepto visual (ej. RAM, 120 Hz, Batería, OIS, 5G, IP68)...">
       </div>
     </section>
 
-    <!-- 2. ÍNDICE VISUAL DE CATEGORÍAS -->
-    <section id="indice">
-      <div class="section-headline-block">
+    <!-- 2. CATEGORÍAS EN CHIPS -->
+    <section id="fichas-visuales">
+      <div class="section-heading-row">
         <div>
-          <h2 class="section-h2-title">Categorías del Manual</h2>
-          <div class="section-h2-sub">Selecciona un tema para filtrar las fichas visuales</div>
+          <h2 class="section-title">Fichas Visuales por Concepto</h2>
+          <div class="section-subtitle">Filtrar por categoría técnica</div>
         </div>
       </div>
 
-      <div class="categories-scroll-grid" id="categoriesContainer">
+      <div class="categories-flex-row" id="categoriesPillsContainer">
+        <!-- Rendered by app.js -->
+      </div>
+
+      <!-- Cuadrícula de Fichas Visuales Editoriales -->
+      <div class="visual-cards-editorial-grid" id="visualCardsGrid">
         <!-- Rendered by app.js -->
       </div>
     </section>
 
-    <!-- 3. FICHAS VISUALES POR TEMA -->
-    <section>
-      <div class="section-headline-block">
-        <div>
-          <h2 class="section-h2-title">Fichas Visuales de Consulta</h2>
-          <div class="section-h2-sub">Explicación técnica en una sola frase y argumento directo para el cliente</div>
-        </div>
-      </div>
-
-      <div class="visual-cards-grid" id="visualCardsGrid">
-        <!-- Rendered by app.js -->
-      </div>
-    </section>
-
-    <!-- 4. TELÉFONO INTERACTIVO -->
+    <!-- 3. TELÉFONO INTERACTIVO (SMARTPHONE REAL CON HOTSPOTS) -->
     <section class="interactive-phone-section" id="telefono-interactivo">
-      <div class="section-headline-block">
+      <div class="section-heading-row">
         <div>
-          <h2 class="section-h2-title">Explorador de Hardware Interactivo</h2>
-          <div class="section-h2-sub">Toca los componentes en el teléfono para ver qué hacen y cómo decírselo al comprador</div>
+          <h2 class="section-title">Explorador de Hardware Interactivo</h2>
+          <div class="section-subtitle">Toca los componentes en el smartphone para ver el argumento clave de venta</div>
         </div>
       </div>
 
-      <div class="phone-split-layout">
-        <!-- Marco del Teléfono con Hotspots -->
-        <div class="phone-visual-frame">
-          <div class="phone-screen-glass">
-            <div style="width:50px; height:10px; background:#1A1D20; border-radius:10px; position:absolute; top:8px;"></div>
-            
-            <div style="width:80px; height:80px; border:1px dashed rgba(0,102,204,0.4); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:700;">
-              <span>OCTA-CORE</span>
-              <span style="font-size:8px; opacity:0.8;">5G SoC</span>
-            </div>
+      <div class="phone-split-container">
+        <!-- Smartphone Visual con Hotspots -->
+        <div class="phone-mockup-wrapper">
+          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80" alt="Smartphone en vivo" class="phone-screen-img" loading="lazy">
 
-            <!-- Botones Hotspots -->
-            <button class="hotspot-interactive-btn hs-camera" data-spot="camera" title="Cámara">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/></svg>
-            </button>
-            <button class="hotspot-interactive-btn hs-screen" data-spot="screen" title="Pantalla 120Hz">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
-            </button>
-            <button class="hotspot-interactive-btn hs-processor active" data-spot="processor" title="Procesador">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
-            </button>
-            <button class="hotspot-interactive-btn hs-storage" data-spot="storage" title="RAM y Almacenamiento">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg>
-            </button>
-            <button class="hotspot-interactive-btn hs-battery" data-spot="battery" title="Batería">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/></svg>
-            </button>
-            <button class="hotspot-interactive-btn hs-network" data-spot="network" title="Red 5G y SIM">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/></svg>
-            </button>
-          </div>
+          <!-- Hotspots Pins -->
+          <button class="phone-hotspot-pin pin-camera" data-pin="camera" title="Cámaras con OIS">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/></svg>
+          </button>
+          <button class="phone-hotspot-pin pin-screen" data-pin="screen" title="Pantalla AMOLED 120Hz">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+          </button>
+          <button class="phone-hotspot-pin pin-processor active" data-pin="processor" title="Procesador Octa-Core">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+          </button>
+          <button class="phone-hotspot-pin pin-battery" data-pin="battery" title="Batería 5000 mAh">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/></svg>
+          </button>
+          <button class="phone-hotspot-pin pin-sim" data-pin="sim" title="Dual SIM / eSIM">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h8l6 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/></svg>
+          </button>
+          <button class="phone-hotspot-pin pin-network" data-pin="network" title="Antenas 5G">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/></svg>
+          </button>
         </div>
 
-        <!-- Ficha de Consulta Flotante -->
-        <div class="hotspot-sheet-display">
-          <div class="hotspot-display-card">
-            <h3 class="hotspot-card-title" id="hotspotTitle">Procesador Octa-Core 5G</h3>
-            <p class="hotspot-card-tech" id="hotspotTech">Chipset de 8 núcleos en 6 nanómetros con módem 5G de alta velocidad.</p>
+        <!-- Ficha de Consulta Flotante del Hotspot -->
+        <div class="phone-hotspot-info-box">
+          <div class="hotspot-card-preview">
+            <h3 class="hotspot-preview-title" id="hotspotTitle">Procesador Octa-Core 5G</h3>
+            <span class="hotspot-preview-keyfact" id="hotspotKeyFact">Arquitectura 6 nm Eficiente</span>
+            <p class="hotspot-preview-oneliner" id="hotspotOneLiner">
+              El motor central que abre aplicaciones al instante y procesa imágenes con agilidad.
+            </p>
 
-            <div class="card-client-pitch-box" style="margin-bottom:14px;">
-              <div class="pitch-micro-label">Cómo explicárselo al cliente</div>
-              <div class="pitch-micro-text" id="hotspotPitch">
-                "Es el motor del teléfono: abre aplicaciones al instante y navega a máxima velocidad."
+            <div class="card-pitch-highlight">
+              <div class="pitch-label">Cómo explicárselo al cliente</div>
+              <div class="pitch-body" id="hotspotPitch">
+                "Abre todas sus aplicaciones de inmediato sin que el teléfono se caliente ni se trabe."
               </div>
             </div>
-
-            <div style="font-size:12px; color:var(--text-main); line-height:1.4;">
-              <strong>Tip de Gabriela en piso de venta:</strong> <span id="hotspotTip">Asocie procesador con rapidez de respuesta inmediata.</span>
-            </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 5. COMPARADOR VISUAL DE MODELOS -->
-    <section id="comparador">
-      <div class="section-headline-block">
+    <!-- 4. COMPARADOR VISUAL DE EQUIPOS (BARRAS Y MÉTRICAS) -->
+    <section class="comparison-section-box" id="comparador-visual">
+      <div class="section-heading-row">
         <div>
-          <h2 class="section-h2-title">Comparador Rápido de Modelos</h2>
-          <div class="section-h2-sub">Diferencias clave y precio en pesos mexicanos para recomendar el equipo ideal</div>
+          <h2 class="section-title">Comparador Visual de Modelos</h2>
+          <div class="section-subtitle">Diferencias gráficas de RAM, espacio, batería y precio en pesos mexicanos</div>
         </div>
       </div>
 
-      <div class="comparison-container" id="comparisonCardsContainer">
+      <div class="comparison-grid" id="comparisonCardsGrid">
         <!-- Rendered by app.js -->
       </div>
     </section>
 
-    <!-- 6. SIMULADOR DE CUOTAS (MXN) -->
+    <!-- 5. SIMULADOR DE CUOTAS (PESOS MEXICANOS) -->
     <section id="simulador-cuotas">
-      <div class="section-headline-block">
+      <div class="section-heading-row">
         <div>
-          <h2 class="section-h2-title">Simulador de Cuotas y Enganche</h2>
-          <div class="section-h2-sub">Herramienta visual para comunicar pagos semanales en pesos mexicanos (MXN)</div>
+          <h2 class="section-title">Simulador de Cuotas Semanales</h2>
+          <div class="section-subtitle">Cálculo visual demostrativo en pesos mexicanos (MXN) para cotización en piso</div>
         </div>
       </div>
 
-      <div class="calculator-banner-box">
+      <div class="calculator-card-banner">
         <div>
-          <div class="calc-control-group">
-            <div class="calc-label-row">
-              <span>Precio del Celular</span>
+          <div class="calc-input-group">
+            <div class="calc-label-bar">
+              <span>Precio del Dispositivo</span>
               <span id="calcPriceVal" style="color:var(--accent);">$5,899 MXN</span>
             </div>
-            <input type="range" class="calc-slider-input" id="calcPriceSlider" min="2000" max="15000" step="500" value="5899">
+            <input type="range" class="calc-range-slider" id="calcPriceSlider" min="2000" max="15000" step="500" value="5899">
           </div>
 
-          <div class="calc-control-group">
-            <div class="calc-label-row">
+          <div class="calc-input-group">
+            <div class="calc-label-bar">
               <span>Enganche Inicial</span>
               <span id="calcDownVal">$1,000 MXN</span>
             </div>
-            <input type="range" class="calc-slider-input" id="calcDownSlider" min="0" max="5000" step="200" value="1000">
+            <input type="range" class="calc-range-slider" id="calcDownSlider" min="0" max="5000" step="200" value="1000">
           </div>
 
-          <div class="calc-control-group">
-            <div class="calc-label-row">
+          <div class="calc-input-group">
+            <div class="calc-label-bar">
               <span>Plazo de Financiamiento</span>
             </div>
-            <div class="term-pill-options">
-              <button class="term-pill-btn" data-weeks="8">8 semanas</button>
-              <button class="term-pill-btn active" data-weeks="12">12 semanas</button>
-              <button class="term-pill-btn" data-weeks="24">24 semanas</button>
+            <div class="term-pill-selector">
+              <button class="term-btn" data-weeks="8">8 semanas</button>
+              <button class="term-btn active" data-weeks="12">12 semanas</button>
+              <button class="term-btn" data-weeks="24">24 semanas</button>
             </div>
           </div>
         </div>
 
         <div>
-          <div class="calc-result-dark-card">
+          <div class="calc-result-box">
             <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; opacity:0.8;">Cuota Semanal Estimada</div>
-            <div class="calc-big-weekly" id="calcCuotaBig">$408 MXN / sem</div>
+            <div class="calc-cuota-big" id="calcCuotaBig">$408 MXN / sem</div>
             <div style="font-size:11.5px; opacity:0.85;">Accesible y sin descapitalizarse</div>
 
-            <div class="calc-mxn-breakdown">
-              <div>Total: <strong id="calcTotalDisplay">$5,899 MXN</strong></div>
+            <div class="calc-breakdown-row">
+              <div>Precio: <strong id="calcTotalDisplay">$5,899 MXN</strong></div>
               <div>Enganche: <strong id="calcDownDisplay">$1,000 MXN</strong></div>
               <div>Saldo: <strong id="calcBalanceDisplay">$4,899 MXN</strong></div>
             </div>
+          </div>
+
+          <div style="font-size:11px; color:var(--text-subtle); line-height:1.4; margin-top:12px; text-align:center;">
+            * Ejemplo visual demostrativo. Las condiciones reales de financiamiento y políticas dependen formalmente de la empresa.
           </div>
         </div>
       </div>
@@ -212,10 +199,18 @@
 
     <!-- Footer -->
     <footer class="manual-footer">
-      Manual Visual de Telefonía y Ventas • Diseñado para capacitación comercial de retail móvil • Gabriela Licona
+      Manual Visual de Telefonía y Ventas • Gabriela Licona • Capacitación Comercial
     </footer>
 
   </main>
+
+  <!-- Modal / Bottom Sheet para Ver Diálogo Completo -->
+  <div class="modal-overlay" id="detailModal">
+    <div class="modal-dialog-panel">
+      <div class="modal-drag-indicator"></div>
+      <div id="modalBodyContent"></div>
+    </div>
+  </div>
 
   <script type="module" src="js/app.js"></script>
 </body>

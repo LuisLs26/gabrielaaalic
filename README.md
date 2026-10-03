@@ -1,48 +1,46 @@
-# 📱 Gabriela Licona — Plataforma de Capacitación Comercial Interactiva
+# 📱 Manual Visual de Telefonía y Ventas — Gabriela Licona
 
-> **"Aprende. Practica. Vende mejor."**  
-> Una experiencia de aprendizaje móvil e interactiva para asesores de venta de telefonía móvil y retail. Diseñada con estética **Liquid Glass / Apple Light Mode**, transformando infografías y manuales largos en microcontenido visual y simulaciones reales.
+> **"Aprende a explicar un celular viendo, no leyendo."**  
+> Manual web interactivo y visual de consulta rápida para vendedores y asesores comerciales de retail móvil. Diseñado con estética **Apple Light Editorial**, enfocado en microcontenido gráfico, comparaciones directas y simulación de cuotas en **pesos mexicanos ($ MXN)**.
 
 ---
 
-## 🌟 Características Principales
+## 🌟 Estructura del Manual Visual
 
-1. **Explora un Teléfono (Interactive Hotspots):** Toca la cámara, pantalla 120Hz, procesador, batería 5000 mAh o antena 5G/SIM para ver qué hace cada pieza técnica y cómo explicárselo al cliente en una sola frase.
-2. **Comparador Visual:** Aprende a perfilar clientes (por ejemplo, creadores de contenido o conductores) y a recomendar el equipo adecuado demostrando que más números no siempre es lo mejor.
-3. **Simulador de Ventas Realista (4 Pasos):** Diálogo interactivo con un cliente ficticio, retroalimentación formativa y consejos directos de Gabriela.
-4. **Simulador de Cuotas & Enganche:** Herramienta visual con sliders para cotizar financiamiento semanal/quincenal con transparencia.
-5. **Glosario Visual con Búsqueda Instantánea:** Conceptos clave de conectividad, biometría, IP68, RAM y procesadores con traducción técnica ➔ comercial.
-6. **Vista de Capacitadora (Panel de Gabriela):** KPIs, detección inteligente de dudas recurrentes (ej. 120Hz vs resolución) y seguimiento por sucursal.
-7. **Progreso y Gamificación:** Insignias, rachas diarias y persistencia en `localStorage`.
+1. **Buscador Instantáneo & Filtro por Categorías:**
+   - Filtro ágil por chips para localizar cualquier concepto técnico en segundos (*RAM, Almacenamiento, 120 Hz, Batería, Cámaras, 5G, IP68, SIM*).
+2. **Fichas Visuales Editoriales (Ver primero, entender después):**
+   - **RAM:** Comparación gráfica de apertura simultánea de apps y barras 4 GB / 8 GB / 12 GB.
+   - **Almacenamiento:** Barra segmentada de capacidad (Fotos, Videos, Apps y Sistema).
+   - **120 Hz:** Demostración animada de fluidez comparativa 60 Hz vs 120 Hz.
+   - **Batería:** Medidor visual de 5000 mAh y autonomía de jornada completa.
+   - **Carga Rápida:** Indicador de recuperación de energía (0% a 60% en 20 min).
+   - **Cámaras & OIS:** Esquema de lente principal y estabilizador óptico antivibración.
+   - **5G, IP68 y Dual SIM:** Fichas gráficas directas con síntesis de **1 sola frase** y bloque *"Cómo decírselo al cliente"*.
+3. **Smartphone con Hotspots Interactivos:**
+   - Teléfono visual con pines interactivos sobre cámara, pantalla, procesador, batería, SIM y red 5G que abren fichas flotantes inmediatas (con soporte *bottom-sheet* en móvil).
+4. **Comparador Visual de Modelos:**
+   - Comparación gráfica de terminales ficticios (*Nova Lite*, *Nova X1*, *Nova X1 Pro*) con barras visuales de RAM, espacio interno y batería en lugar de listas densas de texto.
+5. **Simulador de Cuotas Semanales (MXN):**
+   - Cotizador demostrativo con sliders para precio y enganche en pesos mexicanos, con validación automática que impide que el enganche supere el costo del equipo.
 
 ---
 
 ## 🚀 Despliegue en Cloudflare Pages
 
-El proyecto es **100% estático** (Vanilla HTML5, CSS3 y ES Modules), sin dependencias ni compiladores pesados.
+El proyecto es **100% estático** (Vanilla HTML5, CSS3 y ES Modules modernos).
 
-### Opción 1: Conectar Repositorio GitHub (Automático)
-1. Ve a tu panel de **Cloudflare Dashboard** ➔ **Workers & Pages** ➔ **Create application** ➔ **Pages**.
+1. Ingresa a tu panel de **Cloudflare Dashboard** ➔ **Workers & Pages** ➔ **Create application** ➔ **Pages**.
 2. Conecta tu repositorio de GitHub: `https://github.com/LuisLs26/gabrielaaalic`.
-3. Configuración de Build:
+3. Configuración:
    - **Framework preset:** `None`
-   - **Build command:** *(dejar vacío)*
-   - **Build output directory:** `.` o `/` (la raíz del proyecto)
-4. Haz clic en **Save and Deploy**. En 15 segundos estará en vivo en `https://gabrielaaalic.pages.dev`.
-
-### Opción 2: Wrangler CLI
-```bash
-npx wrangler pages deploy . --project-name=gabriela-licona-training
-```
+   - **Build command:** *(vacío)*
+   - **Build output directory:** `.` (la raíz del proyecto)
+4. Haz clic en **Save and Deploy**. Estará disponible en vivo en `https://gabrielaaalic.pages.dev`.
 
 ---
 
-## 🛠️ Dónde Personalizar Contenido
+## 🛠️ Personalización de Contenido
 
-Toda la lógica y datos están desacoplados de la interfaz para facilitar su edición:
-
-- **Nombre, Marca y Logo:** Modifica `APP_CONFIG` en [`js/data.js`](file:///c:/Users/LUIS/Desktop/PROYECTOS%20WEB/DEMO%20GABY/js/data.js).
-- **Catálogo de Teléfonos (Nova Lite, Nova X1, Nova X1 Pro):** Modifica `PHONES_DATA` en [`js/data.js`](file:///c:/Users/LUIS/Desktop/PROYECTOS%20WEB/DEMO%20GABY/js/data.js).
-- **Temas del Glosario y Quizzes:** Modifica `GLOSSARY_MODULES` en [`js/data.js`](file:///c:/Users/LUIS/Desktop/PROYECTOS%20WEB/DEMO%20GABY/js/data.js).
-- **Escenarios de Venta:** Modifica `SALES_SIMULATION` en [`js/data.js`](file:///c:/Users/LUIS/Desktop/PROYECTOS%20WEB/DEMO%20GABY/js/data.js).
-- **Métricas de Capacitadora:** Modifica `TRAINER_DASHBOARD_DATA` en [`js/data.js`](file:///c:/Users/LUIS/Desktop/PROYECTOS%20WEB/DEMO%20GABY/js/data.js).
+- **Textos, fichas y comparador:** Todo se edita directamente en [`js/data.js`](file:///c:/Users/LUIS/Desktop/PROYECTOS%20WEB/DEMO%20GABY/js/data.js).
+- **Estilos y animaciones:** Configurados en [`css/styles.css`](file:///c:/Users/LUIS/Desktop/PROYECTOS%20WEB/DEMO%20GABY/css/styles.css).
