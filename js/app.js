@@ -4,7 +4,7 @@ import { ProgressManager } from './progress.js';
 // Application State
 const AppState = {
   currentView: "home",
-  selectedPhone: PHONES_DATA[1], // Default: Nova X1
+  selectedPhone: PHONES_DATA[1],
   activeHotspot: "processor",
   simulationStep: 0,
   simulationScore: 0,
@@ -15,26 +15,16 @@ const AppState = {
   }
 };
 
-// SVG Icon Provider (Apple / SF Symbols Minimalist Line SVGs)
+// SVG Icon Provider (Clean Line SVGs)
 export const SVG_ICONS = {
-  home: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`,
-  device: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>`,
-  practice: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
-  compare: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>`,
-  calculator: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/><path d="M16 10h.01M12 10h.01M8 10h.01M12 14h.01M8 14h.01M12 18h.01M8 18h.01"/></svg>`,
-  glossary: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`,
-  progress: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>`,
-  trainer: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`,
-  chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`,
-  search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
-  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
   antenna: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M7 7a7 7 0 0 1 10 0M12 2v20"/></svg>`,
   "sim-card": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l6 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M9 11v6M15 11v6M9 14h6"/></svg>`,
   cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>`,
   display: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
   battery: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 10v4M6 10h4"/></svg>`,
   camera: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
-  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`
+  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -65,7 +55,7 @@ function renderBrandInfo() {
   const brandTitle = document.getElementById("brandTrainerName");
   if (brandTitle) brandTitle.textContent = APP_CONFIG.trainerName;
   const brandSub = document.getElementById("brandTrainerSub");
-  if (brandSub) brandSub.textContent = APP_CONFIG.trainerTitle;
+  if (brandSub) brandSub.textContent = "Manual de Capacitación Comercial";
 }
 
 function setupNavigation() {
@@ -81,6 +71,7 @@ function setupNavigation() {
 export function navigateTo(viewId) {
   AppState.currentView = viewId;
   
+  // Show active view
   document.querySelectorAll(".section-view").forEach(view => {
     view.classList.remove("active-view");
   });
@@ -90,7 +81,26 @@ export function navigateTo(viewId) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
-  document.querySelectorAll(".bottom-nav-bar .nav-item").forEach(item => {
+  // Update desktop topbar links
+  document.querySelectorAll(".desktop-header-links .nav-link-btn").forEach(item => {
+    if (item.getAttribute("data-nav-target") === viewId) {
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
+    }
+  });
+
+  // Update desktop sidebar items
+  document.querySelectorAll(".web-sidebar .sidebar-item").forEach(item => {
+    if (item.getAttribute("data-nav-target") === viewId) {
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
+    }
+  });
+
+  // Update mobile bottom nav
+  document.querySelectorAll(".mobile-bottom-nav .mobile-nav-item").forEach(item => {
     if (item.getAttribute("data-nav-target") === viewId) {
       item.classList.add("active");
     } else {
@@ -103,16 +113,6 @@ export function navigateTo(viewId) {
 // 1. HOME VIEW SETUP
 // ---------------------------------------------------------------------------
 function setupHomeView() {
-  const hour = new Date().getHours();
-  let greeting = "Bienvenido";
-  if (hour < 12) greeting = "Buenos días";
-  else if (hour < 19) greeting = "Buenas tardes";
-  else greeting = "Buenas noches";
-
-  const greetingEl = document.getElementById("homeGreeting");
-  if (greetingEl) greetingEl.textContent = greeting;
-
-  // Daily Challenge Logic
   const optButtons = document.querySelectorAll(".challenge-select-btn");
   const feedbackBox = document.getElementById("dailyFeedback");
 
@@ -133,12 +133,12 @@ function setupHomeView() {
         if (isCorrect) {
           feedbackBox.style.background = "var(--status-success-bg)";
           feedbackBox.style.color = "var(--status-success)";
-          feedbackBox.innerHTML = `<strong>Diagnóstico correcto.</strong> La memoria RAM y el procesador determinan el tiempo de respuesta y fluidez en multitarea. Argumente este beneficio antes de abordar características secundarias.`;
+          feedbackBox.innerHTML = `<strong>Diagnóstico acertado.</strong> La memoria RAM y la arquitectura del procesador determinan la fluidez y tiempo de respuesta en multitarea. Argumente esta relación antes de abordar otras características secundarias.`;
           ProgressManager.setDailyChallengeCompleted(true);
         } else {
           feedbackBox.style.background = "var(--status-alert-bg)";
           feedbackBox.style.color = "var(--status-alert)";
-          feedbackBox.innerHTML = `<strong>Observación de entrenamiento:</strong> Ante la consulta de velocidad, enfoque el diálogo en el <strong>Procesador</strong> y la <strong>RAM</strong> antes de mencionar la cámara o la pantalla.`;
+          feedbackBox.innerHTML = `<strong>Observación de entrenamiento:</strong> Al abordar la velocidad de respuesta, enfoque el argumento en el <strong>Procesador</strong> y la <strong>RAM</strong> antes de mencionar la cámara o la pantalla.`;
           ProgressManager.setDailyChallengeCompleted(false);
         }
       }
@@ -147,12 +147,12 @@ function setupHomeView() {
 }
 
 // ---------------------------------------------------------------------------
-// 2. EXPLORA UN TELÉFONO (HOTSPOTS)
+// 2. EXPLORA UN TELÉFONO (HARDWARE EXPLORER)
 // ---------------------------------------------------------------------------
 const HOTSPOT_DATA = {
   screen: {
     title: "Pantalla AMOLED 120 Hz",
-    tech: "Panel Full HD+ de 6.67 pulgadas con frecuencia de actualización adaptable de 120 Hz.",
+    tech: "Panel Full HD+ de 6.67 pulgadas con tasa de refresco adaptativo de 120 Hz.",
     customerPitch: "Permite una lectura descansada y desplazamientos continuos de texto e imágenes sin desenfoque ni saltos al revisar documentos o catálogos.",
     quiz: {
       q: "¿Cómo explicar la tasa de 120 Hz en una conversación de venta?",
@@ -162,11 +162,11 @@ const HOTSPOT_DATA = {
         "Incrementa la recepción de señal celular"
       ],
       correct: 1,
-      tip: "Respuesta correcta. La suavidad visual en el desplazamiento es la ventaja inmediata."
+      tip: "Respuesta correcta. La fluidez en el desplazamiento es la ventaja inmediata."
     }
   },
   camera: {
-    title: "Cámara 64 MP con OIS",
+    title: "Cámara 64 MP con Estabilización OIS",
     tech: "Sensor de alta resolución integrado con Estabilización Óptica de Imagen (OIS).",
     customerPitch: "Asegura fotografías nítidas y videos estables evitando imágenes borrosas aun con poca iluminación o movimientos accidentales.",
     quiz: {
@@ -247,7 +247,7 @@ function setupPhoneExplorer() {
       sheetQuizWrap.innerHTML = `
         <div class="quiz-wrapper">
           <div class="quiz-header-title">Evaluación Rápida: ${data.quiz.q}</div>
-          <div class="quiz-options-list">
+          <div style="display:flex; flex-direction:column; gap:6px;">
             ${data.quiz.opts.map((opt, i) => `
               <button class="quiz-opt-item" data-idx="${i}">${opt}</button>
             `).join('')}
@@ -292,7 +292,7 @@ function setupPhoneExplorer() {
 }
 
 // ---------------------------------------------------------------------------
-// 3. COMPARADOR VISUAL
+// 3. COMPARADOR DE MODELOS
 // ---------------------------------------------------------------------------
 function setupComparator() {
   const challenge = COMPARATOR_CHALLENGES[0];
@@ -347,9 +347,9 @@ function setupSalesSimulator() {
 
     if (!stepData) {
       simContainer.innerHTML = `
-        <div class="card-clean" style="text-align:center; padding:24px 20px;">
-          <h3 style="font-size:18px; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Simulación Concluida</h3>
-          <p style="font-size:13px; color:var(--text-secondary); line-height:1.45; margin-bottom:18px;">
+        <div class="card-clean" style="text-align:center; padding:28px 20px;">
+          <h3 style="font-size:18px; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Simulación de Venta Concluida</h3>
+          <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.5; margin-bottom:18px;">
             El proceso comercial cumplió con la secuencia de escucha activa, argumentación técnica adaptada y cierre con esquema de financiamiento.
           </p>
           <div style="display:flex; justify-content:center; gap:8px; margin-bottom:18px;">
@@ -378,20 +378,20 @@ function setupSalesSimulator() {
         </div>
       </div>
 
-      <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.3px;">
-        Etapa ${stepData.step} de ${SALES_SIMULATION.steps.length}: Seleccione su respuesta
+      <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:10px; letter-spacing:0.3px;">
+        Etapa ${stepData.step} de ${SALES_SIMULATION.steps.length}: Seleccione su respuesta profesional
       </div>
 
       <div style="display:flex; flex-direction:column; gap:8px;" id="simChoicesWrap">
         ${stepData.options.map((opt, i) => `
-          <button class="card-clean" data-opt-idx="${i}" style="text-align:left; cursor:pointer; padding:12px 14px;">
-            <div style="font-size:13px; font-weight:500; color:var(--text-primary); line-height:1.4;">${opt.text}</div>
+          <button class="card-clean" data-opt-idx="${i}" style="text-align:left; cursor:pointer; padding:14px 16px;">
+            <div style="font-size:13px; font-weight:500; color:var(--text-primary); line-height:1.45;">${opt.text}</div>
           </button>
         `).join('')}
       </div>
 
-      <div id="simStepFeedback" style="display:none; margin-top:12px; padding:12px 14px; border-radius:var(--radius-xs); font-size:12px; line-height:1.4;"></div>
-      <button class="btn-primary" id="btnNextSimStep" style="display:none; margin-top:12px;">Continuar a la siguiente etapa</button>
+      <div id="simStepFeedback" style="display:none; margin-top:12px; padding:12px 14px; border-radius:var(--radius-xs); font-size:12.5px; line-height:1.4;"></div>
+      <button class="btn-primary" id="btnNextSimStep" style="display:none; margin-top:14px;">Continuar a la siguiente etapa →</button>
     `;
 
     const choiceBtns = simContainer.querySelectorAll("#simChoicesWrap button");
@@ -494,7 +494,7 @@ function setupCreditCalculator() {
 }
 
 // ---------------------------------------------------------------------------
-// 6. GLOSARIO VISUAL
+// 6. GLOSARIO TÉCNICO Y COMERCIAL
 // ---------------------------------------------------------------------------
 function setupGlossary() {
   const glossaryList = document.getElementById("glossaryModulesList");
@@ -537,7 +537,7 @@ function setupGlossary() {
                   <div style="font-size:13px; font-weight:600; color:var(--text-primary);">${item.term}</div>
                   <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">${item.badge}</div>
                 </div>
-                <span style="font-size:12px; color:var(--accent-primary); font-weight:600;">Consultar</span>
+                <span style="font-size:12px; color:var(--accent-primary); font-weight:600;">Consultar →</span>
               </div>
             `).join('')}
           </div>
@@ -584,12 +584,12 @@ function openTopicModal(topicId) {
 
   if (content) {
     content.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
         <div>
           <span class="badge-tag blue" style="margin-bottom:6px;">${foundItem.badge}</span>
           <h2 style="font-size:18px; font-weight:700; color:var(--text-primary);">${foundItem.term}</h2>
         </div>
-        <button class="btn-secondary" id="btnCloseTopicModal" style="padding:4px 10px; font-size:11px;">Cerrar</button>
+        <button class="btn-secondary" id="btnCloseTopicModal" style="padding:6px 12px; font-size:12px;">Cerrar</button>
       </div>
 
       <div style="background:var(--bg-subtle); padding:14px; border-radius:var(--radius-xs); margin-bottom:14px; border:1px solid var(--border-subtle);">
@@ -604,17 +604,17 @@ function openTopicModal(topicId) {
 
       <div style="border:1px solid var(--border-subtle); border-radius:var(--radius-xs); padding:14px; margin-bottom:16px;">
         <div style="font-size:11px; font-weight:700; color:var(--accent-primary); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.3px;">Diálogo Demostrativo en Tienda</div>
-        <div style="font-size:12px; line-height:1.45; color:var(--text-secondary); margin-bottom:6px;">
+        <div style="font-size:12.5px; line-height:1.45; color:var(--text-secondary); margin-bottom:6px;">
           <strong>Cliente:</strong> "${foundItem.salesExample.client}"
         </div>
-        <div style="font-size:12px; line-height:1.45; color:var(--text-primary);">
+        <div style="font-size:12.5px; line-height:1.45; color:var(--text-primary);">
           <strong>Asesor:</strong> "${foundItem.salesExample.seller}"
         </div>
       </div>
 
       <div class="quiz-wrapper">
-        <div class="quiz-header-title">Evaluación: ${foundItem.microQuiz.question}</div>
-        <div class="quiz-options-list">
+        <div class="quiz-header-title">Evaluación Rápida: ${foundItem.microQuiz.question}</div>
+        <div style="display:flex; flex-direction:column; gap:6px;">
           ${foundItem.microQuiz.options.map((opt, i) => `
             <button class="quiz-opt-item modal-quiz-opt" data-idx="${i}">${opt}</button>
           `).join('')}
@@ -663,10 +663,10 @@ function setupTrainerView() {
 
   if (empList) {
     empList.innerHTML = TRAINER_DASHBOARD_DATA.employees.map(emp => `
-      <div class="employee-status-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border-subtle);">
         <div>
-          <div class="emp-name-text">${emp.name}</div>
-          <div class="emp-sub-text">${emp.store} • <span style="color:var(--accent-primary); font-weight:600;">${emp.badge}</span></div>
+          <div style="font-size:13px; font-weight:600; color:var(--text-primary);">${emp.name}</div>
+          <div style="font-size:11px; color:var(--text-secondary);">${emp.store} • <span style="color:var(--accent-primary); font-weight:600;">${emp.badge}</span></div>
         </div>
         <div style="text-align:right;">
           <div style="font-size:13px; font-weight:700; color:var(--text-primary);">${emp.progress}%</div>
@@ -683,7 +683,7 @@ function setupTrainerView() {
           <span>${mod.module}</span>
           <span style="color:var(--text-secondary);">${mod.completion}% (${mod.status})</span>
         </div>
-        <div class="progress-track" style="margin-bottom:0; height:5px;">
+        <div class="progress-track" style="margin:0; height:5px;">
           <div class="progress-fill" style="width:${mod.completion}%; background:${mod.color};"></div>
         </div>
       </div>
@@ -692,7 +692,7 @@ function setupTrainerView() {
 }
 
 // ---------------------------------------------------------------------------
-// 8. PROGRESO
+// 8. PROGRESO Y PERSISTENCIA
 // ---------------------------------------------------------------------------
 function setupProgressView() {
   const resetBtn = document.getElementById("btnResetProgressDemo");
@@ -721,8 +721,8 @@ function updateLiveProgressIndicators() {
   if (heroBar) heroBar.style.width = `${pct}%`;
   if (myProgPct) myProgPct.textContent = `${pct}%`;
   if (myProgBar) myProgBar.style.width = `${pct}%`;
-  if (pointsBadge) pointsBadge.textContent = `${progress.totalPoints} pts`;
-  if (streakBadge) streakBadge.textContent = `${progress.streakDays} días consecutivos`;
+  if (pointsBadge) pointsBadge.textContent = `${progress.totalPoints} pts acumulados`;
+  if (streakBadge) streakBadge.textContent = `${progress.streakDays} días consecutivos de actividad`;
 }
 
 // ---------------------------------------------------------------------------
