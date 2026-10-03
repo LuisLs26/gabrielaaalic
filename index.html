@@ -3,570 +3,220 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manual Web de Capacitación Comercial — Gabriela Licona</title>
-  <meta name="description" content="Plataforma y manual interactivo de consulta y capacitación en especificaciones técnicas, financiamiento y argumentación de ventas para telefonía móvil.">
+  <title>Manual Visual de Telefonía y Ventas — Gabriela Licona</title>
+  <meta name="description" content="Manual web interactivo de consulta rápida en especificaciones de celulares, argumentación para el cliente y financiamiento en pesos mexicanos.">
   <meta name="theme-color" content="#FFFFFF">
   
-  <!-- OpenGraph Meta Tags -->
-  <meta property="og:title" content="Gabriela Licona — Manual Web de Capacitación Comercial">
-  <meta property="og:description" content="Manual interactivo de consulta técnica y argumentación de venta consultiva en telefonía móvil.">
-  <meta property="og:type" content="website">
-
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230066CC%22 stroke-width=%222%22><rect x=%225%22 y=%222%22 width=%2214%22 height=%2220%22 rx=%222%22/></svg>">
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <div class="web-app-wrapper">
-
-    <!-- Top Web Navigation Bar (Fluid Header for all devices) -->
-    <header class="web-topbar">
-      <div class="topbar-brand" data-nav-target="home">
-        <div class="brand-monogram">GL</div>
-        <div class="brand-text">
-          <h1 id="brandTrainerName">Gabriela Licona</h1>
-          <span id="brandTrainerSub">Manual de Capacitación Comercial</span>
-        </div>
+  <!-- Cabecera Superior Fija -->
+  <header class="manual-nav-header">
+    <div class="brand-row">
+      <div class="brand-badge-logo">GL</div>
+      <div>
+        <div class="brand-title-txt">Gabriela Licona</div>
+        <div class="brand-sub-txt">Manual Visual de Telefonía</div>
       </div>
-
-      <!-- Desktop Header Direct Links -->
-      <nav class="desktop-header-links" aria-label="Navegación superior">
-        <button class="nav-link-btn active" data-nav-target="home">Inicio</button>
-        <button class="nav-link-btn" data-nav-target="explorer">Explorador Técnico</button>
-        <button class="nav-link-btn" data-nav-target="practice">Simulador de Ventas</button>
-        <button class="nav-link-btn" data-nav-target="comparator">Comparador</button>
-        <button class="nav-link-btn" data-nav-target="calculator">Simulador de Cuotas</button>
-        <button class="nav-link-btn" data-nav-target="glossary">Glosario</button>
-        <button class="nav-link-btn" data-nav-target="progress">Mi Progreso</button>
-      </nav>
-
-      <div class="topbar-actions">
-        <button class="btn-header-trainer" data-nav-target="trainer" title="Panel de supervisión">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-          <span>Vista Capacitadora</span>
-        </button>
-      </div>
-    </header>
-
-    <!-- Main Web Container: Sidebar (Desktop) + Main Responsive Content Area -->
-    <div class="web-layout-container">
-
-      <!-- Desktop Table of Contents / Sidebar -->
-      <aside class="web-sidebar">
-        <div class="sidebar-box">
-          <div class="sidebar-heading">Índice del Manual</div>
-          <nav class="sidebar-nav-list" aria-label="Índice lateral">
-            <button class="sidebar-item active" data-nav-target="home">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-              <span>Inicio y Diagnóstico</span>
-            </button>
-            <button class="sidebar-item" data-nav-target="explorer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              <span>Explorador de Hardware</span>
-            </button>
-            <button class="sidebar-item" data-nav-target="practice">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              <span>Simulador de Ventas</span>
-            </button>
-            <button class="sidebar-item" data-nav-target="comparator">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
-              <span>Comparador de Modelos</span>
-            </button>
-            <button class="sidebar-item" data-nav-target="calculator">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/></svg>
-              <span>Simulador de Cuotas</span>
-            </button>
-            <button class="sidebar-item" data-nav-target="glossary">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-              <span>Glosario Técnico Completo</span>
-            </button>
-            <button class="sidebar-item" data-nav-target="progress">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-              <span>Mi Registro de Avance</span>
-            </button>
-            <button class="sidebar-item" data-nav-target="trainer">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-              <span>Supervisión de Equipo</span>
-            </button>
-          </nav>
-        </div>
-      </aside>
-
-      <!-- Main Responsive Content Area -->
-      <main class="web-main-content">
-
-        <!-- ===================================================================
-             1. VISTA: INICIO / DASHBOARD PRINCIPAL
-             =================================================================== -->
-        <section id="view-home" class="section-view active-view">
-          <div class="page-header-block">
-            <h2 class="page-title" id="homeGreeting">Manual Web de Capacitación Comercial</h2>
-            <p class="page-subtitle">Guía de consulta técnica y argumentación de venta consultiva para asesores de retail móvil.</p>
-          </div>
-
-          <!-- Progress Overview Card -->
-          <div class="card-clean">
-            <div style="display:flex; justify-content:space-between; align-items:baseline;">
-              <span style="font-size:13px; font-weight:600; color:var(--text-secondary);">Avance del Programa Formativo</span>
-              <span style="font-size:24px; font-weight:700; color:var(--accent-primary);" id="homeProgressPercent">62%</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" id="homeProgressBar" style="width: 62%;"></div>
-            </div>
-            <div style="display:flex; justify-content:space-between; font-size:12px; color:var(--text-secondary);">
-              <span id="userStreakDisplay">3 días consecutivos de actividad</span>
-              <span id="userPointsDisplay" style="color:var(--accent-primary); font-weight:600;">240 pts acumulados</span>
-            </div>
-          </div>
-
-          <!-- Responsive 4-Column Navigation Grid -->
-          <div class="grid-4col-responsive">
-            <div class="interactive-nav-tile" data-nav-target="explorer">
-              <div class="tile-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-              </div>
-              <div>
-                <div class="tile-title-text">Explorar Hardware</div>
-                <div class="tile-desc-text">Esquemático de componentes y traducción comercial</div>
-              </div>
-            </div>
-
-            <div class="interactive-nav-tile" data-nav-target="practice">
-              <div class="tile-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-              </div>
-              <div>
-                <div class="tile-title-text">Simular Venta</div>
-                <div class="tile-desc-text">Resolución de casos de compra con retroalimentación</div>
-              </div>
-            </div>
-
-            <div class="interactive-nav-tile" data-nav-target="comparator">
-              <div class="tile-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 3h5v5M4 20L21 3M21 16v5h-5M15 15l6 6M4 4l5 5"/></svg>
-              </div>
-              <div>
-                <div class="tile-title-text">Comparar Modelos</div>
-                <div class="tile-desc-text">Criterios de recomendación según perfil de uso</div>
-              </div>
-            </div>
-
-            <div class="interactive-nav-tile" data-nav-target="calculator">
-              <div class="tile-icon-box">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/></svg>
-              </div>
-              <div>
-                <div class="tile-title-text">Simular Cuotas</div>
-                <div class="tile-desc-text">Cálculo de enganche y financiamiento semanal</div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Daily Technical Diagnostic Challenge -->
-          <div class="card-clean" style="border-left:4px solid var(--accent-primary);">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
-              <span class="badge-tag blue">Evaluación Técnica Rápida</span>
-              <span style="font-size:11px; color:var(--text-secondary);">Tiempo estimado: 1 min</span>
-            </div>
-            <div style="font-size:14px; font-weight:600; color:var(--text-primary); line-height:1.45; margin-bottom:14px;">
-              Un cliente consulta: <em>"¿Qué especificación técnica garantiza que el equipo mantenga fluidez y no se congele al tener abiertas múltiples aplicaciones de trabajo?"</em>
-            </div>
-            <div style="display:flex; flex-direction:column; gap:8px;">
-              <button class="quiz-opt-item challenge-select-btn" data-correct="false">La resolución nominal en megapíxeles del sensor principal</button>
-              <button class="quiz-opt-item challenge-select-btn" data-correct="true">La capacidad de Memoria RAM y la arquitectura del Procesador</button>
-              <button class="quiz-opt-item challenge-select-btn" data-correct="false">El grado de certificación IP contra polvo y agua</button>
-            </div>
-            <div id="dailyFeedback" style="display:none; margin-top:12px; padding:12px 14px; border-radius:var(--radius-xs); font-size:12.5px; line-height:1.4;"></div>
-          </div>
-        </section>
-
-        <!-- ===================================================================
-             2. VISTA: EXPLORADOR DE HARDWARE (RESPONSIVE 2-PANES)
-             =================================================================== -->
-        <section id="view-explorer" class="section-view">
-          <div class="page-header-block">
-            <h2 class="page-title">Explorador de Hardware y Componentes</h2>
-            <p class="page-subtitle">Seleccione los puntos interactivos sobre el dispositivo para examinar la función de cada módulo y su traducción en el diálogo de venta.</p>
-          </div>
-
-          <div class="device-explorer-layout">
-            <!-- Left Pane: Schematic Render -->
-            <div class="device-left-pane">
-              <div class="device-schematic">
-                <div class="device-island"></div>
-                <div class="device-display">
-                  <div class="device-circuit-core">
-                    <span>OCTA-CORE</span>
-                    <span style="font-size:8px; opacity:0.8; margin-top:2px;">5G SoC</span>
-                  </div>
-
-                  <!-- Hotspot Buttons -->
-                  <button class="hotspot-point hotspot-camera" data-hotspot="camera" title="Cámara y Óptica">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/></svg>
-                  </button>
-                  <button class="hotspot-point hotspot-screen" data-hotspot="screen" title="Pantalla y Refresco">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
-                  </button>
-                  <button class="hotspot-point hotspot-processor" data-hotspot="processor" title="Procesador Central">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
-                  </button>
-                  <button class="hotspot-point hotspot-battery" data-hotspot="battery" title="Batería y Recarga">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/></svg>
-                  </button>
-                  <button class="hotspot-point hotspot-network" data-hotspot="network" title="Red 5G y SIM">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/></svg>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Pane: Component Technical Sheet & Pitch -->
-            <div class="device-right-pane">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-                <h3 style="font-size:18px; font-weight:700; color:var(--text-primary);" id="hotspotSheetTitle">Procesador Snapdragon 5G</h3>
-                <span class="badge-tag blue">Rendimiento</span>
-              </div>
-
-              <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.5; margin-bottom:12px;" id="hotspotSheetDesc">
-                Arquitectura de 8 núcleos en 6 nm con módem integrado para redes 5G de alta velocidad.
-              </p>
-
-              <div class="sheet-pitch-card">
-                <div class="pitch-header">Argumento Estructurado para el Cliente</div>
-                <div class="pitch-quote" id="hotspotSheetPitch">
-                  "Constituye el motor central del equipo: abre aplicaciones en milisegundos y mantiene la fluidez del sistema durante toda la jornada."
-                </div>
-              </div>
-
-              <div id="hotspotQuizWrap"></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- ===================================================================
-             3. VISTA: COMPARADOR DE MODELOS
-             =================================================================== -->
-        <section id="view-comparator" class="section-view">
-          <div class="page-header-block">
-            <h2 class="page-title">Comparador Técnico y Criterios de Selección</h2>
-            <p class="page-subtitle">Evaluación de requerimientos de uso: determine la alternativa adecuada basándose en las necesidades reales del comprador.</p>
-          </div>
-
-          <div class="card-clean" style="border-left:4px solid var(--accent-primary);">
-            <div style="font-size:11px; font-weight:700; color:var(--accent-primary); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.3px;">Perfil de Compra Evaluado</div>
-            <h3 style="font-size:15px; font-weight:700; margin-bottom:6px;" id="compProfileName">Valeria — Creadora de Contenido y Edición Digital</h3>
-            <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.5;" id="compProfileNeed">
-              "Producción continua de video en alta resolución, edición móvil y carga de archivos pesados. Requiere capacidad amplia, grabación 4K y tiempos breves de recarga."
-            </p>
-          </div>
-
-          <div class="grid-2col-responsive">
-            <!-- Phone A Card -->
-            <div class="card-clean comp-phone-card" data-phone-id="nova-x1" style="cursor:pointer; padding:20px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <span class="badge-tag blue">Nova X1</span>
-                <span style="font-size:16px; font-weight:700; color:var(--text-primary);">$5,899</span>
-              </div>
-              <div style="font-size:12.5px; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
-                • 8 GB RAM + 4 GB Dinámica<br>
-                • 256 GB Almacenamiento UFS<br>
-                • 64 MP con Estabilizador OIS<br>
-                • Carga Rápida 33W
-              </div>
-              <button class="btn-secondary" style="width:100%;">Recomendar este modelo</button>
-            </div>
-
-            <!-- Phone B Card -->
-            <div class="card-clean comp-phone-card" data-phone-id="nova-x1-pro" style="cursor:pointer; padding:20px;">
-              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
-                <span class="badge-tag blue">Nova X1 Pro</span>
-                <span style="font-size:16px; font-weight:700; color:var(--text-primary);">$8,999</span>
-              </div>
-              <div style="font-size:12.5px; color:var(--text-secondary); line-height:1.6; margin-bottom:16px;">
-                • 12 GB RAM LPDDR5<br>
-                • 512 GB Almacenamiento UFS 3.1<br>
-                • 108 MP Sensor Grande + Video 4K<br>
-                • 67W Ultra Charge
-              </div>
-              <button class="btn-secondary" style="width:100%;">Recomendar este modelo</button>
-            </div>
-          </div>
-
-          <div class="card-clean" id="compFeedbackCard" style="display:none;"></div>
-        </section>
-
-        <!-- ===================================================================
-             4. VISTA: SIMULADOR DE VENTA CONSULTIVA
-             =================================================================== -->
-        <section id="view-practice" class="section-view">
-          <div class="page-header-block">
-            <h2 class="page-title">Simulador de Diálogo Comercial</h2>
-            <p class="page-subtitle">Secuencia de atención consultiva. Seleccione la respuesta idónea y reciba retroalimentación formativa inmediata en cada fase.</p>
-          </div>
-
-          <div id="salesSimContainer">
-            <!-- Rendered dynamically by app.js -->
-          </div>
-        </section>
-
-        <!-- ===================================================================
-             5. VISTA: SIMULADOR DE CUOTAS Y FINANCIAMIENTO
-             =================================================================== -->
-        <section id="view-calculator" class="section-view">
-          <div class="page-header-block">
-            <h2 class="page-title">Simulador de Financiamiento y Cuotas</h2>
-            <p class="page-subtitle">Herramienta para calcular y estructurar la propuesta de pagos periódicos y enganche ante el comprador.</p>
-          </div>
-
-          <div class="calculator-responsive-layout">
-            <!-- Left Panel: Sliders -->
-            <div>
-              <div class="slider-field">
-                <div class="slider-label-row">
-                  <span>Precio de Lista del Dispositivo</span>
-                  <span id="calcPriceVal" style="color:var(--accent-primary); font-weight:700;">$5,899</span>
-                </div>
-                <input type="range" class="slider-control" id="calcPriceSlider" min="2000" max="15000" step="500" value="5899">
-              </div>
-
-              <div class="slider-field">
-                <div class="slider-label-row">
-                  <span>Enganche Inicial Propuesto</span>
-                  <span id="calcDownVal" style="color:var(--text-primary); font-weight:700;">$1,000</span>
-                </div>
-                <input type="range" class="slider-control" id="calcDownSlider" min="0" max="5000" step="200" value="1000">
-              </div>
-
-              <div class="slider-field">
-                <div class="slider-label-row">
-                  <span>Plazo de Financiamiento</span>
-                </div>
-                <div class="term-options-group">
-                  <button class="term-select-pill" data-term="8">8 semanas</button>
-                  <button class="term-select-pill active" data-term="12">12 semanas</button>
-                  <button class="term-select-pill" data-term="24">24 semanas</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Right Panel: Big Highlight Display -->
-            <div>
-              <div class="cuota-summary-card">
-                <div style="font-size:11px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; opacity:0.8;">Cuota Semanal Calculada</div>
-                <div class="cuota-highlight-val" id="calcCuotaBig">$408 / sem</div>
-                <div style="font-size:11px; opacity:0.8;">Esquema accesible de liquidación periódica</div>
-
-                <div class="cuota-spec-row">
-                  <div>Precio: <strong id="calcSummaryTotal">$5,899</strong></div>
-                  <div>Enganche: <strong id="calcSummaryInitial">$1,000</strong></div>
-                  <div>Saldo: <strong id="calcSummaryBalance">$4,899</strong></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div style="font-size:11px; color:var(--text-tertiary); line-height:1.4; margin:14px 0 20px; text-align:center;">
-            * Cálculo demostrativo para entrenamiento comercial. Las tasas, comisiones y condiciones definitivas corresponden a las políticas formales de la empresa.
-          </div>
-
-          <div class="sheet-pitch-card">
-            <div class="pitch-header">Guía Comercial de Argumentación</div>
-            <div class="pitch-quote">
-              "Nunca plantee únicamente el desembolso total de contado. Presente la propuesta como: <em>'Puede llevarse su equipo hoy con un enganche de $1,000 y pagos programados de $408 por semana'</em>. Esto sitúa la decisión en términos de viabilidad presupuestal."
-            </div>
-          </div>
-        </section>
-
-        <!-- ===================================================================
-             6. VISTA: GLOSARIO TÉCNICO Y COMERCIAL
-             =================================================================== -->
-        <section id="view-glossary" class="section-view">
-          <div class="page-header-block">
-            <h2 class="page-title">Glosario Técnico y Comercial</h2>
-            <p class="page-subtitle">Consulta rápida de conceptos de hardware, conectividad y seguridad con su correspondiente argumento de venta en piso.</p>
-          </div>
-
-          <div class="search-bar-wrap">
-            <div class="search-icon-fixed">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            </div>
-            <input type="text" class="search-input-field" id="glossarySearchInput" placeholder="Buscar concepto técnico (ej. RAM, 5G, IMEI, IP68, 120 Hz)...">
-          </div>
-
-          <div id="glossaryModulesList"></div>
-        </section>
-
-        <!-- ===================================================================
-             7. VISTA: MI REGISTRO DE AVANCE
-             =================================================================== -->
-        <section id="view-progress" class="section-view">
-          <div class="page-header-block">
-            <h2 class="page-title">Registro de Progreso y Evaluación</h2>
-            <p class="page-subtitle">Seguimiento individual de avance en los módulos técnicos y simulaciones completadas.</p>
-          </div>
-
-          <div class="card-clean">
-            <div style="display:flex; justify-content:space-between; align-items:baseline;">
-              <span style="font-size:13px; font-weight:600; color:var(--text-secondary);">Nivel de Acreditación Global</span>
-              <span style="font-size:24px; font-weight:700; color:var(--accent-primary);" id="myProgressPercentVal">78%</span>
-            </div>
-            <div class="progress-track">
-              <div class="progress-fill" id="myProgressBarVal" style="width: 78%;"></div>
-            </div>
-            <div style="font-size:12px; color:var(--text-secondary);">
-              5 de 7 módulos técnicos completados satisfactoriamente.
-            </div>
-          </div>
-
-          <h3 style="font-size:14px; font-weight:700; margin:20px 0 12px;">Acreditaciones Técnicas Obtenidas</h3>
-          <div class="grid-3col-responsive">
-            <div class="card-clean" style="text-align:center; padding:16px;">
-              <div style="font-size:12.5px; font-weight:700; color:var(--text-primary);">Rendimiento y Memoria</div>
-              <div style="font-size:11px; color:var(--status-success); margin-top:4px; font-weight:600;">Acreditado</div>
-            </div>
-            <div class="card-clean" style="text-align:center; padding:16px;">
-              <div style="font-size:12.5px; font-weight:700; color:var(--text-primary);">Autonomía y Recarga</div>
-              <div style="font-size:11px; color:var(--status-success); margin-top:4px; font-weight:600;">Acreditado</div>
-            </div>
-            <div class="card-clean" style="text-align:center; padding:16px;">
-              <div style="font-size:12.5px; font-weight:700; color:var(--text-primary);">Venta Consultiva</div>
-              <div style="font-size:11px; color:var(--status-success); margin-top:4px; font-weight:600;">Acreditado</div>
-            </div>
-          </div>
-
-          <div style="margin-top:28px; text-align:center;">
-            <button class="btn-secondary" id="btnResetProgressDemo" style="font-size:11px; color:var(--text-tertiary);">
-              Restablecer Registros de Demostración
-            </button>
-          </div>
-        </section>
-
-        <!-- ===================================================================
-             8. VISTA: PANEL DE CAPACITADORA (VISTA GABRIELA)
-             =================================================================== -->
-        <section id="view-trainer" class="section-view">
-          <div class="page-header-block">
-            <div style="display:flex; justify-content:space-between; align-items:center;">
-              <h2 class="page-title" style="margin-bottom:0;">Panel de Supervisión Pedagógica</h2>
-              <span class="badge-tag blue">Supervisión Directa</span>
-            </div>
-            <p class="page-subtitle" style="margin-top:4px;">Monitoreo de desempeño del personal de ventas y detección anticipada de dudas técnicas por sucursal.</p>
-          </div>
-
-          <div class="grid-4col-responsive">
-            <div class="card-clean" style="padding:16px;">
-              <div style="font-size:11px; font-weight:600; color:var(--text-secondary); text-transform:uppercase;">Personal Activo</div>
-              <div style="font-size:22px; font-weight:700; color:var(--text-primary); margin-top:4px;">18</div>
-            </div>
-            <div class="card-clean" style="padding:16px;">
-              <div style="font-size:11px; font-weight:600; color:var(--text-secondary); text-transform:uppercase;">Avance Promedio</div>
-              <div style="font-size:22px; font-weight:700; color:var(--accent-primary); margin-top:4px;">78%</div>
-            </div>
-            <div class="card-clean" style="padding:16px;">
-              <div style="font-size:11px; font-weight:600; color:var(--text-secondary); text-transform:uppercase;">Simulaciones</div>
-              <div style="font-size:22px; font-weight:700; color:var(--status-success); margin-top:4px;">42</div>
-            </div>
-            <div class="card-clean" style="padding:16px;">
-              <div style="font-size:11px; font-weight:600; color:var(--text-secondary); text-transform:uppercase;">Aprobación Evaluaciones</div>
-              <div style="font-size:22px; font-weight:700; color:var(--text-primary); margin-top:4px;">88%</div>
-            </div>
-          </div>
-
-          <div class="card-clean" style="border-left:4px solid var(--status-alert);">
-            <div style="font-size:11px; font-weight:700; color:var(--status-alert); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.3px;">Punto de Refuerzo Identificado</div>
-            <div style="font-size:13.5px; color:var(--text-primary); line-height:1.45;">
-              <strong>Módulo:</strong> Pantalla y Tasa de Refresco (Hz). El 38% del personal de nuevo ingreso confunde fluidez con resolución al estructurar la explicación para el cliente.
-            </div>
-          </div>
-
-          <div class="grid-2col-responsive">
-            <div class="card-clean">
-              <h3 style="font-size:13.5px; font-weight:700; margin-bottom:14px;">Desempeño Técnico por Módulo</h3>
-              <div id="trainerModuleBars"></div>
-            </div>
-
-            <div class="card-clean">
-              <h3 style="font-size:13.5px; font-weight:700; margin-bottom:14px;">Seguimiento por Colaborador</h3>
-              <div id="trainerEmployeesList"></div>
-            </div>
-          </div>
-        </section>
-
-      </main>
     </div>
 
-    <!-- Mobile Bottom Bar (Visible only on mobile viewports < 960px) -->
-    <nav class="mobile-bottom-nav" aria-label="Navegación móvil">
-      <button class="mobile-nav-item active" data-nav-target="home">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-        <span>Inicio</span>
-      </button>
-
-      <button class="mobile-nav-item" data-nav-target="explorer">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
-        <span>Hardware</span>
-      </button>
-
-      <button class="mobile-nav-item" data-nav-target="practice">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span>Venta</span>
-      </button>
-
-      <button class="mobile-nav-item" data-nav-target="glossary">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-        <span>Glosario</span>
-      </button>
-
-      <button class="mobile-nav-item" data-nav-target="progress">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg>
-        <span>Progreso</span>
-      </button>
+    <nav class="nav-links-menu" aria-label="Navegación del manual">
+      <a href="#indice" class="nav-anchor-btn active">Conceptos</a>
+      <a href="#telefono-interactivo" class="nav-anchor-btn">Hardware Interactivo</a>
+      <a href="#comparador" class="nav-anchor-btn">Comparador</a>
+      <a href="#simulador-cuotas" class="nav-anchor-btn">Cuotas MXN</a>
     </nav>
+  </header>
 
-  </div>
+  <!-- Contenedor Principal del Manual -->
+  <main class="manual-wrapper">
 
-  <!-- Modal: Detalle de Concepto / Glosario -->
-  <div class="modal-overlay" id="topicDetailModal">
-    <div class="modal-dialog-box">
-      <div id="topicModalBody"></div>
-    </div>
-  </div>
-
-  <!-- Modal: Presentación del Manual -->
-  <div class="modal-overlay" id="commercialIntroModal">
-    <div class="modal-dialog-box">
-      <div style="width:36px; height:36px; border-radius:var(--radius-xs); background:var(--bg-dark); color:#fff; display:flex; align-items:center; justify-content:center; margin-bottom:14px;">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-      </div>
-      <h2 style="font-size:18px; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Manual Web de Capacitación Comercial</h2>
-      <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.5; margin-bottom:16px;">
-        Plataforma web de consulta inmediata y entrenamiento en argumentación técnica para asesores de venta de telefonía móvil.
+    <!-- 1. PORTADA HERO MINIMALISTA -->
+    <section class="hero-manual-banner" id="inicio">
+      <div class="hero-tag-pill">Guía de Consulta Rápida para Asesores</div>
+      <h1 class="hero-main-title">Aprende a explicar un celular en segundos.</h1>
+      <p class="hero-sub-text">
+        Consulta características técnicas, traduce especificaciones a beneficios reales para el comprador y simula cuotas en pesos mexicanos.
       </p>
 
-      <div style="display:flex; flex-direction:column; gap:8px; margin-bottom:20px; font-size:13px; color:var(--text-primary);">
-        <div style="display:flex; align-items:flex-start; gap:8px;">
-          <span style="color:var(--accent-primary); font-weight:700;">•</span>
-          <span>Consultas rápidas de especificaciones de hardware y conectividad.</span>
-        </div>
-        <div style="display:flex; align-items:flex-start; gap:8px;">
-          <span style="color:var(--accent-primary); font-weight:700;">•</span>
-          <span>Traducción estructurada de datos técnicos a argumentos de venta para el cliente.</span>
-        </div>
-        <div style="display:flex; align-items:flex-start; gap:8px;">
-          <span style="color:var(--accent-primary); font-weight:700;">•</span>
-          <span>Simulador de ventas y calculadora de cuotas accesible desde cualquier navegador.</span>
+      <!-- Búsqueda Instantánea -->
+      <div class="hero-quick-search-box">
+        <span class="search-svg-pos">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </span>
+        <input type="text" class="hero-search-input" id="heroSearchInput" placeholder="Buscar concepto (ej. RAM, 5G, 120 Hz, Batería, IP68, IMEI)...">
+      </div>
+    </section>
+
+    <!-- 2. ÍNDICE VISUAL DE CATEGORÍAS -->
+    <section id="indice">
+      <div class="section-headline-block">
+        <div>
+          <h2 class="section-h2-title">Categorías del Manual</h2>
+          <div class="section-h2-sub">Selecciona un tema para filtrar las fichas visuales</div>
         </div>
       </div>
 
-      <button class="btn-primary" id="btnStartDemoExperience">
-        Ingresar al Manual Web
-      </button>
-    </div>
-  </div>
+      <div class="categories-scroll-grid" id="categoriesContainer">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
 
-  <!-- Main JavaScript App -->
+    <!-- 3. FICHAS VISUALES POR TEMA -->
+    <section>
+      <div class="section-headline-block">
+        <div>
+          <h2 class="section-h2-title">Fichas Visuales de Consulta</h2>
+          <div class="section-h2-sub">Explicación técnica en una sola frase y argumento directo para el cliente</div>
+        </div>
+      </div>
+
+      <div class="visual-cards-grid" id="visualCardsGrid">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- 4. TELÉFONO INTERACTIVO -->
+    <section class="interactive-phone-section" id="telefono-interactivo">
+      <div class="section-headline-block">
+        <div>
+          <h2 class="section-h2-title">Explorador de Hardware Interactivo</h2>
+          <div class="section-h2-sub">Toca los componentes en el teléfono para ver qué hacen y cómo decírselo al comprador</div>
+        </div>
+      </div>
+
+      <div class="phone-split-layout">
+        <!-- Marco del Teléfono con Hotspots -->
+        <div class="phone-visual-frame">
+          <div class="phone-screen-glass">
+            <div style="width:50px; height:10px; background:#1A1D20; border-radius:10px; position:absolute; top:8px;"></div>
+            
+            <div style="width:80px; height:80px; border:1px dashed rgba(0,102,204,0.4); border-radius:12px; display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff; font-size:10px; font-weight:700;">
+              <span>OCTA-CORE</span>
+              <span style="font-size:8px; opacity:0.8;">5G SoC</span>
+            </div>
+
+            <!-- Botones Hotspots -->
+            <button class="hotspot-interactive-btn hs-camera" data-spot="camera" title="Cámara">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/></svg>
+            </button>
+            <button class="hotspot-interactive-btn hs-screen" data-spot="screen" title="Pantalla 120Hz">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
+            </button>
+            <button class="hotspot-interactive-btn hs-processor active" data-spot="processor" title="Procesador">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
+            </button>
+            <button class="hotspot-interactive-btn hs-storage" data-spot="storage" title="RAM y Almacenamiento">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/></svg>
+            </button>
+            <button class="hotspot-interactive-btn hs-battery" data-spot="battery" title="Batería">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/></svg>
+            </button>
+            <button class="hotspot-interactive-btn hs-network" data-spot="network" title="Red 5G y SIM">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ficha de Consulta Flotante -->
+        <div class="hotspot-sheet-display">
+          <div class="hotspot-display-card">
+            <h3 class="hotspot-card-title" id="hotspotTitle">Procesador Octa-Core 5G</h3>
+            <p class="hotspot-card-tech" id="hotspotTech">Chipset de 8 núcleos en 6 nanómetros con módem 5G de alta velocidad.</p>
+
+            <div class="card-client-pitch-box" style="margin-bottom:14px;">
+              <div class="pitch-micro-label">Cómo explicárselo al cliente</div>
+              <div class="pitch-micro-text" id="hotspotPitch">
+                "Es el motor del teléfono: abre aplicaciones al instante y navega a máxima velocidad."
+              </div>
+            </div>
+
+            <div style="font-size:12px; color:var(--text-main); line-height:1.4;">
+              <strong>Tip de Gabriela en piso de venta:</strong> <span id="hotspotTip">Asocie procesador con rapidez de respuesta inmediata.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. COMPARADOR VISUAL DE MODELOS -->
+    <section id="comparador">
+      <div class="section-headline-block">
+        <div>
+          <h2 class="section-h2-title">Comparador Rápido de Modelos</h2>
+          <div class="section-h2-sub">Diferencias clave y precio en pesos mexicanos para recomendar el equipo ideal</div>
+        </div>
+      </div>
+
+      <div class="comparison-container" id="comparisonCardsContainer">
+        <!-- Rendered by app.js -->
+      </div>
+    </section>
+
+    <!-- 6. SIMULADOR DE CUOTAS (MXN) -->
+    <section id="simulador-cuotas">
+      <div class="section-headline-block">
+        <div>
+          <h2 class="section-h2-title">Simulador de Cuotas y Enganche</h2>
+          <div class="section-h2-sub">Herramienta visual para comunicar pagos semanales en pesos mexicanos (MXN)</div>
+        </div>
+      </div>
+
+      <div class="calculator-banner-box">
+        <div>
+          <div class="calc-control-group">
+            <div class="calc-label-row">
+              <span>Precio del Celular</span>
+              <span id="calcPriceVal" style="color:var(--accent);">$5,899 MXN</span>
+            </div>
+            <input type="range" class="calc-slider-input" id="calcPriceSlider" min="2000" max="15000" step="500" value="5899">
+          </div>
+
+          <div class="calc-control-group">
+            <div class="calc-label-row">
+              <span>Enganche Inicial</span>
+              <span id="calcDownVal">$1,000 MXN</span>
+            </div>
+            <input type="range" class="calc-slider-input" id="calcDownSlider" min="0" max="5000" step="200" value="1000">
+          </div>
+
+          <div class="calc-control-group">
+            <div class="calc-label-row">
+              <span>Plazo de Financiamiento</span>
+            </div>
+            <div class="term-pill-options">
+              <button class="term-pill-btn" data-weeks="8">8 semanas</button>
+              <button class="term-pill-btn active" data-weeks="12">12 semanas</button>
+              <button class="term-pill-btn" data-weeks="24">24 semanas</button>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div class="calc-result-dark-card">
+            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; opacity:0.8;">Cuota Semanal Estimada</div>
+            <div class="calc-big-weekly" id="calcCuotaBig">$408 MXN / sem</div>
+            <div style="font-size:11.5px; opacity:0.85;">Accesible y sin descapitalizarse</div>
+
+            <div class="calc-mxn-breakdown">
+              <div>Total: <strong id="calcTotalDisplay">$5,899 MXN</strong></div>
+              <div>Enganche: <strong id="calcDownDisplay">$1,000 MXN</strong></div>
+              <div>Saldo: <strong id="calcBalanceDisplay">$4,899 MXN</strong></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="manual-footer">
+      Manual Visual de Telefonía y Ventas • Diseñado para capacitación comercial de retail móvil • Gabriela Licona
+    </footer>
+
+  </main>
+
   <script type="module" src="js/app.js"></script>
 </body>
 </html>

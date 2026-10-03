@@ -1,290 +1,176 @@
-import { APP_CONFIG, PHONES_DATA, GLOSSARY_MODULES, SALES_SIMULATION, COMPARATOR_CHALLENGES, TRAINER_DASHBOARD_DATA } from './data.js';
-import { ProgressManager } from './progress.js';
+import { APP_CONFIG, CATEGORIES, VISUAL_CARDS, PHONES_COMPARISON, HOTSPOTS_MAP } from './data.js';
 
-// Application State
-const AppState = {
-  currentView: "home",
-  selectedPhone: PHONES_DATA[1],
-  activeHotspot: "processor",
-  simulationStep: 0,
-  simulationScore: 0,
-  calculator: {
-    price: 5899,
-    downPayment: 1000,
-    termWeeks: 12
-  }
+// Minimal SF Line SVGs
+const SVG_ICONS = {
+  antenna: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M7 7a7 7 0 0 1 10 0M12 2v20"/></svg>`,
+  cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>`,
+  display: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
+  battery: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 10v4M6 10h4"/></svg>`,
+  camera: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
+  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  sim: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h8l6 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M9 11v6M15 11v6M9 14h6"/></svg>`,
+  calculator: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="16" y1="14" x2="16" y2="18"/></svg>`,
+  search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`
 };
 
-// SVG Icon Provider (Clean Line SVGs)
-export const SVG_ICONS = {
-  antenna: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h20M7 7a7 7 0 0 1 10 0M12 2v20"/></svg>`,
-  "sim-card": `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h8l6 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2z"/><path d="M9 11v6M15 11v6M9 14h6"/></svg>`,
-  cpu: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9zM9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"/></svg>`,
-  display: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>`,
-  battery: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="6" width="18" height="12" rx="2"/><path d="M23 10v4M6 10h4"/></svg>`,
-  camera: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>`,
-  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
-  chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`
+const AppState = {
+  activeCategory: "all",
+  searchFilter: "",
+  activeHotspot: "processor",
+  calculator: {
+    priceMXN: 5899,
+    downPaymentMXN: 1000,
+    weeks: 12
+  }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  initApp();
+  renderCategories();
+  renderVisualCards();
+  setupPhoneHotspots();
+  renderComparisonCards();
+  setupCuotasCalculator();
+  setupSearch();
+  setupNavScroll();
 });
 
-function initApp() {
-  renderBrandInfo();
-  setupNavigation();
-  setupHomeView();
-  setupPhoneExplorer();
-  setupComparator();
-  setupSalesSimulator();
-  setupCreditCalculator();
-  setupGlossary();
-  setupTrainerView();
-  setupProgressView();
-  setupModals();
-  checkOnboarding();
-  updateLiveProgressIndicators();
-
-  window.addEventListener("progressUpdated", () => {
-    updateLiveProgressIndicators();
-  });
-}
-
-function renderBrandInfo() {
-  const brandTitle = document.getElementById("brandTrainerName");
-  if (brandTitle) brandTitle.textContent = APP_CONFIG.trainerName;
-  const brandSub = document.getElementById("brandTrainerSub");
-  if (brandSub) brandSub.textContent = "Manual de Capacitación Comercial";
-}
-
-function setupNavigation() {
-  const navButtons = document.querySelectorAll("[data-nav-target]");
-  navButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-      const target = btn.getAttribute("data-nav-target");
-      navigateTo(target);
-    });
-  });
-}
-
-export function navigateTo(viewId) {
-  AppState.currentView = viewId;
-  
-  // Show active view
-  document.querySelectorAll(".section-view").forEach(view => {
-    view.classList.remove("active-view");
-  });
-  const targetView = document.getElementById(`view-${viewId}`);
-  if (targetView) {
-    targetView.classList.add("active-view");
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
-
-  // Update desktop topbar links
-  document.querySelectorAll(".desktop-header-links .nav-link-btn").forEach(item => {
-    if (item.getAttribute("data-nav-target") === viewId) {
-      item.classList.add("active");
-    } else {
-      item.classList.remove("active");
-    }
-  });
-
-  // Update desktop sidebar items
-  document.querySelectorAll(".web-sidebar .sidebar-item").forEach(item => {
-    if (item.getAttribute("data-nav-target") === viewId) {
-      item.classList.add("active");
-    } else {
-      item.classList.remove("active");
-    }
-  });
-
-  // Update mobile bottom nav
-  document.querySelectorAll(".mobile-bottom-nav .mobile-nav-item").forEach(item => {
-    if (item.getAttribute("data-nav-target") === viewId) {
-      item.classList.add("active");
-    } else {
-      item.classList.remove("active");
-    }
-  });
-}
-
 // ---------------------------------------------------------------------------
-// 1. HOME VIEW SETUP
+// 1. ÍNDICE VISUAL DE CATEGORÍAS
 // ---------------------------------------------------------------------------
-function setupHomeView() {
-  const optButtons = document.querySelectorAll(".challenge-select-btn");
-  const feedbackBox = document.getElementById("dailyFeedback");
+function renderCategories() {
+  const container = document.getElementById("categoriesContainer");
+  if (!container) return;
 
-  optButtons.forEach(btn => {
+  const allButtonHtml = `
+    <button class="category-tile-btn active" data-cat="all">
+      <div class="cat-icon-svg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      </div>
+      <span class="cat-name-txt">Todos</span>
+    </button>
+  `;
+
+  const catButtonsHtml = CATEGORIES.map(cat => `
+    <button class="category-tile-btn" data-cat="${cat.id}">
+      <div class="cat-icon-svg">
+        ${SVG_ICONS[cat.icon] || SVG_ICONS.cpu}
+      </div>
+      <span class="cat-name-txt">${cat.name}</span>
+    </button>
+  `).join('');
+
+  container.innerHTML = allButtonHtml + catButtonsHtml;
+
+  container.querySelectorAll(".category-tile-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const isCorrect = btn.getAttribute("data-correct") === "true";
-      optButtons.forEach(b => {
-        b.style.pointerEvents = "none";
-        if (b.getAttribute("data-correct") === "true") {
-          b.classList.add("correct");
-        } else {
-          b.style.opacity = "0.5";
-        }
-      });
-
-      if (feedbackBox) {
-        feedbackBox.style.display = "block";
-        if (isCorrect) {
-          feedbackBox.style.background = "var(--status-success-bg)";
-          feedbackBox.style.color = "var(--status-success)";
-          feedbackBox.innerHTML = `<strong>Diagnóstico acertado.</strong> La memoria RAM y la arquitectura del procesador determinan la fluidez y tiempo de respuesta en multitarea. Argumente esta relación antes de abordar otras características secundarias.`;
-          ProgressManager.setDailyChallengeCompleted(true);
-        } else {
-          feedbackBox.style.background = "var(--status-alert-bg)";
-          feedbackBox.style.color = "var(--status-alert)";
-          feedbackBox.innerHTML = `<strong>Observación de entrenamiento:</strong> Al abordar la velocidad de respuesta, enfoque el argumento en el <strong>Procesador</strong> y la <strong>RAM</strong> antes de mencionar la cámara o la pantalla.`;
-          ProgressManager.setDailyChallengeCompleted(false);
-        }
-      }
+      container.querySelectorAll(".category-tile-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      AppState.activeCategory = btn.getAttribute("data-cat");
+      renderVisualCards();
     });
   });
 }
 
 // ---------------------------------------------------------------------------
-// 2. EXPLORA UN TELÉFONO (HARDWARE EXPLORER)
+// 2. FICHAS VISUALES POR TEMA (MICROCONTENIDO)
 // ---------------------------------------------------------------------------
-const HOTSPOT_DATA = {
-  screen: {
-    title: "Pantalla AMOLED 120 Hz",
-    tech: "Panel Full HD+ de 6.67 pulgadas con tasa de refresco adaptativo de 120 Hz.",
-    customerPitch: "Permite una lectura descansada y desplazamientos continuos de texto e imágenes sin desenfoque ni saltos al revisar documentos o catálogos.",
-    quiz: {
-      q: "¿Cómo explicar la tasa de 120 Hz en una conversación de venta?",
-      opts: [
-        "Aumenta la potencia acústica de las llamadas",
-        "Aporta suavidad y respuesta inmediata al deslizar la vista en pantalla",
-        "Incrementa la recepción de señal celular"
-      ],
-      correct: 1,
-      tip: "Respuesta correcta. La fluidez en el desplazamiento es la ventaja inmediata."
-    }
-  },
-  camera: {
-    title: "Cámara 64 MP con Estabilización OIS",
-    tech: "Sensor de alta resolución integrado con Estabilización Óptica de Imagen (OIS).",
-    customerPitch: "Asegura fotografías nítidas y videos estables evitando imágenes borrosas aun con poca iluminación o movimientos accidentales.",
-    quiz: {
-      q: "¿Qué función cumple la estabilización óptica (OIS)?",
-      opts: [
-        "Previene que las tomas salgan desenfocadas o movidas por pulso involuntario",
-        "Acelera la recarga eléctrica de la batería",
-        "Modifica el contraste del fondo del sistema"
-      ],
-      correct: 0,
-      tip: "Respuesta correcta. Elimina la trepidación en condiciones complejas de luz."
-    }
-  },
-  processor: {
-    title: "Procesador Snapdragon 5G",
-    tech: "Arquitectura de 8 núcleos en 6 nm con módem integrado para redes 5G de alta velocidad.",
-    customerPitch: "Constituye el motor central del equipo: abre aplicaciones en milisegundos y mantiene la fluidez del sistema durante toda la jornada.",
-    quiz: {
-      q: "Si el cliente busca evitar lentitud al trabajar, ¿qué componente se debe argumentar?",
-      opts: [
-        "El material del marco perimetral",
-        "El procesador central y la memoria RAM",
-        "La resolución de la cámara frontal"
-      ],
-      correct: 1,
-      tip: "Respuesta correcta. Procesador y RAM definen la agilidad operativa."
-    }
-  },
-  battery: {
-    title: "Batería 5000 mAh y Carga Rápida",
-    tech: "Celda de polímero de 5000 mAh combinada con protocolo de carga rápida de 33W.",
-    customerPitch: "Otorga autonomía para jornadas completas de actividad profesional y permite recuperar horas de operación con solo 20 minutos de conexión.",
-    quiz: {
-      q: "¿Qué necesidad concreta resuelve una capacidad de 5000 mAh?",
-      opts: [
-        "Operar durante toda la jornada sin depender de cargadores externos",
-        "Reducir el consumo de datos en la factura mensual",
-        "Aumentar el brillo del panel táctil"
-      ],
-      correct: 0,
-      tip: "Respuesta correcta. Brinda autonomía garantizada fuera de oficina."
-    }
-  },
-  network: {
-    title: "Conectividad 5G y Dual SIM",
-    tech: "Soporte para redes de quinta generación 5G NR y módulo para doble línea (SIM / eSIM).",
-    customerPitch: "Permite navegación a máxima velocidad y posibilita gestionar dos líneas activas (personal y de trabajo) en un solo dispositivo.",
-    quiz: {
-      q: "¿Cuál es el valor práctico de Dual SIM para un cliente comercial?",
-      opts: [
-        "Requerir la compra de dos terminales independientes",
-        "Administrar la línea de trabajo y la personal en el mismo equipo",
-        "Optimizar el volumen del micrófono"
-      ],
-      correct: 1,
-      tip: "Respuesta correcta. Centraliza la comunicación profesional y personal."
-    }
-  }
-};
+function renderVisualCards() {
+  const container = document.getElementById("visualCardsGrid");
+  if (!container) return;
 
-function setupPhoneExplorer() {
-  const hotspots = document.querySelectorAll(".hotspot-point");
-  const sheetTitle = document.getElementById("hotspotSheetTitle");
-  const sheetDesc = document.getElementById("hotspotSheetDesc");
-  const sheetPitch = document.getElementById("hotspotSheetPitch");
-  const sheetQuizWrap = document.getElementById("hotspotQuizWrap");
+  const search = AppState.searchFilter.toLowerCase().trim();
+  const category = AppState.activeCategory;
+
+  const filtered = VISUAL_CARDS.filter(card => {
+    const matchCat = category === "all" || card.category === category;
+    const matchSearch = search === "" || 
+      card.title.toLowerCase().includes(search) || 
+      card.techSummary.toLowerCase().includes(search) || 
+      card.clientPitch.toLowerCase().includes(search);
+    return matchCat && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    container.innerHTML = `
+      <div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted); font-size:14px;">
+        No se encontraron conceptos para la búsqueda "${AppState.searchFilter}".
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = filtered.map(card => `
+    <article class="visual-topic-card">
+      <div class="card-graphic-header">
+        <div class="graphic-highlight-badge">
+          ${SVG_ICONS[getCategoryIcon(card.category)] || SVG_ICONS.cpu}
+          <span>${card.visualHighlight}</span>
+        </div>
+      </div>
+
+      <div class="card-body-content">
+        <span class="card-category-tag">${card.badge}</span>
+        <h3 class="card-topic-title">${card.title}</h3>
+        <p class="card-one-liner-tech">${card.techSummary}</p>
+
+        <div class="card-client-pitch-box">
+          <div class="pitch-micro-label">Cómo explicárselo al cliente</div>
+          <div class="pitch-micro-text">"${card.clientPitch}"</div>
+        </div>
+
+        <div class="card-dialog-snippet">
+          <strong>Pregunta en tienda:</strong> "${card.salesSnippet.question}"<br>
+          <strong>Respuesta breve:</strong> ${card.salesSnippet.answer}
+        </div>
+      </div>
+    </article>
+  `).join('');
+}
+
+function getCategoryIcon(catId) {
+  const map = {
+    conectividad: "antenna",
+    rendimiento: "cpu",
+    pantalla: "display",
+    batería: "battery",
+    cámara: "camera",
+    seguridad: "shield",
+    "sim-imei": "sim",
+    cuotas: "calculator"
+  };
+  return map[catId] || "cpu";
+}
+
+// ---------------------------------------------------------------------------
+// 3. TELÉFONO INTERACTIVO (HOTSPOTS)
+// ---------------------------------------------------------------------------
+function setupPhoneHotspots() {
+  const buttons = document.querySelectorAll(".hotspot-interactive-btn");
+  const titleEl = document.getElementById("hotspotTitle");
+  const techEl = document.getElementById("hotspotTech");
+  const pitchEl = document.getElementById("hotspotPitch");
+  const tipEl = document.getElementById("hotspotTip");
 
   function loadHotspot(key) {
-    AppState.activeHotspot = key;
-    const data = HOTSPOT_DATA[key];
+    const data = HOTSPOTS_MAP[key];
     if (!data) return;
 
-    if (sheetTitle) sheetTitle.textContent = data.title;
-    if (sheetDesc) sheetDesc.textContent = data.tech;
-    if (sheetPitch) sheetPitch.textContent = data.customerPitch;
+    buttons.forEach(b => {
+      if (b.getAttribute("data-spot") === key) b.classList.add("active");
+      else b.classList.remove("active");
+    });
 
-    if (sheetQuizWrap) {
-      sheetQuizWrap.innerHTML = `
-        <div class="quiz-wrapper">
-          <div class="quiz-header-title">Evaluación Rápida: ${data.quiz.q}</div>
-          <div style="display:flex; flex-direction:column; gap:6px;">
-            ${data.quiz.opts.map((opt, i) => `
-              <button class="quiz-opt-item" data-idx="${i}">${opt}</button>
-            `).join('')}
-          </div>
-          <div id="hsQuizFeedback" style="display:none; font-size:12px; font-weight:600; margin-top:8px; line-height:1.4;"></div>
-        </div>
-      `;
-
-      const choiceBtns = sheetQuizWrap.querySelectorAll(".quiz-opt-item");
-      const fb = sheetQuizWrap.querySelector("#hsQuizFeedback");
-
-      choiceBtns.forEach(btn => {
-        btn.addEventListener("click", () => {
-          const idx = parseInt(btn.getAttribute("data-idx"));
-          choiceBtns.forEach(b => b.style.pointerEvents = "none");
-          if (idx === data.quiz.correct) {
-            btn.classList.add("correct");
-            fb.style.display = "block";
-            fb.style.color = "var(--status-success)";
-            fb.textContent = data.quiz.tip;
-            ProgressManager.markTopicComplete(key, "rendimiento");
-          } else {
-            btn.classList.add("wrong");
-            choiceBtns[data.quiz.correct].classList.add("correct");
-            fb.style.display = "block";
-            fb.style.color = "var(--status-danger)";
-            fb.textContent = `Opción correcta: ${data.quiz.opts[data.quiz.correct]}`;
-          }
-        });
-      });
-    }
+    if (titleEl) titleEl.textContent = data.title;
+    if (techEl) techEl.textContent = data.tech;
+    if (pitchEl) pitchEl.textContent = `"${data.clientPitch}"`;
+    if (tipEl) tipEl.textContent = data.keyTip;
   }
 
-  hotspots.forEach(hs => {
-    hs.addEventListener("click", () => {
-      const key = hs.getAttribute("data-hotspot");
-      loadHotspot(key);
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const spot = btn.getAttribute("data-spot");
+      loadHotspot(spot);
     });
   });
 
@@ -292,463 +178,123 @@ function setupPhoneExplorer() {
 }
 
 // ---------------------------------------------------------------------------
-// 3. COMPARADOR DE MODELOS
+// 4. COMPARADOR VISUAL DE MODELOS
 // ---------------------------------------------------------------------------
-function setupComparator() {
-  const challenge = COMPARATOR_CHALLENGES[0];
-  const profileEl = document.getElementById("compProfileName");
-  const needEl = document.getElementById("compProfileNeed");
-  const phoneCards = document.querySelectorAll(".comp-phone-card");
-  const feedbackEl = document.getElementById("compFeedbackCard");
+function renderComparisonCards() {
+  const container = document.getElementById("comparisonCardsContainer");
+  if (!container) return;
 
-  if (profileEl) profileEl.textContent = challenge.customerProfile.name;
-  if (needEl) needEl.textContent = `"${challenge.customerProfile.need}"`;
+  container.innerHTML = PHONES_COMPARISON.map(phone => `
+    <div class="phone-spec-card ${phone.id === 'nova-x1' ? 'highlighted' : ''}">
+      <span class="phone-card-badge">${phone.tag}</span>
+      <h3 class="phone-model-title">${phone.name}</h3>
+      <div class="phone-price-row">
+        $${phone.priceMXN.toLocaleString('es-MX')} <span class="phone-price-currency">MXN</span>
+      </div>
 
-  phoneCards.forEach(card => {
-    card.addEventListener("click", () => {
-      const phoneId = card.getAttribute("data-phone-id");
-      const isCorrect = phoneId === challenge.correctPhoneId;
+      <ul class="phone-specs-mini-list">
+        <li><strong>Pantalla:</strong> ${phone.specs.screen}</li>
+        <li><strong>Memoria:</strong> ${phone.specs.ramStorage}</li>
+        <li><strong>Cámara:</strong> ${phone.specs.camera}</li>
+        <li><strong>Batería:</strong> ${phone.specs.battery}</li>
+        <li><strong>Red:</strong> ${phone.specs.network}</li>
+      </ul>
 
-      phoneCards.forEach(c => c.style.pointerEvents = "none");
+      <div style="font-size:12px; color:var(--text-muted); margin-bottom:12px;">
+        Enganche desde: <strong>$${phone.downPaymentMXN.toLocaleString('es-MX')} MXN</strong><br>
+        Cuota estimada: <strong>$${phone.weeklyMXN.toLocaleString('es-MX')} / sem</strong>
+      </div>
 
-      if (feedbackEl) {
-        feedbackEl.style.display = "block";
-        if (isCorrect) {
-          card.style.borderColor = "var(--status-success)";
-          feedbackEl.innerHTML = `
-            <div style="font-weight:700; color:var(--status-success); margin-bottom:6px;">Recomendación Validada</div>
-            <p style="font-size:13px; color:var(--text-primary); line-height:1.45;">${challenge.explanation}</p>
-            <div style="margin-top:10px; display:flex; gap:6px; flex-wrap:wrap;">
-              ${challenge.keyPoints.map(p => `<span class="badge-tag success">${p}</span>`).join('')}
-            </div>
-          `;
-          ProgressManager.markTopicComplete("comparator-done", "rendimiento");
-        } else {
-          card.style.borderColor = "var(--status-danger)";
-          feedbackEl.innerHTML = `
-            <div style="font-weight:700; color:var(--status-danger); margin-bottom:6px;">Alternativa Sugerida: Nova X1 Pro</div>
-            <p style="font-size:13px; color:var(--text-primary); line-height:1.45;">${challenge.explanation}</p>
-          `;
-        }
-      }
-    });
-  });
+      <div class="phone-ideal-box">
+        <strong>Recomendado para:</strong> ${phone.idealFor}
+      </div>
+    </div>
+  `).join('');
 }
 
 // ---------------------------------------------------------------------------
-// 4. SIMULADOR DE VENTA CONSULTIVA
+// 5. SIMULADOR DE CUOTAS (PESOS MEXICANOS)
 // ---------------------------------------------------------------------------
-function setupSalesSimulator() {
-  const simContainer = document.getElementById("salesSimContainer");
-
-  function renderSimStep() {
-    if (!simContainer) return;
-    const stepData = SALES_SIMULATION.steps[AppState.simulationStep];
-
-    if (!stepData) {
-      simContainer.innerHTML = `
-        <div class="card-clean" style="text-align:center; padding:28px 20px;">
-          <h3 style="font-size:18px; font-weight:700; color:var(--text-primary); margin-bottom:8px;">Simulación de Venta Concluida</h3>
-          <p style="font-size:13.5px; color:var(--text-secondary); line-height:1.5; margin-bottom:18px;">
-            El proceso comercial cumplió con la secuencia de escucha activa, argumentación técnica adaptada y cierre con esquema de financiamiento.
-          </p>
-          <div style="display:flex; justify-content:center; gap:8px; margin-bottom:18px;">
-            <span class="badge-tag success">Evaluación: 10 / 10</span>
-            <span class="badge-tag blue">+100 Puntos Obtenidos</span>
-          </div>
-          <button class="btn-primary" id="btnRestartSim">Reiniciar Simulación de Venta</button>
-        </div>
-      `;
-      ProgressManager.completeSimulation(10);
-      document.getElementById("btnRestartSim")?.addEventListener("click", () => {
-        AppState.simulationStep = 0;
-        AppState.simulationScore = 0;
-        renderSimStep();
-      });
-      return;
-    }
-
-    simContainer.innerHTML = `
-      <div class="dialog-flow-wrap">
-        <div class="dialog-bubble customer">
-          <div class="dialog-client-meta">
-            Carlos (Cliente) — ${stepData.customerMood}
-          </div>
-          "${stepData.customerMessage}"
-        </div>
-      </div>
-
-      <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:10px; letter-spacing:0.3px;">
-        Etapa ${stepData.step} de ${SALES_SIMULATION.steps.length}: Seleccione su respuesta profesional
-      </div>
-
-      <div style="display:flex; flex-direction:column; gap:8px;" id="simChoicesWrap">
-        ${stepData.options.map((opt, i) => `
-          <button class="card-clean" data-opt-idx="${i}" style="text-align:left; cursor:pointer; padding:14px 16px;">
-            <div style="font-size:13px; font-weight:500; color:var(--text-primary); line-height:1.45;">${opt.text}</div>
-          </button>
-        `).join('')}
-      </div>
-
-      <div id="simStepFeedback" style="display:none; margin-top:12px; padding:12px 14px; border-radius:var(--radius-xs); font-size:12.5px; line-height:1.4;"></div>
-      <button class="btn-primary" id="btnNextSimStep" style="display:none; margin-top:14px;">Continuar a la siguiente etapa →</button>
-    `;
-
-    const choiceBtns = simContainer.querySelectorAll("#simChoicesWrap button");
-    const fb = simContainer.querySelector("#simStepFeedback");
-    const nextBtn = simContainer.querySelector("#btnNextSimStep");
-
-    choiceBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = parseInt(btn.getAttribute("data-opt-idx"));
-        const opt = stepData.options[idx];
-
-        choiceBtns.forEach(b => b.style.pointerEvents = "none");
-
-        if (fb) {
-          fb.style.display = "block";
-          if (opt.isBest) {
-            btn.style.borderColor = "var(--status-success)";
-            btn.style.background = "var(--status-success-bg)";
-            fb.style.background = "var(--status-success-bg)";
-            fb.style.color = "var(--status-success)";
-            fb.innerHTML = `<strong>Enfoque acertado:</strong> ${opt.feedback}`;
-            AppState.simulationScore += opt.score;
-          } else {
-            btn.style.borderColor = "var(--status-danger)";
-            btn.style.background = "var(--status-danger-bg)";
-            fb.style.background = "var(--status-danger-bg)";
-            fb.style.color = "var(--status-danger)";
-            fb.innerHTML = `<strong>Observación de entrenamiento:</strong> ${opt.feedback}`;
-          }
-        }
-
-        if (nextBtn) {
-          nextBtn.style.display = "flex";
-          nextBtn.addEventListener("click", () => {
-            AppState.simulationStep++;
-            renderSimStep();
-          }, { once: true });
-        }
-      });
-    });
-  }
-
-  renderSimStep();
-}
-
-// ---------------------------------------------------------------------------
-// 5. SIMULADOR DE CUOTAS
-// ---------------------------------------------------------------------------
-function setupCreditCalculator() {
+function setupCuotasCalculator() {
   const priceSlider = document.getElementById("calcPriceSlider");
-  const priceDisplay = document.getElementById("calcPriceVal");
   const downSlider = document.getElementById("calcDownSlider");
-  const downDisplay = document.getElementById("calcDownVal");
-  const cuotaDisplay = document.getElementById("calcCuotaBig");
-  const termPills = document.querySelectorAll(".term-select-pill");
-  const summaryTotal = document.getElementById("calcSummaryTotal");
-  const summaryInitial = document.getElementById("calcSummaryInitial");
-  const summaryBalance = document.getElementById("calcSummaryBalance");
+  const priceVal = document.getElementById("calcPriceVal");
+  const downVal = document.getElementById("calcDownVal");
+  const cuotaBig = document.getElementById("calcCuotaBig");
+  const termButtons = document.querySelectorAll(".term-pill-btn");
+  const totalDisplay = document.getElementById("calcTotalDisplay");
+  const downDisplay = document.getElementById("calcDownDisplay");
+  const balanceDisplay = document.getElementById("calcBalanceDisplay");
 
-  function recalculate() {
+  function calculate() {
     const price = parseInt(priceSlider?.value || 5899);
     const down = parseInt(downSlider?.value || 1000);
+    const weeks = AppState.calculator.weeks;
     const balance = Math.max(0, price - down);
-    const term = AppState.calculator.termWeeks || 12;
+    const weeklyPayment = Math.round(balance / weeks);
 
-    const weeklyPayment = Math.round(balance / term);
-
-    if (priceDisplay) priceDisplay.textContent = `$${price.toLocaleString()}`;
-    if (downDisplay) downDisplay.textContent = `$${down.toLocaleString()}`;
-    if (cuotaDisplay) cuotaDisplay.textContent = `$${weeklyPayment.toLocaleString()} / sem`;
-    if (summaryTotal) summaryTotal.textContent = `$${price.toLocaleString()}`;
-    if (summaryInitial) summaryInitial.textContent = `$${down.toLocaleString()}`;
-    if (summaryBalance) summaryBalance.textContent = `$${balance.toLocaleString()}`;
+    if (priceVal) priceVal.textContent = `$${price.toLocaleString('es-MX')} MXN`;
+    if (downVal) downVal.textContent = `$${down.toLocaleString('es-MX')} MXN`;
+    if (cuotaBig) cuotaBig.textContent = `$${weeklyPayment.toLocaleString('es-MX')} MXN / sem`;
+    if (totalDisplay) totalDisplay.textContent = `$${price.toLocaleString('es-MX')} MXN`;
+    if (downDisplay) downDisplay.textContent = `$${down.toLocaleString('es-MX')} MXN`;
+    if (balanceDisplay) balanceDisplay.textContent = `$${balance.toLocaleString('es-MX')} MXN`;
   }
 
   if (priceSlider) {
     priceSlider.addEventListener("input", (e) => {
-      AppState.calculator.price = parseInt(e.target.value);
-      recalculate();
+      AppState.calculator.priceMXN = parseInt(e.target.value);
+      calculate();
     });
   }
 
   if (downSlider) {
     downSlider.addEventListener("input", (e) => {
-      AppState.calculator.downPayment = parseInt(e.target.value);
-      recalculate();
+      AppState.calculator.downPaymentMXN = parseInt(e.target.value);
+      calculate();
     });
   }
 
-  termPills.forEach(pill => {
-    pill.addEventListener("click", () => {
-      termPills.forEach(p => p.classList.remove("active"));
-      pill.classList.add("active");
-      AppState.calculator.termWeeks = parseInt(pill.getAttribute("data-term") || 12);
-      recalculate();
+  termButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      termButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      AppState.calculator.weeks = parseInt(btn.getAttribute("data-weeks") || 12);
+      calculate();
     });
   });
 
-  recalculate();
+  calculate();
 }
 
 // ---------------------------------------------------------------------------
-// 6. GLOSARIO TÉCNICO Y COMERCIAL
+// 6. BÚSQUEDA INSTANTÁNEA
 // ---------------------------------------------------------------------------
-function setupGlossary() {
-  const glossaryList = document.getElementById("glossaryModulesList");
-  const searchInput = document.getElementById("glossarySearchInput");
-
-  function renderGlossary(filter = "") {
-    if (!glossaryList) return;
-    const termFilter = filter.toLowerCase().trim();
-
-    const html = GLOSSARY_MODULES.map(module => {
-      const filteredItems = module.items.filter(item => 
-        item.term.toLowerCase().includes(termFilter) || 
-        item.technical.toLowerCase().includes(termFilter) ||
-        item.clientExplanation.toLowerCase().includes(termFilter)
-      );
-
-      if (filteredItems.length === 0 && termFilter !== "") return "";
-
-      return `
-        <div class="module-card">
-          <div class="module-header">
-            <div class="module-left-content">
-              <div class="module-icon-box">
-                ${SVG_ICONS[module.icon] || SVG_ICONS.cpu}
-              </div>
-              <div>
-                <div class="module-name">${module.title}</div>
-                <div class="module-topic-count">${filteredItems.length} temas clave</div>
-              </div>
-            </div>
-            <div style="color:var(--text-tertiary); display:flex; align-items:center;">
-              ${SVG_ICONS.chevronRight}
-            </div>
-          </div>
-
-          <div class="module-topics-list">
-            ${filteredItems.map(item => `
-              <div class="topic-item-row" data-topic-id="${item.id}" data-mod-id="${module.id}">
-                <div>
-                  <div style="font-size:13px; font-weight:600; color:var(--text-primary);">${item.term}</div>
-                  <div style="font-size:11px; color:var(--text-secondary); margin-top:2px;">${item.badge}</div>
-                </div>
-                <span style="font-size:12px; color:var(--accent-primary); font-weight:600;">Consultar →</span>
-              </div>
-            `).join('')}
-          </div>
-        </div>
-      `;
-    }).join('');
-
-    glossaryList.innerHTML = html || `<div style="text-align:center; padding:24px; color:var(--text-secondary); font-size:13px;">No se encontraron términos para "${filter}"</div>`;
-
-    glossaryList.querySelectorAll(".topic-item-row").forEach(row => {
-      row.addEventListener("click", () => {
-        const topicId = row.getAttribute("data-topic-id");
-        openTopicModal(topicId);
-      });
-    });
-  }
-
+function setupSearch() {
+  const searchInput = document.getElementById("heroSearchInput");
   if (searchInput) {
     searchInput.addEventListener("input", (e) => {
-      renderGlossary(e.target.value);
-    });
-  }
-
-  renderGlossary();
-}
-
-function openTopicModal(topicId) {
-  let foundItem = null;
-  let foundMod = null;
-
-  for (const m of GLOSSARY_MODULES) {
-    const itm = m.items.find(i => i.id === topicId);
-    if (itm) {
-      foundItem = itm;
-      foundMod = m;
-      break;
-    }
-  }
-
-  if (!foundItem) return;
-
-  const modal = document.getElementById("topicDetailModal");
-  const content = document.getElementById("topicModalBody");
-
-  if (content) {
-    content.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:16px;">
-        <div>
-          <span class="badge-tag blue" style="margin-bottom:6px;">${foundItem.badge}</span>
-          <h2 style="font-size:18px; font-weight:700; color:var(--text-primary);">${foundItem.term}</h2>
-        </div>
-        <button class="btn-secondary" id="btnCloseTopicModal" style="padding:6px 12px; font-size:12px;">Cerrar</button>
-      </div>
-
-      <div style="background:var(--bg-subtle); padding:14px; border-radius:var(--radius-xs); margin-bottom:14px; border:1px solid var(--border-subtle);">
-        <div style="font-size:11px; font-weight:700; color:var(--text-secondary); text-transform:uppercase; margin-bottom:4px; letter-spacing:0.3px;">Definición Técnica</div>
-        <div style="font-size:13px; color:var(--text-primary); line-height:1.45;">${foundItem.technical}</div>
-      </div>
-
-      <div class="sheet-pitch-card" style="margin-bottom:14px;">
-        <div class="pitch-header">Estructura del Argumento Comercial</div>
-        <div class="pitch-quote">${foundItem.clientExplanation}</div>
-      </div>
-
-      <div style="border:1px solid var(--border-subtle); border-radius:var(--radius-xs); padding:14px; margin-bottom:16px;">
-        <div style="font-size:11px; font-weight:700; color:var(--accent-primary); text-transform:uppercase; margin-bottom:8px; letter-spacing:0.3px;">Diálogo Demostrativo en Tienda</div>
-        <div style="font-size:12.5px; line-height:1.45; color:var(--text-secondary); margin-bottom:6px;">
-          <strong>Cliente:</strong> "${foundItem.salesExample.client}"
-        </div>
-        <div style="font-size:12.5px; line-height:1.45; color:var(--text-primary);">
-          <strong>Asesor:</strong> "${foundItem.salesExample.seller}"
-        </div>
-      </div>
-
-      <div class="quiz-wrapper">
-        <div class="quiz-header-title">Evaluación Rápida: ${foundItem.microQuiz.question}</div>
-        <div style="display:flex; flex-direction:column; gap:6px;">
-          ${foundItem.microQuiz.options.map((opt, i) => `
-            <button class="quiz-opt-item modal-quiz-opt" data-idx="${i}">${opt}</button>
-          `).join('')}
-        </div>
-        <div id="modalQuizFeedback" style="display:none; font-size:12px; font-weight:600; margin-top:8px; line-height:1.4;"></div>
-      </div>
-    `;
-
-    const optBtns = content.querySelectorAll(".modal-quiz-opt");
-    const fb = content.querySelector("#modalQuizFeedback");
-
-    optBtns.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const idx = parseInt(btn.getAttribute("data-idx"));
-        optBtns.forEach(b => b.style.pointerEvents = "none");
-        if (idx === foundItem.microQuiz.correctIndex) {
-          btn.classList.add("correct");
-          fb.style.display = "block";
-          fb.style.color = "var(--status-success)";
-          fb.textContent = foundItem.microQuiz.feedback;
-          ProgressManager.markTopicComplete(foundItem.id, foundMod.id);
-        } else {
-          btn.classList.add("wrong");
-          optBtns[foundItem.microQuiz.correctIndex].classList.add("correct");
-          fb.style.display = "block";
-          fb.style.color = "var(--status-danger)";
-          fb.textContent = `Opción correcta: ${foundItem.microQuiz.options[foundItem.microQuiz.correctIndex]}`;
-        }
-      });
-    });
-
-    content.querySelector("#btnCloseTopicModal")?.addEventListener("click", () => {
-      modal?.classList.remove("active");
-    });
-  }
-
-  modal?.classList.add("active");
-}
-
-// ---------------------------------------------------------------------------
-// 7. VISTA CAPACITADORA
-// ---------------------------------------------------------------------------
-function setupTrainerView() {
-  const empList = document.getElementById("trainerEmployeesList");
-  const moduleBars = document.getElementById("trainerModuleBars");
-
-  if (empList) {
-    empList.innerHTML = TRAINER_DASHBOARD_DATA.employees.map(emp => `
-      <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid var(--border-subtle);">
-        <div>
-          <div style="font-size:13px; font-weight:600; color:var(--text-primary);">${emp.name}</div>
-          <div style="font-size:11px; color:var(--text-secondary);">${emp.store} • <span style="color:var(--accent-primary); font-weight:600;">${emp.badge}</span></div>
-        </div>
-        <div style="text-align:right;">
-          <div style="font-size:13px; font-weight:700; color:var(--text-primary);">${emp.progress}%</div>
-          <div style="font-size:11px; color:var(--status-success); font-weight:600;">${emp.status}</div>
-        </div>
-      </div>
-    `).join('');
-  }
-
-  if (moduleBars) {
-    moduleBars.innerHTML = TRAINER_DASHBOARD_DATA.modulePerformance.map(mod => `
-      <div style="margin-bottom:12px;">
-        <div style="display:flex; justify-content:space-between; font-size:12px; font-weight:600; margin-bottom:4px;">
-          <span>${mod.module}</span>
-          <span style="color:var(--text-secondary);">${mod.completion}% (${mod.status})</span>
-        </div>
-        <div class="progress-track" style="margin:0; height:5px;">
-          <div class="progress-fill" style="width:${mod.completion}%; background:${mod.color};"></div>
-        </div>
-      </div>
-    `).join('');
-  }
-}
-
-// ---------------------------------------------------------------------------
-// 8. PROGRESO Y PERSISTENCIA
-// ---------------------------------------------------------------------------
-function setupProgressView() {
-  const resetBtn = document.getElementById("btnResetProgressDemo");
-  if (resetBtn) {
-    resetBtn.addEventListener("click", () => {
-      if (confirm("¿Desea restablecer los registros de progreso de la demostración?")) {
-        ProgressManager.resetDemo();
-        updateLiveProgressIndicators();
-      }
+      AppState.searchFilter = e.target.value;
+      renderVisualCards();
     });
   }
 }
 
-function updateLiveProgressIndicators() {
-  const progress = ProgressManager.getProgress();
-  const pct = ProgressManager.calculateOverallPercentage();
-
-  const heroPct = document.getElementById("homeProgressPercent");
-  const heroBar = document.getElementById("homeProgressBar");
-  const myProgPct = document.getElementById("myProgressPercentVal");
-  const myProgBar = document.getElementById("myProgressBarVal");
-  const pointsBadge = document.getElementById("userPointsDisplay");
-  const streakBadge = document.getElementById("userStreakDisplay");
-
-  if (heroPct) heroPct.textContent = `${pct}%`;
-  if (heroBar) heroBar.style.width = `${pct}%`;
-  if (myProgPct) myProgPct.textContent = `${pct}%`;
-  if (myProgBar) myProgBar.style.width = `${pct}%`;
-  if (pointsBadge) pointsBadge.textContent = `${progress.totalPoints} pts acumulados`;
-  if (streakBadge) streakBadge.textContent = `${progress.streakDays} días consecutivos de actividad`;
-}
-
 // ---------------------------------------------------------------------------
-// 9. MODALS & ONBOARDING
+// 7. NAVEGACIÓN SUAVE DE SECCIONES
 // ---------------------------------------------------------------------------
-function setupModals() {
-  document.querySelectorAll(".modal-overlay").forEach(overlay => {
-    overlay.addEventListener("click", (e) => {
-      if (e.target === overlay) {
-        overlay.classList.remove("active");
+function setupNavScroll() {
+  const navLinks = document.querySelectorAll(".nav-anchor-btn");
+  navLinks.forEach(link => {
+    link.addEventListener("click", (e) => {
+      e.preventDefault();
+      const targetId = link.getAttribute("href");
+      const targetEl = document.querySelector(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
+        navLinks.forEach(l => l.classList.remove("active"));
+        link.classList.add("active");
       }
     });
   });
-}
-
-function checkOnboarding() {
-  const progress = ProgressManager.getProgress();
-  if (!progress.onboardingSeen) {
-    const introModal = document.getElementById("commercialIntroModal");
-    if (introModal) {
-      introModal.classList.add("active");
-      document.getElementById("btnStartDemoExperience")?.addEventListener("click", () => {
-        introModal.classList.remove("active");
-        progress.onboardingSeen = true;
-        ProgressManager.saveProgress(progress);
-      });
-    }
-  }
 }

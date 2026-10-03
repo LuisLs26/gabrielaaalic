@@ -1,588 +1,369 @@
 /**
- * CONFIGURACIÓN CENTRALIZADA E IDENTIDAD PROFESIONAL
- * Sin emojis, lenguaje corporativo de alta gama, arquitectura desacoplada.
+ * MANUAL VISUAL INTERACTIVO — GABRIELA LICONA
+ * Microfichas visuales, síntesis técnica a 1 frase y traducción directa al cliente en MXN ($).
  */
 
 export const APP_CONFIG = {
   trainerName: "Gabriela Licona",
-  trainerTitle: "Capacitación Comercial",
-  appName: "Gabriela Licona",
-  badge: "Programa de Entrenamiento Comercial",
-  tagline: "Capacitación Técnica y Argumentación de Ventas",
-  currencySymbol: "$",
-  defaultCurrencyCode: "MXN",
-  companyName: "Retail Móvil"
+  title: "Manual Visual de Telefonía y Ventas",
+  subtitle: "Guía interactiva de consulta rápida para piso de venta",
+  currency: "MXN",
+  currencySymbol: "$"
 };
 
-export const PHONES_DATA = [
+export const CATEGORIES = [
+  { id: "conectividad", name: "Conectividad", icon: "antenna", count: 3 },
+  { id: "rendimiento", name: "Rendimiento y Memoria", icon: "cpu", count: 3 },
+  { id: "pantalla", name: "Pantalla y Frecuencia", icon: "display", count: 2 },
+  { id: "bateria", name: "Batería y Carga", icon: "battery", count: 2 },
+  { id: "camara", name: "Cámaras y Óptica", icon: "camera", count: 2 },
+  { id: "seguridad", name: "Seguridad y Protección", icon: "shield", count: 2 },
+  { id: "sim-imei", name: "SIM, eSIM e IMEI", icon: "sim", count: 2 },
+  { id: "cuotas", name: "Venta a Cuotas", icon: "calculator", count: 1 }
+];
+
+export const VISUAL_CARDS = [
+  // CONECTIVIDAD
+  {
+    id: "5g-red",
+    category: "conectividad",
+    title: "5G vs 4G LTE",
+    subtitle: "Velocidad de red de última generación",
+    badge: "Red Móvil",
+    visualType: "network-speed",
+    visualHighlight: "Hasta 10x más rápido",
+    techSummary: "Red de alta velocidad con latencia menor a 5 milisegundos para descarga y transmisión continua.",
+    clientPitch: "Descargas instantáneas, videos en máxima definición sin pausas y videollamadas fluidas incluso en lugares concurridos.",
+    salesSnippet: {
+      question: "¿Me sirve el 5G hoy?",
+      answer: "Sí, navega al triple de velocidad al ver videos o descargar archivos y asegura que su equipo no quede obsoleto en los próximos años."
+    }
+  },
+  {
+    id: "wifi-6",
+    category: "conectividad",
+    title: "Wi-Fi y Redes Locales",
+    subtitle: "Navegación de alta velocidad en interiores",
+    badge: "Inalámbrico",
+    visualType: "wifi-signal",
+    visualHighlight: "2.4 GHz + 5 GHz",
+    techSummary: "Conexión a redes residenciales y empresariales con mayor alcance y estabilidad de transferencia.",
+    clientPitch: "Aprovecha al máximo el internet de su casa o trabajo para navegar a máxima velocidad sin gastar sus datos celulares.",
+    salesSnippet: {
+      question: "¿Se conecta fácil al módem?",
+      answer: "Se conecta automáticamente a la banda más rápida de su casa para que nunca se interrumpan sus descargas o llamadas."
+    }
+  },
+  {
+    id: "bluetooth",
+    category: "conectividad",
+    title: "Bluetooth 5.3",
+    subtitle: "Enlace inalámbrico para accesorios",
+    badge: "Audio y Manos Libres",
+    visualType: "bluetooth-link",
+    visualHighlight: "Alcance 10m sin cortes",
+    techSummary: "Protocolo de corto alcance de bajo consumo energético para audífonos, relojes y audio vehicular.",
+    clientPitch: "Enlaza audífonos inalámbricos, el auto o bocinas al instante y sin cables estorbosos.",
+    salesSnippet: {
+      question: "¿Gastará mucha batería usar audífonos Bluetooth?",
+      answer: "No, la versión actual de Bluetooth consume un mínimo de energía y la conexión es automática e inmediata."
+    }
+  },
+
+  // RENDIMIENTO Y MEMORIA
+  {
+    id: "ram",
+    category: "rendimiento",
+    title: "Memoria RAM (4 GB vs 8 GB vs 12 GB)",
+    subtitle: "Capacidad para múltiples aplicaciones abiertas",
+    badge: "Fluidez Operativa",
+    visualType: "ram-meter",
+    visualHighlight: "Mesa de Trabajo Multitarea",
+    techSummary: "Memoria de acceso ultrarrápido donde se mantienen activas las apps en segundo plano.",
+    clientPitch: "Es como el tamaño de su escritorio: con 8 GB o más puede abrir WhatsApp, Facebook y mapas a la vez sin que el teléfono se alente.",
+    salesSnippet: {
+      question: "¿Por qué me conviene tener 8 GB en lugar de 4 GB?",
+      answer: "Con 8 GB puede cambiar entre varias aplicaciones al instante sin que se cierren o tenga que esperar a que vuelvan a cargar."
+    }
+  },
+  {
+    id: "storage",
+    category: "rendimiento",
+    title: "Almacenamiento (128 GB vs 256 GB)",
+    subtitle: "Espacio para fotos, videos y aplicaciones",
+    badge: "Capacidad de Archivos",
+    visualType: "storage-bar",
+    visualHighlight: "Más de 60,000 fotos",
+    techSummary: "Unidad interna no volátil donde se guardan de forma permanente fotos, audios, documentos y el sistema.",
+    clientPitch: "Es el cajón de recuerdos: con 256 GB guarda miles de fotos familiares, videos y audios sin recibir el molesto aviso de 'Memoria Llena'.",
+    salesSnippet: {
+      question: "¿Vale la pena pagar por 256 GB?",
+      answer: "Sí, le da tranquilidad por años sin tener que estar borrando fotos ni aplicaciones cada semana para liberar espacio."
+    }
+  },
+  {
+    id: "processor",
+    category: "rendimiento",
+    title: "Procesador Central (SoC)",
+    subtitle: "El cerebro y motor del teléfono",
+    badge: "Velocidad y Agilidad",
+    visualType: "cpu-chip",
+    visualHighlight: "Arquitectura 8 Núcleos",
+    techSummary: "Chip central que coordina todas las órdenes, procesa fotos al instante y optimiza la batería.",
+    clientPitch: "Es el motor del equipo: hace que el teléfono responda de inmediato al tocarlo y tome fotos con colores vivos sin calentarse.",
+    salesSnippet: {
+      question: "¿Qué significa que sea de 8 núcleos?",
+      answer: "Significa que se reparten el trabajo: unos núcleos ahorran batería en reposo y otros entran en acción al abrir juegos o editar videos."
+    }
+  },
+
+  // PANTALLA
+  {
+    id: "refresh-rate",
+    category: "pantalla",
+    title: "Tasa de Refresco: 120 Hz vs 60 Hz",
+    subtitle: "Sensación de suavidad extrema al deslizar",
+    badge: "Fluidez Visual",
+    visualType: "hz-comparison",
+    visualHighlight: "120 Cuadros por segundo",
+    techSummary: "Frecuencia con que la pantalla actualiza la imagen por segundo (60 veces vs 120 veces).",
+    clientPitch: "Al deslizar en redes sociales, páginas web o menús, todo se mueve ultra suave como mantequilla, sin saltos ni cansancio para la vista.",
+    salesSnippet: {
+      question: "¿Se nota realmente el cambio a 120 Hz?",
+      answer: "Al deslizar el dedo en la pantalla el texto no se borra ni brinca; la vista descansa mucho más al leer contenido largo."
+    }
+  },
+  {
+    id: "screen-amoled",
+    category: "pantalla",
+    title: "Pantalla AMOLED y Resolución FHD+",
+    subtitle: "Colores vivos y negros puros",
+    badge: "Calidad de Imagen",
+    visualType: "display-pixels",
+    visualHighlight: "Claridad Tipo Cine",
+    techSummary: "Tecnología de píxeles autoiluminados con alto contraste y resolución de alta nitidez.",
+    clientPitch: "Permite ver series, fotos y videos con colores intensos y letras nítidas, viéndose con total claridad incluso bajo el sol de la calle.",
+    salesSnippet: {
+      question: "¿Se ve bien en exteriores con mucha luz?",
+      answer: "Sí, el panel AMOLED ofrece brillo superior para leer mensajes bajo la luz directa del sol sin forzar la vista."
+    }
+  },
+
+  // BATERÍA
+  {
+    id: "battery-capacity",
+    category: "batería",
+    title: "Capacidad de Batería (5000 mAh)",
+    subtitle: "Autonomía para toda la jornada",
+    badge: "Duración de Energía",
+    visualType: "battery-level",
+    visualHighlight: "Más de 24 horas de uso",
+    techSummary: "Capacidad de reserva eléctrica de la celda medida en miliamperios-hora.",
+    clientPitch: "Es como tener un tanque de gasolina grande: sale por la mañana y regresa en la noche con batería de sobra sin andar buscando cargadores.",
+    salesSnippet: {
+      question: "¿Me va a durar el día completo?",
+      answer: "Con 5000 mAh está diseñado para darle más de 24 horas de uso continuo entre llamadas, WhatsApp y navegación."
+    }
+  },
+  {
+    id: "fast-charging",
+    category: "batería",
+    title: "Carga Rápida (33W a 67W)",
+    subtitle: "Horas de energía en minutos",
+    badge: "Velocidad de Carga",
+    visualType: "charging-bolt",
+    visualHighlight: "50% en 18 minutos",
+    techSummary: "Entrega de alta potencia eléctrica que llena la batería en una fracción del tiempo habitual.",
+    clientPitch: "Con solo conectarlo 15 o 20 minutos mientras se baña o desayuna, obtiene batería para varias horas de uso.",
+    salesSnippet: {
+      question: "Siempre olvido cargar el celular en la noche, ¿qué hago?",
+      answer: "Con la carga rápida incluida, en lo que se prepara antes de salir de casa ya recuperó más del 60% de batería."
+    }
+  },
+
+  // CÁMARAS
+  {
+    id: "camera-megapixels",
+    category: "cámara",
+    title: "Megapíxeles (MP) y Sensores",
+    subtitle: "Nivel de detalle y recorte de fotos",
+    badge: "Fotografía y Zoom",
+    visualType: "camera-sensor",
+    visualHighlight: "50 MP a 108 MP",
+    techSummary: "Cantidad de millones de puntos que capturan la imagen, permitiendo ampliaciones sin pérdida de nitidez.",
+    clientPitch: "Le permite tomar fotos con tanto detalle que puede hacer zoom o recortar a una persona sin que la foto se vea borrosa.",
+    salesSnippet: {
+      question: "¿Tener más megapíxeles significa mejores fotos de noche?",
+      answer: "Los megapíxeles dan detalle para recortar, pero el sensor grande y el modo noche son los que logran fotos claras con poca luz."
+    }
+  },
+  {
+    id: "ois-stabilizer",
+    category: "cámara",
+    title: "Estabilización Óptica (OIS)",
+    subtitle: "Fotos y videos sin movimiento borroso",
+    badge: "Nitidez en Movimiento",
+    visualType: "stabilizer-gyro",
+    visualHighlight: "Cero fotos movidas",
+    techSummary: "Mecanismo físico que compensa el pulso de la mano mediante microgiroscopios.",
+    clientPitch: "Evita que las fotos salgan borrosas o movidas cuando los niños no se quedan quietos o usted camina grabando un video.",
+    salesSnippet: {
+      question: "¿Por qué me salían borrosas las fotos en mi celular anterior?",
+      answer: "Porque no tenía estabilizador; este equipo compensa el pulso de su mano para que cada toma salga enfocada a la primera."
+    }
+  },
+
+  // SEGURIDAD
+  {
+    id: "ip-rating",
+    category: "seguridad",
+    title: "Protección IP (IP54 vs IP68)",
+    subtitle: "Resistencia al agua, lluvia y polvo",
+    badge: "Durabilidad",
+    visualType: "water-shield",
+    visualHighlight: "Resistente a salpicaduras y lluvia",
+    techSummary: "Norma internacional de sellado contra polvo y líquidos (IP54 = salpicaduras, IP68 = inmersión en agua dulce).",
+    clientPitch: "Le da tranquilidad si le agarra la lluvia en la calle o si se le derrama un vaso de agua encima, el equipo sigue funcionando sin dañarse.",
+    salesSnippet: {
+      question: "¿Puedo contestar llamadas bajo la lluvia?",
+      answer: "Sí, cuenta con certificación contra salpicaduras para atender mensajes o llamadas en la intemperie sin riesgo."
+    }
+  },
+  {
+    id: "biometrics",
+    category: "seguridad",
+    title: "Huella Dactilar y Reconocimiento Facial",
+    subtitle: "Desbloqueo seguro en 1 segundo",
+    badge: "Protección de Apps",
+    visualType: "fingerprint-scan",
+    visualHighlight: "Acceso instantáneo y privado",
+    techSummary: "Sensores biométricos que protegen el acceso al sistema y aplicaciones bancarias sin escribir contraseñas.",
+    clientPitch: "Desbloquea el teléfono con solo tocarlo o mirarlo, manteniendo sus chats y cuentas del banco 100% protegidas contra extraños.",
+    salesSnippet: {
+      question: "¿Es seguro para entrar a mi app del banco?",
+      answer: "Es el método más seguro que existe: nadie puede duplicar su huella y evita tener que teclear claves en lugares públicos."
+    }
+  },
+
+  // SIM Y EQUIPO
+  {
+    id: "dual-sim-esim",
+    category: "sim-imei",
+    title: "Dual SIM y eSIM",
+    subtitle: "Dos líneas telefónicas en un solo equipo",
+    badge: "Negocio y Personal",
+    visualType: "dual-cards",
+    visualHighlight: "2 Números Activos",
+    techSummary: "Capacidad para operar dos líneas de forma simultánea mediante dos chips físicos o un chip virtual integrado (eSIM).",
+    clientPitch: "Le permite llevar su número de trabajo y su número personal en el mismo celular, sin cargar dos teléfonos pesados.",
+    salesSnippet: {
+      question: "¿Puedo recibir WhatsApp de mis clientes y de mi familia por separado?",
+      answer: "Sí, maneja ambas líneas a la vez y puede asignar timbres y contactos independientes para cada número."
+    }
+  },
+  {
+    id: "imei-code",
+    category: "sim-imei",
+    title: "Código IMEI del Dispositivo",
+    subtitle: "La cédula de identidad del celular",
+    badge: "Garantía y Seguridad",
+    visualType: "imei-barcode",
+    visualHighlight: "15 Dígitos Únicos",
+    techSummary: "Número de serie global irrepetible que identifica el terminal ante operadores de telefonía.",
+    clientPitch: "Es como la placa o CURP única de su celular: sirve para hacer válida su garantía y para bloquearlo de inmediato si llega a extraviarse.",
+    salesSnippet: {
+      question: "¿Para qué me sirve anotar el IMEI de la caja?",
+      answer: "Es su respaldo de propiedad: con ese número la compañía telefónica puede bloquear el equipo si se le pierde."
+    }
+  }
+];
+
+export const PHONES_COMPARISON = [
   {
     id: "nova-lite",
     name: "Nova Lite",
-    category: "Gama de Entrada",
-    price: 3499,
-    badge: "Eficiencia y Autonomía",
-    color: "Plata Niebla",
+    priceMXN: 3499,
+    downPaymentMXN: 600,
+    weeklyMXN: 241,
+    tag: "Económico y Rendidor",
     specs: {
-      ram: "4 GB LPDDR4X",
-      storage: "128 GB (Expandible a 1 TB)",
-      processor: "Octa-Core 2.0 GHz",
-      screen: '6.5" HD+ IPS (90 Hz)',
-      refreshRate: "90 Hz",
-      battery: "5000 mAh",
-      charging: "15W Carga Inteligente",
-      cameraMain: "50 MP con IA",
-      cameraFront: "8 MP",
-      connectivity: "4G LTE / Dual SIM",
-      security: "Sensor lateral de huella",
-      protection: "IP52 (Resistencia a salpicaduras)"
+      screen: '6.5" HD+ (90 Hz)',
+      ramStorage: "4 GB RAM + 128 GB",
+      camera: "50 MP Principal",
+      battery: "5000 mAh (15W)",
+      network: "4G LTE / Dual SIM"
     },
-    pitch: "Equipo enfocado en usuarios que priorizan duración de batería durante toda la jornada, mensajería constante y navegación confiable sin exceder presupuesto.",
-    idealFor: "Uso diario, estudiantes, mensajería operativa y aplicaciones de transporte.",
-    highlights: ["Batería 5000 mAh", "Almacenamiento 128 GB expandible", "Costo-beneficio"]
+    idealFor: "Llamadas, WhatsApp, navegación y uso diario sin gastar de más."
   },
   {
     id: "nova-x1",
     name: "Nova X1",
-    category: "Gama Media Balanceada",
-    price: 5899,
-    badge: "Mayor Demanda",
-    color: "Azul Titanio",
+    priceMXN: 5899,
+    downPaymentMXN: 1000,
+    weeklyMXN: 408,
+    tag: "El Más Vendido",
     specs: {
-      ram: "8 GB + 4 GB RAM Dinámica",
-      storage: "256 GB UFS 2.2",
-      processor: "Snapdragon 695 5G (6 nm)",
-      screen: '6.67" FHD+ AMOLED',
-      refreshRate: "120 Hz",
-      battery: "5000 mAh",
-      charging: "33W TurboCharge",
-      cameraMain: "64 MP con OIS (Estabilización Óptica)",
-      cameraFront: "16 MP HDR",
-      connectivity: "5G Red Móvil / Dual SIM + eSIM",
-      security: "Sensor biométrico óptico en pantalla",
-      protection: "IP54 (Protección contra polvo y lluvia ligera)"
+      screen: '6.67" AMOLED (120 Hz)',
+      ramStorage: "8 GB RAM + 256 GB",
+      camera: "64 MP con OIS (Estabilizador)",
+      battery: "5000 mAh (33W Turbo)",
+      network: "5G Red Rápida / eSIM"
     },
-    pitch: "Recomendado para clientes que manejan múltiples aplicaciones simultáneas, redes sociales y contenido multimedia sin experimentar caídas de rendimiento.",
-    idealFor: "Profesionales, ventas, usuarios activos de redes sociales y consumo multimedia continuo.",
-    highlights: ["Pantalla AMOLED 120 Hz", "8 GB RAM con 256 GB", "Conectividad 5G"]
+    idealFor: "Multitarea fluida, redes sociales intensivas, trabajo y fotos nítidas."
   },
   {
     id: "nova-x1-pro",
     name: "Nova X1 Pro",
-    category: "Gama Alta Premium",
-    price: 8999,
-    badge: "Alto Desempeño",
-    color: "Negro Obsidiana",
+    priceMXN: 8999,
+    downPaymentMXN: 1800,
+    weeklyMXN: 600,
+    tag: "Máxima Potencia",
     specs: {
-      ram: "12 GB LPDDR5",
-      storage: "512 GB UFS 3.1",
-      processor: "Dimensity 8300 Ultra (4 nm)",
-      screen: '6.78" 1.5K Crystal AMOLED',
-      refreshRate: "120 Hz Adaptable (LTPO)",
-      battery: "5200 mAh",
-      charging: "67W Ultra Charge (0 a 100% en 38 min)",
-      cameraMain: "108 MP Sensor Grande + Ultra Gran Angular",
-      cameraFront: "32 MP Grabación 4K",
-      connectivity: "5G Banda Dual / Wi-Fi 6 / eSIM",
-      security: "Sensor biométrico de respuesta instantánea",
-      protection: "IP68 (Protección completa contra inmersión y polvo)"
+      screen: '6.78" 1.5K AMOLED (120 Hz)',
+      ramStorage: "12 GB RAM + 512 GB",
+      camera: "108 MP + Video 4K Frontal",
+      battery: "5200 mAh (67W Ultra Carga)",
+      network: "5G Ultra / Wi-Fi 6 / IP68"
     },
-    pitch: "Diseñado para clientes que demandan máxima calidad fotográfica, grabación de video en alta definición y tiempos de recarga mínimos.",
-    idealFor: "Creadores de contenido, fotografía, edición y usuarios con alta exigencia tecnológica.",
-    highlights: ["Cámara 108 MP OIS", "Carga 67W", "Certificación IP68"]
+    idealFor: "Creadores de video, fotografía profesional y máxima velocidad."
   }
 ];
 
-export const GLOSSARY_MODULES = [
-  {
-    id: "conectividad",
-    title: "Conectividad y Redes",
-    icon: "antenna",
-    description: "Tecnologías de transmisión de datos móviles e inalámbricas.",
-    items: [
-      {
-        id: "5g",
-        term: "Redes 5G vs 4G LTE",
-        badge: "Red Móvil",
-        technical: "Quinta generación de tecnología de comunicación inalámbrica. Proporciona tasas de transferencia de datos de alta velocidad y latencia inferior a 5 milisegundos.",
-        clientExplanation: "Garantiza descargas casi instantáneas, reproducción de video en máxima resolución sin pausas y estabilidad en zonas de alta concentración de usuarios.",
-        salesExample: {
-          client: "¿Qué beneficio práctico obtengo con un equipo 5G frente a mi 4G actual?",
-          seller: "El equipo 5G le asegura una navegación considerablemente más rápida al descargar archivos y ver transmisiones, además de mantener su inversión vigente ante la expansión de la infraestructura de los operadores."
-        },
-        microQuiz: {
-          question: "¿Cuál es el beneficio directo para el usuario al adoptar tecnología 5G?",
-          options: [
-            "Aumento en el espectro de frecuencias físicas de radio",
-            "Mayor velocidad de transferencia y menor tiempo de respuesta al cargar contenido",
-            "Duplicación del rendimiento de la celda de batería"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. La velocidad de transferencia y la baja latencia son las ventajas perceptibles de inmediato para el cliente."
-        }
-      },
-      {
-        id: "wifi-bluetooth",
-        term: "Wi-Fi y Bluetooth",
-        badge: "Inalámbrico",
-        technical: "Protocolos estándar para redes de área local (WLAN 2.4/5 GHz) y enlaces de corto alcance (Bluetooth 5.3) con bajo consumo energético.",
-        clientExplanation: "Permite navegación de alta velocidad en redes residenciales y empresariales sin consumo de datos celulares, así como conexión estable con accesorios como audífonos y relojes inteligentes.",
-        salesExample: {
-          client: "¿Tendré problemas para sincronizar mis audífonos o la pantalla del automóvil?",
-          seller: "No. El estándar Bluetooth moderno establece sincronización inmediata y mantiene un enlace estable sin interferencias ni cortes en la reproducción."
-        },
-        microQuiz: {
-          question: "¿Cuál es el argumento comercial clave respecto a la conectividad Bluetooth?",
-          options: [
-            "Expansión de la memoria interna del sistema",
-            "Enlace inalámbrico confiable y automático con accesorios de audio y manos libres",
-            "Incremento del brillo del panel frontal"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. La compatibilidad y estabilidad con periféricos es el factor determinante para el comprador."
-        }
-      }
-    ]
+export const HOTSPOTS_MAP = {
+  screen: {
+    title: "Pantalla AMOLED 120 Hz",
+    tech: "Panel Full HD+ de 6.67\" con 120 cuadros por segundo.",
+    clientPitch: "Al deslizar en redes o documentos todo se siente ultra suave, sin saltos ni cansancio para la vista.",
+    keyTip: "Demuestre la fluidez deslizando el menú frente al cliente."
   },
-  {
-    id: "sim-equipo",
-    title: "Identificación, SIM y eSIM",
-    icon: "sim-card",
-    description: "Gestión de líneas telefónicas y seguridad del dispositivo.",
-    items: [
-      {
-        id: "esim-dual",
-        term: "SIM Física, eSIM y Dual SIM",
-        badge: "Líneas Telefónicas",
-        technical: "Módulo de identidad de abonado físico frente a circuito integrado programable (eSIM). La arquitectura Dual SIM permite operar dos líneas activas de forma concurrente.",
-        clientExplanation: "Permite gestionar dos números telefónicos en un único dispositivo: por ejemplo, una línea corporativa y una personal, sin necesidad de portar dos equipos independientes.",
-        salesExample: {
-          client: "Manejo un número para mi negocio y otro personal, ¿puedo integrarlos aquí?",
-          seller: "Correcto. Mediante la función Dual SIM y eSIM puede recibir llamadas y mensajes de ambas líneas en este mismo equipo, asignando contactos y tonos de manera independiente."
-        },
-        microQuiz: {
-          question: "Un cliente gestiona ventas y vida personal por separado. ¿Qué solución comercial le presentas?",
-          options: [
-            "Adquisición obligatoria de dos dispositivos independientes",
-            "Uso de Dual SIM o eSIM para consolidar ambas líneas en el mismo equipo",
-            "Ampliación de la memoria RAM del sistema"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. La consolidación de líneas en un solo equipo optimiza costos y comodidad para el usuario."
-        }
-      },
-      {
-        id: "imei",
-        term: "Código IMEI",
-        badge: "Seguridad y Garantía",
-        technical: "International Mobile Equipment Identity: registro alfanumérico global único de 15 dígitos que identifica unívocamente al terminal ante operadores y fabricantes.",
-        clientExplanation: "Funciona como la identificación oficial y única del dispositivo. Es indispensable para validación de garantías y permite bloquear el equipo de inmediato en caso de robo o extravío.",
-        salesExample: {
-          client: "¿Por qué es importante registrar el código IMEI de la factura?",
-          seller: "Es su principal respaldo de seguridad. Si el dispositivo llegara a extraviarse, ese identificador permite que la compañía bloquee el acceso para que no pueda ser utilizado por terceros."
-        },
-        microQuiz: {
-          question: "¿Cuál es la función principal del código IMEI explicada al cliente?",
-          options: [
-            "Medición de la frecuencia del procesador",
-            "Identificador único del equipo para gestión de garantías y bloqueo preventivo",
-            "Clave de acceso al correo electrónico institucional"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. El IMEI es la clave de identidad y protección del equipo ante siniestros."
-        }
-      }
-    ]
+  camera: {
+    title: "Cámara 64 MP con Estabilizador OIS",
+    tech: "Sensor de alta resolución con estabilización óptica física.",
+    clientPitch: "Fotos y videos nítidos que no salen movidos ni borrosos aunque le tiemble el pulso.",
+    keyTip: "Muestre cómo el estabilizador evita fotos borrosas en interiores."
   },
-  {
-    id: "rendimiento",
-    title: "Rendimiento y Almacenamiento",
-    icon: "cpu",
-    description: "Capacidad de procesamiento, memoria operativa y almacenamiento.",
-    items: [
-      {
-        id: "ram",
-        term: "Memoria RAM",
-        badge: "Capacidad Operativa",
-        technical: "Memoria de acceso aleatorio de alta velocidad donde se almacenan temporalmente las instrucciones de las aplicaciones en ejecución y procesos del sistema.",
-        clientExplanation: "Determina la capacidad del teléfono para mantener múltiples aplicaciones abiertas simultáneamente sin que se reinicien o se perciba lentitud al alternar entre ellas.",
-        salesExample: {
-          client: "¿Qué ventaja práctica me ofrece contar con 8 GB de RAM en lugar de 4 GB?",
-          seller: "Con 8 GB usted puede revisar documentos, responder mensajes en WhatsApp y navegar en internet alternando entre ventanas sin que ninguna aplicación se cierre o se pause."
-        },
-        microQuiz: {
-          question: "Un usuario manifiesta que su equipo actual se congela al alternar aplicaciones. ¿Qué componente debe destacarse?",
-          options: [
-            "La resolución del sensor fotográfico",
-            "Una mayor capacidad de Memoria RAM",
-            "El grado de protección contra polvo"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. La memoria RAM es el recurso que asegura la continuidad de procesos en multitarea."
-        }
-      },
-      {
-        id: "storage",
-        term: "Almacenamiento Interno (GB)",
-        badge: "Capacidad de Datos",
-        technical: "Unidad de estado sólido no volátil (tecnología UFS) donde se conservan el sistema operativo, aplicaciones instaladas, documentos y archivos multimedia.",
-        clientExplanation: "Es el espacio disponible para guardar fotos, videos en alta definición, conversaciones y aplicaciones sin requerir depuración periódica de archivos.",
-        salesExample: {
-          client: "¿Vale la pena optar por 256 GB frente a 128 GB?",
-          seller: "Si usted genera contenido, conserva historiales extensos de mensajería o descarga aplicaciones frecuentemente, 256 GB le garantizan varios años de uso continuo sin alertas de espacio insuficiente."
-        },
-        microQuiz: {
-          question: "¿Qué problemática recurrente resuelve un almacenamiento interno amplio?",
-          options: [
-            "Descarga imprevista de la batería durante el día",
-            "La necesidad constante de eliminar archivos o fotos por falta de espacio",
-            "Baja recepción de señal en exteriores"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. Evitar la saturación del almacenamiento previene fricciones de uso a mediano plazo."
-        }
-      },
-      {
-        id: "processor",
-        term: "Procesador Central (SoC)",
-        badge: "Unidad de Cómputo",
-        technical: "Circuito integrado que combina CPU multinúcleo, unidad gráfica (GPU) y motor neuronal (NPU) para la ejecución eficiente de instrucciones.",
-        clientExplanation: "Constituye la unidad central de cómputo del teléfono. Asegura que la interfaz responda con inmediatez al tacto, procese fotografías con rapidez y mantenga eficiencia energética.",
-        salesExample: {
-          client: "¿Cómo influye el procesador en el uso cotidiano?",
-          seller: "Es el componente que coordina la velocidad general del equipo: permite abrir aplicaciones en milisegundos y procesar imágenes con mayor fidelidad sin sobrecalentamiento."
-        },
-        microQuiz: {
-          question: "¿Cómo debe definirse el procesador en una conversación comercial?",
-          options: [
-            "La dimensión diagonal de la pantalla",
-            "El componente central que define la agilidad y tiempo de respuesta de todas las tareas",
-            "El módulo receptor de señal de radio"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. Explicarlo como la unidad central de respuesta facilita la comprensión del cliente."
-        }
-      }
-    ]
+  processor: {
+    title: "Procesador Octa-Core 5G",
+    tech: "Chipset de 8 núcleos en 6 nanómetros con módem 5G.",
+    clientPitch: "Es el motor del teléfono: abre aplicaciones al instante y navega a máxima velocidad.",
+    keyTip: "Asocie procesador con rapidez de respuesta inmediata."
   },
-  {
-    id: "pantalla",
-    title: "Pantalla y Tasa de Refresco",
-    icon: "display",
-    description: "Tecnología de panel, resolución y frecuencia de actualización.",
-    items: [
-      {
-        id: "hz-refresh",
-        term: "Tasa de Refresco (Hz)",
-        badge: "Fluidez Visual",
-        technical: "Frecuencia con la que el panel actualiza la imagen por segundo (60 Hz vs 120 Hz).",
-        clientExplanation: "Una frecuencia de 120 Hz genera desplazamientos considerablemente más suaves al navegar y leer texto en movimiento, reduciendo la fatiga visual.",
-        salesExample: {
-          client: "¿Qué diferencia práctica existe entre una pantalla de 60 Hz y una de 120 Hz?",
-          seller: "Al desplazarse por listas de contactos, documentos o redes sociales, en 120 Hz el contenido se mantiene nítido y la respuesta táctil es inmediata, sin saltos visuales."
-        },
-        microQuiz: {
-          question: "¿Cuál es el beneficio directo perceptible en un panel de 120 Hz?",
-          options: [
-            "Mayor volumen en el altavoz principal",
-            "Continuidad y suavidad superior durante el desplazamiento de contenidos",
-            "Reducción en el peso físico del dispositivo"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. La suavidad en el desplazamiento y la respuesta táctil son evidentes de inmediato."
-        }
-      }
-    ]
+  battery: {
+    title: "Batería 5000 mAh + Carga Rápida",
+    tech: "Celda de polímero de 5000 mAh con carga de 33W.",
+    clientPitch: "Batería para todo el día y horas de uso con solo 20 minutos de carga.",
+    keyTip: "Destaque la tranquilidad de no buscar cargador a mitad del día."
   },
-  {
-    id: "bateria",
-    title: "Batería y Protocolos de Carga",
-    icon: "battery",
-    description: "Autonomía operativa y potencia de recarga en vatios.",
-    items: [
-      {
-        id: "mah-bateria",
-        term: "Capacidad de Batería (mAh)",
-        badge: "Autonomía",
-        technical: "Miliamperios-hora: cuantificación de la capacidad de almacenamiento de energía electroquímica en la celda.",
-        clientExplanation: "Una capacidad de 5000 mAh asegura autonomía suficiente para cubrir jornadas completas de uso continuo sin requerir conexiones intermedias.",
-        salesExample: {
-          client: "¿El equipo resistirá una jornada laboral completa sin recarga?",
-          seller: "Con una celda de 5000 mAh y gestión inteligente de energía, el dispositivo está diseñado para operar durante toda su jornada con margen de reserva."
-        },
-        microQuiz: {
-          question: "¿Qué indica una especificación de 5000 mAh?",
-          options: [
-            "La velocidad de transferencia de datos móviles",
-            "La capacidad de reserva energética y autonomía del dispositivo",
-            "La cantidad de archivos admisibles en memoria"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. Representa la capacidad de reserva de energía del equipo."
-        }
-      },
-      {
-        id: "carga-rapida",
-        term: "Carga Rápida (Watts)",
-        badge: "Potencia de Recarga",
-        technical: "Entrega de potencia eléctrica regulada (W) mediante protocolos térmicos de seguridad.",
-        clientExplanation: "Permite recuperar un porcentaje significativo de carga en periodos breves (por ejemplo, 15 a 20 minutos), optimizando tiempos de espera.",
-        salesExample: {
-          client: "Dispongo de poco tiempo para recargar el equipo durante el día.",
-          seller: "Con un sistema de carga rápida de 33W o 67W, en aproximadamente 20 minutos obtendrá carga suficiente para varias horas de operación continua."
-        },
-        microQuiz: {
-          question: "¿Qué valor resuelve la carga rápida en un perfil ejecutivo o de alta movilidad?",
-          options: [
-            "Reducción del consumo de datos móviles",
-            "Recuperación acelerada de energía en lapsos breves",
-            "Disminución del tamaño físico de la pantalla"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. La recuperación rápida de autonomía es la solución para usuarios de alta actividad."
-        }
-      }
-    ]
+  storage: {
+    title: "Memoria RAM 8GB + 256GB Almacenamiento",
+    tech: "8 GB RAM física y 256 GB de memoria flash interna.",
+    clientPitch: "Abra decenas de apps sin que se trabe y guarde miles de fotos sin borrar nada.",
+    keyTip: "Enfatice el fin del aviso de 'Almacenamiento casi lleno'."
   },
-  {
-    id: "camara",
-    title: "Sistemas Fotográficos y Óptica",
-    icon: "camera",
-    description: "Sensores, estabilización óptica y resolución en megapíxeles.",
-    items: [
-      {
-        id: "megapixeles-calidad",
-        term: "Megapíxeles (MP) y Estabilización (OIS)",
-        badge: "Captura de Imagen",
-        technical: "Resolución del sensor en millones de puntos combinada con Estabilización Óptica de Imagen (OIS) y algoritmos de rango dinámico.",
-        clientExplanation: "Una alta resolución permite recortar tomas sin perder definición, mientras que la estabilización óptica evita imágenes borrosas en condiciones de poca iluminación o tomas en movimiento.",
-        salesExample: {
-          client: "¿Un número mayor de megapíxeles garantiza automáticamente mejores fotografías?",
-          seller: "Los megapíxeles aportan nivel de detalle, pero la presencia de estabilización óptica y la apertura del lente son los factores determinantes para obtener tomas nítidas e iluminadas en interiores."
-        },
-        microQuiz: {
-          question: "¿De qué depende la nitidez fotográfica en condiciones de baja iluminación?",
-          options: [
-            "Exclusivamente de la cifra nominal de megapíxeles",
-            "De la combinación del sensor, apertura y estabilización óptica",
-            "Del color del acabado posterior del equipo"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. La calidad fotográfica responde a la integración de óptica, sensor y estabilización."
-        }
-      }
-    ]
-  },
-  {
-    id: "seguridad-resistencia",
-    title: "Seguridad y Certificación IP",
-    icon: "shield",
-    description: "Autenticación biométrica y tolerancia a factores ambientales.",
-    items: [
-      {
-        id: "proteccion-ip",
-        term: "Certificación IP (IP54 / IP68)",
-        badge: "Resistencia Ambiental",
-        technical: "Ingress Protection: estándar de clasificación contra la penetración de partículas sólidas (primer dígito) y líquidos (segundo dígito).",
-        clientExplanation: "IP54 ofrece tolerancia contra polvo y salpicaduras incidentales de lluvia. IP68 certifica protección hermética ante inmersión accidental en agua dulce.",
-        salesExample: {
-          client: "Trabajo frecuentemente en exteriores y me preocupa la exposición a la lluvia.",
-          seller: "Este equipo cuenta con certificación IP para protección contra salpicaduras y polvo, lo que previene daños por humedad accidental durante su jornada."
-        },
-        microQuiz: {
-          question: "¿Qué garantiza la certificación IP68 frente a accidentes cotidianos?",
-          options: [
-            "Mayor tasa de refresco en pantalla",
-            "Protección comprobada contra inmersión accidental y polvo",
-            "Incremento en el alcance de la red Wi-Fi"
-          ],
-          correctIndex: 1,
-          feedback: "Respuesta correcta. Certifica el nivel de hermeticidad ante partículas y agua."
-        }
-      }
-    ]
+  network: {
+    title: "Conectividad 5G y Dual SIM",
+    tech: "Antenas 5G multinivel y soporte para dos líneas telefónicas.",
+    clientPitch: "Descargas instantáneas y dos números (personal y de trabajo) en un solo teléfono.",
+    keyTip: "Ideal para comerciantes que manejan WhatsApp de ventas."
   }
-];
-
-export const SALES_SIMULATION = {
-  title: "Simulación de Venta Consultiva",
-  scenario: "Cliente: Carlos — Comerciante independiente",
-  steps: [
-    {
-      step: 1,
-      customerMood: "Evaluación de necesidades",
-      customerMessage: "Busco renovar mi equipo. El teléfono actual presenta lentitud constante al trabajar con catálogos y necesito que la batería cubra toda mi jornada sin recargas intermedias.",
-      options: [
-        {
-          id: "opt-1",
-          text: "Le sugiero directamente el modelo de mayor precio de 108 Megapíxeles y 512 Gigabytes de almacenamiento.",
-          isBest: false,
-          score: 1,
-          feedback: "Se ofertó la opción más costosa sin validar previamente el perfil operativo ni argumentar en función de la lentitud y autonomía manifestadas."
-        },
-        {
-          id: "opt-2",
-          text: "Comprendo. Para eliminar la lentitud en multitarea requerimos un procesador eficiente con mínimo 8 GB de RAM, además de una batería de 5000 mAh para su jornada completa. ¿Qué volumen de archivos multimedia maneja habitualmente?",
-          isBest: true,
-          score: 3,
-          feedback: "Excelente argumentación. Vinculó de forma técnica y comprensible los requerimientos de memoria y autonomía, cerrando con una pregunta de diagnóstico."
-        },
-        {
-          id: "opt-3",
-          text: "Contamos con una amplia variedad en exhibición. Puede revisar las fichas técnicas impresas en el mostrador.",
-          isBest: false,
-          score: 0,
-          feedback: "El comprador requiere asesoría consultiva orientada a resolver su problema, no lectura de especificaciones aisladas."
-        }
-      ]
-    },
-    {
-      step: 2,
-      customerMood: "Análisis de financiamiento",
-      customerMessage: "Envío continuamente cotizaciones e imágenes a clientes. Me interesa una opción con financiamiento en parcialidades periódicas, ¿cuentan con ese esquema?",
-      options: [
-        {
-          id: "opt-1",
-          text: "Efectivamente. Mediante nuestro esquema de financiamiento, el modelo Nova X1 le permite iniciar con un enganche mínimo y cuotas semanales accesibles, incluyendo 256 GB para almacenar todo su catálogo comercial.",
-          isBest: true,
-          score: 3,
-          feedback: "Excelente integración. Conectó la viabilidad del financiamiento en pagos cómodos con el beneficio directo para su actividad comercial."
-        },
-        {
-          id: "opt-2",
-          text: "Solo procesamos liquidaciones de contado en este departamento.",
-          isBest: false,
-          score: 0,
-          feedback: "Se descarta la principal alternativa de comercialización accesible para el cliente."
-        },
-        {
-          id: "opt-3",
-          text: "El precio de lista es de $5,899. Para esquemas a plazos debe consultar en ventanilla de cobranza.",
-          isBest: false,
-          score: 1,
-          feedback: "El asesor comercial debe dominar y presentar la simulación de cuotas durante la conversación de venta."
-        }
-      ]
-    },
-    {
-      step: 3,
-      customerMood: "Validación de durabilidad",
-      customerMessage: "Realizo entregas en campo. ¿Qué respaldo ofrece el equipo ante exposición a polvo o lluvia imprevista?",
-      options: [
-        {
-          id: "opt-1",
-          text: "Cualquier contacto con humedad invalida la garantía de forma inmediata.",
-          isBest: false,
-          score: 0,
-          feedback: "Respuesta imprecisa que genera incertidumbre en lugar de explicar las especificaciones de ingeniería del producto."
-        },
-        {
-          id: "opt-2",
-          text: "El dispositivo cuenta con certificación IP que protege contra el ingreso de polvo y salpicaduras de lluvia, haciéndolo idóneo para trabajo en exteriores. Adicionalmente, podemos integrar protección de cristal templado de alta densidad.",
-          isBest: true,
-          score: 3,
-          feedback: "Explicación precisa. Tradujo la norma IP en tranquilidad operativa para el usuario y añadió valor con protección complementaria."
-        },
-        {
-          id: "opt-3",
-          text: "Cuenta con pantalla de 120 Hertzios de refresco.",
-          isBest: false,
-          score: 0,
-          feedback: "Se confundió la fluidez de panel con la resistencia física estructural."
-        }
-      ]
-    },
-    {
-      step: 4,
-      customerMood: "Decisión de adquisición",
-      customerMessage: "La configuración del Nova X1 cumple con lo que necesito. ¿Cuál es el procedimiento para concretar la adquisición mediante cuotas?",
-      options: [
-        {
-          id: "opt-1",
-          text: "Con su identificación oficial definimos en nuestro simulador el enganche y el plazo deseado. El trámite se completa en minutos y realizamos la entrega del equipo listo para operar.",
-          isBest: true,
-          score: 3,
-          feedback: "Cierre profesional. Procedimiento ágil, transparente y con orientación al servicio."
-        },
-        {
-          id: "opt-2",
-          text: "Debe presentar documentación física adicional en los próximos días.",
-          isBest: false,
-          score: 0,
-          feedback: "Introduce obstáculos burocráticos y dilata el cierre de la operación."
-        }
-      ]
-    }
-  ]
-};
-
-export const COMPARATOR_CHALLENGES = [
-  {
-    id: "challenge-1",
-    customerProfile: {
-      name: "Valeria — Creadora de Contenido y Edición Digital",
-      need: "Producción continua de video en alta resolución, edición móvil y carga de archivos pesados. Requiere capacidad amplia, grabación 4K y tiempos breves de recarga.",
-      budget: "Inversión orientada a productividad"
-    },
-    phoneA: "nova-x1",
-    phoneB: "nova-x1-pro",
-    correctPhoneId: "nova-x1-pro",
-    explanation: "Para flujos de trabajo que involucran renderizado de video y almacenamiento de material sin compresión, el Nova X1 Pro ofrece 512 GB de almacenamiento UFS 3.1, sensor con captura 4K y recarga rápida de 67W.",
-    keyPoints: ["512 GB de almacenamiento", "Grabación frontal 4K", "Recarga rápida de 67W"]
-  },
-  {
-    id: "challenge-2",
-    customerProfile: {
-      name: "Don Roberto — Servicio de Transporte de Pasajeros",
-      need: "Operación continua de aplicaciones de navegación GPS durante turnos prolongados. Demanda máxima autonomía de batería, lectura clara de mapas y costo operativo balanceado.",
-      budget: "Inversión eficiente"
-    },
-    phoneA: "nova-lite",
-    phoneB: "nova-x1-pro",
-    correctPhoneId: "nova-lite",
-    explanation: "El Nova Lite satisface plenamente sus requerimientos de autonomía (batería de 5000 mAh y procesador de consumo optimizado) manteniendo un costo accesible sin sobreespecificaciones innecesarias para su función.",
-    keyPoints: ["Batería 5000 mAh de alta eficiencia", "Pantalla de 6.5 pulgadas de fácil lectura", "Relación costo-beneficio óptima"]
-  }
-];
-
-export const TRAINER_DASHBOARD_DATA = {
-  stats: {
-    totalEmployees: 18,
-    activeThisWeek: 16,
-    avgCompletionRate: 78,
-    simulationsPassed: 42,
-    avgQuizScore: "88%"
-  },
-  modulePerformance: [
-    { module: "Batería y Protocolos de Carga", completion: 95, status: "Consolidado", color: "#1D74F5" },
-    { module: "SIM, eSIM y Código IMEI", completion: 89, status: "Nivel Óptimo", color: "#1D74F5" },
-    { module: "Rendimiento (RAM y Procesador)", completion: 82, status: "Satisfactorio", color: "#1D74F5" },
-    { module: "Sistemas Ópticos y Megapíxeles", completion: 74, status: "En Desarrollo", color: "#6E6E73" },
-    { module: "Pantalla y Tasa de Refresco (Hz)", completion: 62, status: "Refuerzo Requerido", color: "#D9383A" },
-    { module: "Simulación de Venta en Parcialidades", completion: 68, status: "En Práctica", color: "#6E6E73" }
-  ],
-  employees: [
-    { name: "Andrea Méndez", store: "Sucursal Central", progress: 96, score: "9.8 / 10", badge: "Asesor Certificado", status: "Acreditado" },
-    { name: "Carlos Quintana", store: "Sucursal Norte", progress: 88, score: "9.2 / 10", badge: "Nivel Avanzado", status: "Activo" },
-    { name: "María Fernanda López", store: "Sucursal Plaza", progress: 84, score: "8.9 / 10", badge: "Nivel Avanzado", status: "Activo" },
-    { name: "José Manuel Ruiz", store: "Sucursal Sur", progress: 72, score: "8.1 / 10", badge: "En Proceso", status: "Activo" },
-    { name: "Sofía Galindo", store: "Sucursal Central", progress: 65, score: "7.8 / 10", badge: "En Proceso", status: "Módulo Cuotas" },
-    { name: "David Alarcón", store: "Sucursal Oriente", progress: 48, score: "7.0 / 10", badge: "Nuevo Ingreso", status: "Módulo Inicial" }
-  ],
-  insights: [
-    {
-      type: "alert",
-      title: "Punto de refuerzo pedagógico: Tasa de Refresco (Hz)",
-      description: "El 38% del personal de nuevo ingreso confunde la tasa de refresco (Hz) con la resolución de pantalla al estructurar el argumento de venta."
-    },
-    {
-      type: "success",
-      title: "Concepto con mayor índice de asimilación: Autonomía (mAh)",
-      description: "El 95% del equipo comunica con precisión la equivalencia de 5000 mAh en términos de jornada completa de trabajo."
-    },
-    {
-      type: "action",
-      title: "Recomendación operativa semanal",
-      description: "Desplegar cápsula de entrenamiento breve sobre diferenciación de RAM Física vs Almacenamiento Interno."
-    }
-  ]
 };
