@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Gabriela Licona — Capacitación Comercial Interactiva</title>
+  <meta name="description" content="Plataforma de capacitación comercial interactiva para asesores de venta de telefonía móvil. Aprende características, cuotas y argumentación real.">
+  <meta name="theme-color" content="#F5F5F7">
+  
+  <!-- OpenGraph Meta Tags -->
+  <meta property="og:title" content="Gabriela Licona — Capacitación Comercial">
+  <meta property="og:description" content="Experiencia visual e interactiva para aprender telefonía, cuotas y venta consultiva.">
+  <meta property="og:type" content="website">
+
+  <!-- Apple Touch & Web App Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Gaby Capacitación">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>📱</text></svg>">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Main Viewport Container (Optimized for Mobile & Centered on Desktop) -->
+  <main class="app-viewport">
+
+    <!-- Top App Header -->
+    <header class="app-header">
+      <div class="header-brand" data-nav-target="home" style="cursor: pointer;">
+        <div class="brand-avatar">GL</div>
+        <div class="brand-info">
+          <h1 id="brandTrainerName">Gabriela Licona</h1>
+          <span id="brandTrainerSub">Capacitación Comercial</span>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="btn-trainer-pill" data-nav-target="trainer" title="Panel de capacitadora">
+          <span>👩‍🏫</span> Vista Capacitadora
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <div class="app-content">
+
+      <!-- ===================================================================
+           1. VISTA: INICIO (HOME DASHBOARD)
+           =================================================================== -->
+      <section id="view-home" class="section-view active-view">
+        <h2 class="title-greeting" id="homeGreeting">Hola 👋</h2>
+        <p class="subtitle-hero">¿Qué quieres practicar hoy para vender mejor?</p>
+
+        <!-- Progress Hero Card -->
+        <div class="progress-hero-card">
+          <div class="progress-header-row">
+            <span class="progress-label">Tu avance en capacitación</span>
+            <span class="progress-percent-val" id="homeProgressPercent">62%</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="homeProgressBar" style="width: 62%;"></div>
+          </div>
+          <div class="progress-stats-row">
+            <span class="stat-item-badge" id="userStreakDisplay">🔥 3 días de racha</span>
+            <span class="stat-item-badge" id="userPointsDisplay" style="color:var(--accent-blue);">240 pts</span>
+          </div>
+        </div>
+
+        <!-- Quick Interactive Tiles -->
+        <div class="quick-tiles-grid">
+          <div class="quick-tile-btn" data-nav-target="explorer">
+            <div class="tile-icon-box" style="background: var(--accent-blue-soft); color: var(--accent-blue);">📱</div>
+            <div>
+              <div class="tile-title">Explora el Teléfono</div>
+              <div class="tile-sub">Toca componentes en vivo</div>
+            </div>
+          </div>
+
+          <div class="quick-tile-btn" data-nav-target="practice">
+            <div class="tile-icon-box" style="background: var(--accent-green-soft); color: var(--accent-green);">💬</div>
+            <div>
+              <div class="tile-title">Practica una Venta</div>
+              <div class="tile-sub">Simulación con cliente real</div>
+            </div>
+          </div>
+
+          <div class="quick-tile-btn" data-nav-target="comparator">
+            <div class="tile-icon-box" style="background: var(--accent-purple); color: #fff;">⚖️</div>
+            <div>
+              <div class="tile-title">Comparador Visual</div>
+              <div class="tile-sub">¿Cuál equipo recomendar?</div>
+            </div>
+          </div>
+
+          <div class="quick-tile-btn" data-nav-target="calculator">
+            <div class="tile-icon-box" style="background: var(--accent-orange-soft); color: var(--accent-orange);">💳</div>
+            <div>
+              <div class="tile-title">Simula Cuotas</div>
+              <div class="tile-sub">Calcula enganche y pagos</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Reto Rápido del Día (Daily Micro-Quiz) -->
+        <div class="daily-challenge-card">
+          <span class="daily-tag">⚡ Reto Rápido del Día</span>
+          <div class="daily-question">
+            Un cliente pregunta: <em>"¿Este teléfono es rápido para abrir varias aplicaciones a la vez sin trabarse?"</em><br>
+            ¿Qué característica deberías explicarle primero?
+          </div>
+          <div class="daily-options-grid">
+            <button class="daily-opt-btn" data-correct="false">📸 La cantidad de Megapíxeles de la cámara</button>
+            <button class="daily-opt-btn" data-correct="true">⚡ La memoria RAM y el Procesador</button>
+            <button class="daily-opt-btn" data-correct="false">🛡️ La certificación de resistencia al agua IP68</button>
+          </div>
+          <div class="daily-feedback-box" id="dailyFeedback"></div>
+        </div>
+
+        <!-- Continue Last Lesson Tile -->
+        <div class="liquid-card" style="display:flex; align-items:center; justify-content:space-between; cursor:pointer;" data-nav-target="glossary">
+          <div style="display:flex; align-items:center; gap:12px;">
+            <div style="font-size:24px;">📖</div>
+            <div>
+              <div style="font-size:13px; font-weight:700;">Glosario Visual Interactivo</div>
+              <div style="font-size:11px; color:var(--text-secondary);">Aprende a traducir términos técnicos a ventas</div>
+            </div>
+          </div>
+          <span style="color:var(--accent-blue); font-weight:700; font-size:18px;">›</span>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           2. VISTA: EXPLORA UN TELÉFONO (HOTSPOTS 3D/X-RAY)
+           =================================================================== -->
+      <section id="view-explorer" class="section-view">
+        <h2 class="title-greeting">Explora un Teléfono</h2>
+        <p class="subtitle-hero">Toca los puntos interactivos para entender qué hace cada parte y cómo explicárselo al cliente.</p>
+
+        <!-- Smartphone Interactive Frame -->
+        <div class="phone-explorer-wrap">
+          <div class="phone-device-frame">
+            <div class="phone-island"></div>
+            <div class="phone-screen-inner">
+              <!-- Internal Chip Glow -->
+              <div class="phone-chip-render">
+                <span>OCTA-CORE</span>
+                <span style="font-size:9px; opacity:0.8;">5G AI</span>
+              </div>
+
+              <!-- Hotspot Buttons -->
+              <button class="hotspot-point hotspot-camera" data-hotspot="camera" title="Cámara">📸</button>
+              <button class="hotspot-point hotspot-screen" data-hotspot="screen" title="Pantalla 120Hz">📺</button>
+              <button class="hotspot-point hotspot-processor" data-hotspot="processor" title="Procesador">⚡</button>
+              <button class="hotspot-point hotspot-battery" data-hotspot="battery" title="Batería">🔋</button>
+              <button class="hotspot-point hotspot-network" data-hotspot="network" title="5G y SIM">📶</button>
+            </div>
+          </div>
+
+          <!-- Dynamic Hotspot Card Details -->
+          <div class="hotspot-sheet-card" id="hotspotSheetCard">
+            <div class="hotspot-header">
+              <div class="hotspot-title" id="hotspotSheetTitle">
+                <span>⚡</span> Procesador Octa-Core
+              </div>
+              <span class="badge-tag blue">Rendimiento</span>
+            </div>
+
+            <p class="hotspot-desc" id="hotspotSheetDesc">
+              Chipset inteligente de 8 núcleos encargado de coordinar todas las funciones y abrir aplicaciones al instante.
+            </p>
+
+            <div class="hotspot-pitch-box">
+              <div class="pitch-label">🗣️ Cómo explicárselo al cliente:</div>
+              <div class="pitch-text" id="hotspotSheetPitch">
+                "Es el cerebro del teléfono. Hace que el equipo responda rápido al abrir varias aplicaciones y no se congele jamás."
+              </div>
+            </div>
+
+            <!-- Injected Micro Quiz -->
+            <div id="hotspotQuizWrap"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           3. VISTA: COMPARADOR VISUAL
+           =================================================================== -->
+      <section id="view-comparator" class="section-view">
+        <h2 class="title-greeting">Comparador Visual</h2>
+        <p class="subtitle-hero">¿Cuál teléfono es mejor para este cliente? Recuerda: más números no siempre significa lo más adecuado.</p>
+
+        <!-- Customer Challenge Card -->
+        <div class="liquid-card" style="margin-bottom:18px; border-left:4px solid var(--accent-purple);">
+          <div style="font-size:11px; font-weight:700; color:var(--accent-purple); text-transform:uppercase; margin-bottom:4px;">Perfil del Cliente</div>
+          <h3 style="font-size:15px; font-weight:800; margin-bottom:6px;" id="compProfileName">Valeria (Creadora de Contenido)</h3>
+          <p style="font-size:13px; color:var(--text-secondary); line-height:1.4;" id="compProfileNeed">
+            "Paso todo el día grabando videos para TikTok, editando clips y subiendo historias. Necesito mucho espacio y cámara súper nítida."
+          </p>
+        </div>
+
+        <!-- Phone Comparison Cards -->
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:16px;">
+          <!-- Phone A -->
+          <div class="liquid-card comp-phone-card" data-phone-id="nova-x1" style="cursor:pointer; text-align:center; padding:16px 12px;">
+            <div class="badge-tag blue" style="margin-bottom:8px;">Nova X1</div>
+            <div style="font-size:24px; margin-bottom:6px;">📱</div>
+            <div style="font-size:16px; font-weight:800; color:var(--text-primary);">$5,899</div>
+            <div style="font-size:11px; color:var(--text-secondary); margin-top:8px; line-height:1.5;">
+              • 8 GB RAM<br>
+              • 256 GB Espacio<br>
+              • 64 MP Cámara<br>
+              • 33W Carga
+            </div>
+            <button class="btn-secondary" style="margin-top:12px; width:100%; font-size:11px; padding:6px 0;">Recomendar este</button>
+          </div>
+
+          <!-- Phone B -->
+          <div class="liquid-card comp-phone-card" data-phone-id="nova-x1-pro" style="cursor:pointer; text-align:center; padding:16px 12px;">
+            <div class="badge-tag orange" style="margin-bottom:8px;">Nova X1 Pro</div>
+            <div style="font-size:24px; margin-bottom:6px;">✨</div>
+            <div style="font-size:16px; font-weight:800; color:var(--text-primary);">$8,999</div>
+            <div style="font-size:11px; color:var(--text-secondary); margin-top:8px; line-height:1.5;">
+              • 12 GB RAM<br>
+              • 512 GB Espacio<br>
+              • 108 MP Cámara + 4K<br>
+              • 67W Carga Ultra
+            </div>
+            <button class="btn-secondary" style="margin-top:12px; width:100%; font-size:11px; padding:6px 0;">Recomendar este</button>
+          </div>
+        </div>
+
+        <div class="liquid-card" id="compFeedbackCard" style="display:none;"></div>
+      </section>
+
+      <!-- ===================================================================
+           4. VISTA: PRACTICA UNA VENTA (SIMULADOR DE DIÁLOGO)
+           =================================================================== -->
+      <section id="view-practice" class="section-view">
+        <h2 class="title-greeting">Practica una Venta</h2>
+        <p class="subtitle-hero">Atiende a un cliente ficticio paso a paso. Recibe retroalimentación inmediata sobre tu argumentación.</p>
+
+        <div id="salesSimContainer">
+          <!-- Dynamic Steps rendered by app.js -->
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           5. VISTA: VENTA A CUOTAS (SIMULADOR FINANCIERO)
+           =================================================================== -->
+      <section id="view-calculator" class="section-view">
+        <h2 class="title-greeting">Simulador de Cuotas</h2>
+        <p class="subtitle-hero">Aprende a comunicarle los pagos semanales o quincenales al cliente de forma transparente y atractiva.</p>
+
+        <div class="calc-card">
+          <!-- Big Result Box -->
+          <div class="calc-display-result">
+            <div style="font-size:12px; font-weight:600; text-transform:uppercase; letter-spacing:0.5px; opacity:0.8;">Cuota Estimada</div>
+            <div class="calc-big-cuota" id="calcCuotaBig">$408 / sem</div>
+            <div style="font-size:11px; opacity:0.85;">Sin descapitalizarse de golpe</div>
+
+            <div class="calc-breakdown-row">
+              <div>Total: <strong id="calcSummaryTotal">$5,899</strong></div>
+              <div>Enganche: <strong id="calcSummaryInitial">$1,000</strong></div>
+              <div>Saldo: <strong id="calcSummaryBalance">$4,899</strong></div>
+            </div>
+          </div>
+
+          <!-- Sliders -->
+          <div class="calc-slider-group">
+            <div class="calc-slider-label">
+              <span>Precio del Teléfono</span>
+              <span id="calcPriceVal" style="color:var(--accent-blue); font-weight:700;">$5,899</span>
+            </div>
+            <input type="range" class="calc-slider" id="calcPriceSlider" min="2000" max="15000" step="500" value="5899">
+          </div>
+
+          <div class="calc-slider-group">
+            <div class="calc-slider-label">
+              <span>Pago Inicial (Enganche)</span>
+              <span id="calcDownVal" style="color:var(--accent-green); font-weight:700;">$1,000</span>
+            </div>
+            <input type="range" class="calc-slider" id="calcDownSlider" min="0" max="5000" step="200" value="1000">
+          </div>
+
+          <!-- Plazo en Semanas -->
+          <div class="calc-slider-group">
+            <div class="calc-slider-label">
+              <span>Plazo de Financiamiento</span>
+            </div>
+            <div class="terms-pills-row">
+              <button class="term-pill-btn" data-term="8">8 semanas</button>
+              <button class="term-pill-btn active" data-term="12">12 semanas</button>
+              <button class="term-pill-btn" data-term="24">24 semanas</button>
+            </div>
+          </div>
+
+          <div style="font-size:11px; color:var(--text-tertiary); line-height:1.35; margin-top:14px; text-align:center;">
+            * Ejemplo demostrativo para capacitación de ventas. Las condiciones y políticas reales dependen de la empresa.
+          </div>
+        </div>
+
+        <!-- Sales Pitch Advice -->
+        <div class="liquid-card" style="background:var(--accent-blue-soft); border-left:3px solid var(--accent-blue);">
+          <div style="font-size:11px; font-weight:700; color:var(--accent-blue); text-transform:uppercase; margin-bottom:4px;">💡 Tip de Venta de Gabriela</div>
+          <div style="font-size:13px; color:var(--text-primary); line-height:1.4;">
+            "Nunca digas solo el precio total. Di: <em>'Se lo lleva hoy mismo con solo $1,000 de enganche y pagos de solo $400 a la semana'</em>. Esto hace que el cliente sienta el teléfono mucho más accesible."
+          </div>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           6. VISTA: GLOSARIO VISUAL INTERACTIVO
+           =================================================================== -->
+      <section id="view-glossary" class="section-view">
+        <h2 class="title-greeting">Glosario Visual</h2>
+        <p class="subtitle-hero">Todos los conceptos técnicos explicados en 3 frases y con ejemplos de cómo decírselo al comprador.</p>
+
+        <!-- Search Bar -->
+        <div class="search-input-wrap">
+          <span class="search-icon-pos">🔍</span>
+          <input type="text" class="search-input" id="glossarySearchInput" placeholder="Buscar concepto (ej. RAM, 5G, IMEI, IP68)...">
+        </div>
+
+        <!-- Modules Accordion List -->
+        <div id="glossaryModulesList"></div>
+      </section>
+
+      <!-- ===================================================================
+           7. VISTA: MI PROGRESO & INSIGNIAS
+           =================================================================== -->
+      <section id="view-progress" class="section-view">
+        <h2 class="title-greeting">Mi Progreso</h2>
+        <p class="subtitle-hero">Tu evolución en la capacitación comercial de Gabriela Licona.</p>
+
+        <div class="progress-hero-card">
+          <div class="progress-header-row">
+            <span class="progress-label">Certificación en progreso</span>
+            <span class="progress-percent-val" id="myProgressPercentVal">78%</span>
+          </div>
+          <div class="progress-bar-track">
+            <div class="progress-bar-fill" id="myProgressBarVal" style="width: 78%;"></div>
+          </div>
+          <div style="font-size:12px; color:var(--text-secondary);">
+            Completaste <strong>5 de 7 módulos</strong> esenciales.
+          </div>
+        </div>
+
+        <h3 style="font-size:15px; font-weight:800; margin-bottom:10px;">Tus Insignias Obtenidas</h3>
+        <div class="badges-grid">
+          <div class="badge-card">
+            <div class="badge-icon-wrap">⚡</div>
+            <div class="badge-title-txt">Experto en RAM y CPU</div>
+          </div>
+          <div class="badge-card">
+            <div class="badge-icon-wrap">🔋</div>
+            <div class="badge-title-txt">Maestro de Batería</div>
+          </div>
+          <div class="badge-card">
+            <div class="badge-icon-wrap">🏆</div>
+            <div class="badge-title-txt">Primera Venta Cerrada</div>
+          </div>
+        </div>
+
+        <div style="margin-top:28px; text-align:center;">
+          <button class="btn-secondary" id="btnResetProgressDemo" style="font-size:12px; color:var(--text-tertiary);">
+            🔄 Reiniciar Progreso de la Demo
+          </button>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           8. VISTA: PANEL DE CAPACITADORA (VISTA GABRIELA)
+           =================================================================== -->
+      <section id="view-trainer" class="section-view">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+          <h2 class="title-greeting" style="margin-bottom:0;">Vista Capacitadora</h2>
+          <span class="badge-tag blue">Modo Líder</span>
+        </div>
+        <p class="subtitle-hero">Métricas en tiempo real de tu equipo de ventas para detectar dudas antes de que afecten resultados.</p>
+
+        <!-- KPI Summary -->
+        <div class="trainer-stat-grid">
+          <div class="trainer-stat-box">
+            <div class="trainer-stat-label">Empleados Activos</div>
+            <div class="trainer-stat-num">18</div>
+          </div>
+          <div class="trainer-stat-box">
+            <div class="trainer-stat-label">Avance Promedio</div>
+            <div class="trainer-stat-num" style="color:var(--accent-blue);">78%</div>
+          </div>
+          <div class="trainer-stat-box">
+            <div class="trainer-stat-label">Simulaciones Hechas</div>
+            <div class="trainer-stat-num" style="color:var(--accent-green);">42</div>
+          </div>
+          <div class="trainer-stat-box">
+            <div class="trainer-stat-label">Aprobación Quizzes</div>
+            <div class="trainer-stat-num">88%</div>
+          </div>
+        </div>
+
+        <!-- Insights & Actionables -->
+        <div class="liquid-card" style="margin-bottom:18px; border-left:3px solid #FF9500;">
+          <div style="font-size:11px; font-weight:700; color:#FF9500; text-transform:uppercase; margin-bottom:4px;">⚠️ Detección Inteligente de Dudas</div>
+          <div style="font-size:13px; color:var(--text-primary); line-height:1.4;">
+            <strong>Módulo con más fallas:</strong> Pantalla y 120 Hz (El 38% de nuevos ingresos confunde fluidez con resolución al vender).
+          </div>
+        </div>
+
+        <h3 style="font-size:14px; font-weight:800; margin-bottom:12px;">Rendimiento por Módulo</h3>
+        <div class="liquid-card" id="trainerModuleBars" style="margin-bottom:20px;"></div>
+
+        <h3 style="font-size:14px; font-weight:800; margin-bottom:12px;">Progreso de Colaboradores</h3>
+        <div id="trainerEmployeesList"></div>
+      </section>
+
+    </div><!-- /app-content -->
+
+    <!-- ===================================================================
+         BOTTOM NAVIGATION BAR (iOS / Modern Mobile App Style)
+         =================================================================== -->
+    <nav class="bottom-nav-bar" aria-label="Navegación principal">
+      <button class="nav-item active" data-nav-target="home">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        <span>Inicio</span>
+      </button>
+
+      <button class="nav-item" data-nav-target="explorer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+        <span>Explora</span>
+      </button>
+
+      <button class="nav-item" data-nav-target="practice">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>Practica</span>
+      </button>
+
+      <button class="nav-item" data-nav-target="glossary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        <span>Glosario</span>
+      </button>
+
+      <button class="nav-item" data-nav-target="progress">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Progreso</span>
+      </button>
+    </nav>
+
+  </main>
+
+  <!-- ===================================================================
+       MODAL: DETALLE DE CONCEPTO / TEMA (GLOSARIO)
+       =================================================================== -->
+  <div class="modal-overlay" id="topicDetailModal">
+    <div class="modal-bottom-sheet">
+      <div class="modal-drag-indicator"></div>
+      <div id="topicModalBody"></div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL: ONBOARDING / PROPUESTA COMERCIAL PARA GABRIELA
+       =================================================================== -->
+  <div class="modal-overlay" id="commercialIntroModal">
+    <div class="intro-modal-wrap">
+      <div class="intro-icon-hero">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      </div>
+      <h2 style="font-size:22px; font-weight:800; color:var(--text-primary); margin-bottom:8px;">Capacitación que sí quieren usar</h2>
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.45; margin-bottom:20px;">
+        Transformamos manuales largos y PDFs que nadie lee en una experiencia visual, rápida e interactiva para tu equipo de ventas.
+      </p>
+
+      <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:22px; text-align:left;">
+        <div style="display:flex; align-items:center; gap:10px; font-size:13px;">
+          <span style="color:var(--accent-green); font-weight:700;">✓</span>
+          <span>Aprende tocando componentes en vivo.</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; font-size:13px;">
+          <span style="color:var(--accent-green); font-weight:700;">✓</span>
+          <span>Traducción de datos técnicos a argumentos de venta.</span>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; font-size:13px;">
+          <span style="color:var(--accent-green); font-weight:700;">✓</span>
+          <span>Simulador de ventas y cálculo de cuotas.</span>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="btnStartDemoExperience">
+        Comenzar Demo Interactiva →
+      </button>
+    </div>
+  </div>
+
+  <!-- Main JavaScript App -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
