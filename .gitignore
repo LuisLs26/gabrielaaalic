@@ -1,0 +1,6 @@
+# Archivos del sistema y temporales
+.DS_Store
+Thumbs.db
+*.log
+qa-*.png
+node_modules/

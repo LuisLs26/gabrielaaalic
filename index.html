@@ -3,120 +3,1165 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manual Visual de Telefonía — Gabriela Licona</title>
-  <meta name="description" content="Manual visual interactivo para consulta rápida de especificaciones de telefonía, argumentación de venta y financiamiento en pesos mexicanos.">
+  <title>Manual Visual de Equipos — Gabriela Licona</title>
+  <meta name="description" content="Manual visual e interactivo de telefonía para capacitación de vendedores: aprende a explicar celulares viendo, tocando y comparando.">
   <meta name="theme-color" content="#FFFFFF">
-  
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230066CC%22 stroke-width=%222%22><rect x=%225%22 y=%222%22 width=%2214%22 height=%2220%22 rx=%222%22/></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22none%22 stroke=%22%230071e3%22 stroke-width=%222%22><rect x=%225%22 y=%222%22 width=%2214%22 height=%2220%22 rx=%222%22/></svg>">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-  <!-- Cabecera Superior Fija -->
-  <header class="manual-header">
-    <div class="brand-wrapper">
-      <div class="brand-monogram">GL</div>
-      <div>
-        <div class="brand-title">Gabriela Licona</div>
-        <div class="brand-subtitle">Manual Visual de Telefonía</div>
-      </div>
-    </div>
+  <!-- =========================================================================
+       CABECERA SUPERIOR STICKY (ESTILO APPLE LIGHT)
+       ========================================================================= -->
+  <header class="app-header" id="appHeader">
+    <div class="header-inner">
+      <a href="#inicio" class="brand-block" aria-label="Ir a inicio">
+        <span class="brand-monogram">GL</span>
+        <div class="brand-text">
+          <span class="brand-trainer">Gabriela Licona</span>
+          <span class="brand-title">Manual Visual de Equipos</span>
+        </div>
+      </a>
 
-    <nav class="nav-anchors" aria-label="Navegación del manual">
-      <a href="#fichas-visuales" class="nav-link active">Conceptos Visuales</a>
-      <a href="#telefono-interactivo" class="nav-link">Hardware en Vivo</a>
-      <a href="#comparador-visual" class="nav-link">Comparador</a>
-      <a href="#simulador-cuotas" class="nav-link">Cuotas MXN</a>
-    </nav>
+      <nav class="nav-menu" id="navMenu" aria-label="Navegación principal">
+        <a href="#inicio" class="nav-item active">Inicio</a>
+        <a href="#conectividad" class="nav-item">Conectividad</a>
+        <a href="#sim-equipo" class="nav-item">SIM y Equipo</a>
+        <a href="#seguridad" class="nav-item">Seguridad</a>
+        <a href="#rendimiento" class="nav-item">Rendimiento</a>
+        <a href="#pantalla" class="nav-item">Pantalla</a>
+        <a href="#bateria" class="nav-item">Batería</a>
+        <a href="#camara" class="nav-item">Cámara</a>
+        <a href="#conoce-tu-equipo" class="nav-item">Explorar Celular</a>
+        <a href="#comparador" class="nav-item">Comparar</a>
+        <a href="#cuotas-mxn" class="nav-item nav-item-cta">Cuotas MXN</a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menú de navegación">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
   </header>
 
-  <!-- Contenedor Principal del Manual -->
-  <main class="manual-container">
+  <!-- Mobile Navigation Overlay Drawer -->
+  <div class="mobile-nav-drawer" id="mobileNavDrawer">
+    <div class="mobile-nav-inner">
+      <div class="mobile-nav-header">
+        <span class="brand-trainer">Gabriela Licona</span>
+        <button class="mobile-nav-close" id="mobileNavClose" aria-label="Cerrar menú">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="mobile-nav-links">
+        <a href="#inicio" class="mobile-nav-link">Inicio</a>
+        <a href="#conectividad" class="mobile-nav-link">1. Conectividad</a>
+        <a href="#sim-equipo" class="mobile-nav-link">2. SIM y Equipo</a>
+        <a href="#seguridad" class="mobile-nav-link">3. Seguridad e IP</a>
+        <a href="#rendimiento" class="mobile-nav-link">4. Rendimiento y RAM</a>
+        <a href="#pantalla" class="mobile-nav-link">5. Pantalla y Hz</a>
+        <a href="#bateria" class="mobile-nav-link">6. Batería y Carga</a>
+        <a href="#camara" class="mobile-nav-link">7. Cámara y Megapíxeles</a>
+        <a href="#conoce-tu-equipo" class="mobile-nav-link">8. Conoce tu Equipo</a>
+        <a href="#comparador" class="mobile-nav-link">9. Comparador</a>
+        <a href="#cuotas-mxn" class="mobile-nav-link">10. Simulador de Cuotas MXN</a>
+      </div>
+    </div>
+  </div>
 
-    <!-- 1. PORTADA HERO EDITORIAL -->
-    <section class="hero-editorial-card" id="inicio">
-      <div class="hero-pill-tag">Manual Visual de Consulta Rápida</div>
-      <h1 class="hero-title">Aprende a explicar un celular viendo, no leyendo.</h1>
-      <p class="hero-description">
-        Fichas visuales, comparadores gráficos y traducción de especificaciones a argumentos directos para el cliente en piso de venta.
-      </p>
+  <main class="main-content">
 
-      <!-- Buscador Instantáneo -->
-      <div class="hero-search-wrapper">
-        <span class="search-icon-svg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </span>
-        <input type="text" class="hero-search-box" id="heroSearchInput" placeholder="Buscar concepto visual (ej. RAM, 120 Hz, Batería, OIS, 5G, IP68)...">
+    <!-- =========================================================================
+         1. PORTADA HERO EDITORIAL
+         ========================================================================= -->
+    <section class="hero-section" id="inicio">
+      <div class="hero-container">
+        <span class="hero-badge">Capacitación de Telefonía • Gabriela Licona</span>
+        <h1 class="hero-headline">Manual Visual<br>de Equipos</h1>
+        <p class="hero-tagline">“Aprende a entenderlos. Aprende a explicarlos.”</p>
+        <p class="hero-intro">
+          Manual visual e interactivo diseñado para asesores de venta: sin textos interminables, con simulaciones táctiles y demostraciones inmediatas para explicar cada celular con seguridad en piso de venta.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#conectividad" class="btn btn-primary">
+            <span>Explorar manual visual</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <a href="#conoce-tu-equipo" class="btn btn-secondary">
+            <span>Conoce tu equipo en vivo</span>
+          </a>
+        </div>
+
+        <!-- Índice Visual Rápido de Categorías -->
+        <div class="hero-index-wrapper">
+          <div class="hero-index-title">Explora por categoría técnica</div>
+          <div class="hero-index-grid">
+            <a href="#conectividad" class="index-pill">
+              <span class="index-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12.55a11 11 0 0 1 14.08 0"/><path d="M1.42 9a16 16 0 0 1 21.16 0"/><path d="M8.53 16.11a6 6 0 0 1 6.95 0"/><line x1="12" y1="20" x2="12.01" y2="20"/></svg>
+              </span>
+              <span>1. Conectividad</span>
+            </a>
+            <a href="#sim-equipo" class="index-pill">
+              <span class="index-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="9" y1="18" x2="15" y2="18"/></svg>
+              </span>
+              <span>2. SIM y Equipo</span>
+            </a>
+            <a href="#seguridad" class="index-pill">
+              <span class="index-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </span>
+              <span>3. Seguridad e IP</span>
+            </a>
+            <a href="#rendimiento" class="index-pill">
+              <span class="index-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/></svg>
+              </span>
+              <span>4. Rendimiento</span>
+            </a>
+            <a href="#pantalla" class="index-pill">
+              <span class="index-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+              </span>
+              <span>5. Pantalla y Hz</span>
+            </a>
+            <a href="#bateria" class="index-pill">
+              <span class="index-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="16" height="10" rx="2"/><line x1="22" y1="11" x2="22" y2="13"/></svg>
+              </span>
+              <span>6. Batería y Carga</span>
+            </a>
+            <a href="#camara" class="index-pill">
+              <span class="index-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
+              </span>
+              <span>7. Cámara</span>
+            </a>
+            <a href="#cuotas-mxn" class="index-pill highlight">
+              <span class="index-icon">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </span>
+              <span>8. Cuotas MXN</span>
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 2. CATEGORÍAS EN CHIPS -->
-    <section id="fichas-visuales">
-      <div class="section-heading-row">
-        <div>
-          <h2 class="section-title">Fichas Visuales por Concepto</h2>
-          <div class="section-subtitle">Filtrar por categoría técnica</div>
+    <!-- =========================================================================
+         EXPERIENCIA 1 — CONECTIVIDAD (ESCENA INTERACTIVA)
+         ========================================================================= -->
+    <section class="experience-section" id="conectividad">
+      <div class="section-header">
+        <span class="section-tag">Experiencia 01</span>
+        <h2 class="section-title">Conectividad</h2>
+        <p class="section-subtitle">Toca cada tipo de conexión para ver el alcance, las ondas y la velocidad en tiempo real.</p>
+      </div>
+
+      <div class="exp-card">
+        <!-- Selector de Modos -->
+        <div class="segmented-control" id="connSelector" role="tablist">
+          <button class="seg-btn active" data-conn="5g" role="tab" aria-selected="true">5G Ultra</button>
+          <button class="seg-btn" data-conn="4g" role="tab" aria-selected="false">4G / LTE</button>
+          <button class="seg-btn" data-conn="wifi" role="tab" aria-selected="false">Wi-Fi Hogar</button>
+          <button class="seg-btn" data-conn="bluetooth" role="tab" aria-selected="false">Bluetooth</button>
         </div>
-      </div>
 
-      <div class="categories-flex-row" id="categoriesPillsContainer">
-        <!-- Rendered by app.js -->
-      </div>
+        <div class="exp-two-col">
+          <!-- Escena Gráfica Interactiva -->
+          <div class="conn-stage" id="connStage">
+            <!-- Antena Celular (5G / 4G) -->
+            <div class="conn-node node-tower active" id="nodeTower">
+              <div class="node-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 22h16"/><line x1="12" y1="2" x2="12" y2="22"/><path d="m8 6 8 8"/><path d="m16 6-8 8"/><path d="M12 2a4 4 0 0 1 4 4"/></svg>
+              </div>
+              <span class="node-label" id="towerLabel">Antena 5G</span>
+              <div class="wave-emitter" id="towerWaves"></div>
+            </div>
 
-      <!-- Cuadrícula de Fichas Visuales Editoriales -->
-      <div class="visual-cards-editorial-grid" id="visualCardsGrid">
-        <!-- Rendered by app.js -->
+            <!-- Módem / Router Wi-Fi -->
+            <div class="conn-node node-router" id="nodeRouter">
+              <div class="node-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="18" x2="6.01" y2="18"/><line x1="10" y1="18" x2="10.01" y2="18"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="18" y1="6" x2="18" y2="14"/></svg>
+              </div>
+              <span class="node-label">Módem Wi-Fi</span>
+              <div class="wave-emitter" id="routerWaves"></div>
+            </div>
+
+            <!-- Teléfono en el Centro -->
+            <div class="conn-phone-center" id="connPhone">
+              <div class="phone-case-mini">
+                <div class="phone-screen-mini">
+                  <div class="phone-mini-status">
+                    <span id="phoneSignalIcon">5G</span>
+                    <span id="phoneSpeedMeter">1,200 Mbps</span>
+                  </div>
+                  <div class="phone-mini-content">
+                    <div class="pulsing-radar" id="phoneRadar"></div>
+                    <span class="phone-mini-text" id="phoneStatusText">Conectado a Red 5G</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Dispositivos Bluetooth -->
+            <div class="conn-node node-accessories" id="nodeAccessories">
+              <div class="node-icon-wrap">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 7l10 10-5 5V2l5 5L7 17"/></svg>
+              </div>
+              <span class="node-label">Accesorios</span>
+              <div class="bt-devices-mini">
+                <span class="bt-tag">Audífonos</span>
+                <span class="bt-tag">Reloj</span>
+                <span class="bt-tag">Bocina</span>
+              </div>
+              <div class="wave-emitter" id="btWaves"></div>
+            </div>
+          </div>
+
+          <!-- Panel de Concepto y Argumento de Venta -->
+          <div class="exp-info-card">
+            <div class="info-badge-row">
+              <span class="badge-pill" id="connBadge">Red Móvil Ultrarrápida</span>
+              <span class="speed-pill" id="connSpeed">Hasta 1,200 Mbps</span>
+            </div>
+
+            <h3 class="info-title" id="connTitle">5G</h3>
+            <p class="info-concept" id="connConcept">Datos móviles de mayor velocidad cuando existe cobertura compatible.</p>
+
+            <!-- Argumento de Venta Desplegable -->
+            <div class="pitch-container">
+              <button class="pitch-toggle-btn" id="connPitchToggle">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>¿Cómo se lo digo al cliente?</span>
+                <svg class="chevron-rot" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+              </button>
+              <div class="pitch-box-content open" id="connPitchBox">
+                <p class="pitch-quote" id="connPitchText">
+                  “Con 5G puedes descargar películas y navegar a máxima velocidad en zonas con cobertura, asegurando que tu equipo esté preparado para los próximos años.”
+                </p>
+              </div>
+            </div>
+
+            <div class="info-footer-actions">
+              <button class="btn btn-outline" id="btnConnDetails">
+                <span>Ver ejemplo de diálogo con cliente</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- 3. TELÉFONO INTERACTIVO (SMARTPHONE REAL CON HOTSPOTS) -->
-    <section class="interactive-phone-section" id="telefono-interactivo">
-      <div class="section-heading-row">
-        <div>
-          <h2 class="section-title">Explorador de Hardware Interactivo</h2>
-          <div class="section-subtitle">Toca los componentes en el smartphone para ver el argumento clave de venta</div>
-        </div>
+    <!-- =========================================================================
+         EXPERIENCIA 2 — SIM Y EQUIPO (SIM, ESIM, DUAL SIM, IMEI, SISTEMA OPERATIVO)
+         ========================================================================= -->
+    <section class="experience-section" id="sim-equipo">
+      <div class="section-header">
+        <span class="section-tag">Experiencia 02</span>
+        <h2 class="section-title">SIM y Equipo</h2>
+        <p class="section-subtitle">Toca cada opción para ver cómo entra la SIM física, cómo funciona la eSIM virtual y qué es el IMEI.</p>
       </div>
 
-      <div class="phone-split-container">
-        <!-- Smartphone Visual con Hotspots -->
-        <div class="phone-mockup-wrapper">
-          <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=600&q=80" alt="Smartphone en vivo" class="phone-screen-img" loading="lazy">
-
-          <!-- Hotspots Pins -->
-          <button class="phone-hotspot-pin pin-camera" data-pin="camera" title="Cámaras con OIS">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="13" r="4"/></svg>
-          </button>
-          <button class="phone-hotspot-pin pin-screen" data-pin="screen" title="Pantalla AMOLED 120Hz">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/></svg>
-          </button>
-          <button class="phone-hotspot-pin pin-processor active" data-pin="processor" title="Procesador Octa-Core">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="16" rx="2"/></svg>
-          </button>
-          <button class="phone-hotspot-pin pin-battery" data-pin="battery" title="Batería 5000 mAh">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="6" width="18" height="12" rx="2"/></svg>
-          </button>
-          <button class="phone-hotspot-pin pin-sim" data-pin="sim" title="Dual SIM / eSIM">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h8l6 6v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/></svg>
-          </button>
-          <button class="phone-hotspot-pin pin-network" data-pin="network" title="Antenas 5G">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h20M12 2v20"/></svg>
-          </button>
+      <div class="exp-card">
+        <!-- Subselector -->
+        <div class="segmented-control" id="simSelector" role="tablist">
+          <button class="seg-btn active" data-sim="sim" role="tab">SIM Física</button>
+          <button class="seg-btn" data-sim="esim" role="tab">eSIM Digital</button>
+          <button class="seg-btn" data-sim="dualsim" role="tab">Dual SIM</button>
+          <button class="seg-btn" data-sim="imei" role="tab">Código IMEI</button>
+          <button class="seg-btn" data-sim="so" role="tab">Sistema Operativo</button>
         </div>
 
-        <!-- Ficha de Consulta Flotante del Hotspot -->
-        <div class="phone-hotspot-info-box">
-          <div class="hotspot-card-preview">
-            <h3 class="hotspot-preview-title" id="hotspotTitle">Procesador Octa-Core 5G</h3>
-            <span class="hotspot-preview-keyfact" id="hotspotKeyFact">Arquitectura 6 nm Eficiente</span>
-            <p class="hotspot-preview-oneliner" id="hotspotOneLiner">
-              El motor central que abre aplicaciones al instante y procesa imágenes con agilidad.
+        <div class="exp-two-col">
+          <!-- Escenario Interactivo -->
+          <div class="sim-stage" id="simStage">
+            <!-- Escena SIM Física -->
+            <div class="sim-scene-view active" id="viewSimPhysical">
+              <div class="sim-tray-mockup">
+                <div class="phone-side-slot">
+                  <div class="tray-ejected" id="trayEjected">
+                    <div class="nano-sim-chip" id="nanoSimChip">
+                      <div class="chip-gold-contacts"></div>
+                      <span class="chip-text">SIM</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <button class="btn btn-sm btn-primary" id="btnToggleSimInsert">Insertar SIM al Teléfono</button>
+              <span class="stage-caption" id="simInsertStatus">Tarjeta SIM lista para colocarse</span>
+            </div>
+
+            <!-- Escena eSIM Digital -->
+            <div class="sim-scene-view" id="viewEsim">
+              <div class="esim-motherboard-mockup">
+                <div class="circuit-chip" id="esimChip">
+                  <div class="circuit-glow"></div>
+                  <span class="chip-brand">eSIM</span>
+                  <span class="chip-sub">CHIP VIRTUAL</span>
+                </div>
+                <div class="esim-qr-scanner" id="esimQrScanner">
+                  <svg viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                  <span class="qr-label">Activación por Código QR</span>
+                </div>
+              </div>
+              <span class="stage-caption">Sin plástico: activado digitalmente por el operador</span>
+            </div>
+
+            <!-- Escena Dual SIM -->
+            <div class="sim-scene-view" id="viewDualSim">
+              <div class="dual-sim-phone-screen">
+                <div class="dual-line-card active" id="line1Card">
+                  <div class="dual-line-header">
+                    <span class="sim-badge-num">1</span>
+                    <strong>Línea Personal (SIM)</strong>
+                  </div>
+                  <div class="dual-line-switches">
+                    <span class="badge-active">Llamadas</span>
+                    <span class="badge-active">WhatsApp</span>
+                  </div>
+                </div>
+
+                <div class="dual-line-card" id="line2Card">
+                  <div class="dual-line-header">
+                    <span class="sim-badge-num">2</span>
+                    <strong>Línea Trabajo (eSIM)</strong>
+                  </div>
+                  <div class="dual-line-switches">
+                    <span class="badge-active">Datos Móviles 5G</span>
+                  </div>
+                </div>
+              </div>
+              <span class="stage-caption">2 números funcionando al mismo tiempo en el celular</span>
+            </div>
+
+            <!-- Escena Código IMEI -->
+            <div class="sim-scene-view" id="viewImei">
+              <div class="imei-passport-card">
+                <div class="imei-passport-header">
+                  <span class="passport-icon">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="3"/><circle cx="9" cy="10" r="2"/><line x1="15" y1="8" x2="17" y2="8"/><line x1="15" y1="12" x2="17" y2="12"/></svg>
+                  </span>
+                  <span>CÉDULA DE IDENTIDAD DEL EQUIPO</span>
+                </div>
+                <div class="imei-barcode">
+                  <div class="bar-lines"></div>
+                </div>
+                <div class="imei-number-big" id="imeiDisplay">IMEI: 358912-09-384712-0</div>
+                <button class="btn btn-sm btn-outline" id="btnDialImei">Simular marcado *#06#</button>
+              </div>
+              <span class="stage-caption" id="imeiDialNote">Código único de 15 dígitos en todo el mundo</span>
+            </div>
+
+            <!-- Escena Sistema Operativo -->
+            <div class="sim-scene-view" id="viewSo">
+              <div class="so-showcase">
+                <div class="so-badge-switcher">
+                  <button class="so-tab-btn active" id="btnSoAndroid">Android</button>
+                  <button class="so-tab-btn" id="btnSoIos">iOS</button>
+                </div>
+                <div class="so-visual-display">
+                  <div class="so-layer-box">
+                    <div class="layer-item layer-apps">Aplicaciones (WhatsApp, Redes, Banco)</div>
+                    <div class="layer-item layer-os" id="soNameLabel">Sistema Operativo (Android 14)</div>
+                    <div class="layer-item layer-hw">Hardware (Cámaras, Procesador, Batería)</div>
+                  </div>
+                </div>
+              </div>
+              <span class="stage-caption">El sistema operativo coordina todo lo que pasa en el celular</span>
+            </div>
+          </div>
+
+          <!-- Panel de Información -->
+          <div class="exp-info-card">
+            <span class="badge-pill" id="simBadge">Chip Plástico Tradicional</span>
+            <h3 class="info-title" id="simTitle">SIM Física</h3>
+            <p class="info-concept" id="simConcept">Tarjeta física con chip que se introduce en la bandeja lateral del equipo.</p>
+
+            <div class="pitch-container">
+              <div class="pitch-label-bar">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Cómo explicárselo al cliente</span>
+              </div>
+              <div class="pitch-box-content open">
+                <p class="pitch-quote" id="simPitchText">
+                  “Es la tarjeta clásica que compras en cualquier tienda y pasas de un teléfono a otro.”
+                </p>
+              </div>
+            </div>
+
+            <div class="info-footer-actions">
+              <button class="btn btn-outline" id="btnSimDetails">
+                <span>Ver ejemplo de diálogo con cliente</span>
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         EXPERIENCIA 3 — CARACTERÍSTICAS Y SEGURIDAD (BIOMETRÍA Y CERTIFICACIÓN IP)
+         ========================================================================= -->
+    <section class="experience-section" id="seguridad">
+      <div class="section-header">
+        <span class="section-tag">Experiencia 03</span>
+        <h2 class="section-title">Seguridad y Resistencia</h2>
+        <p class="section-subtitle">Demuestra en vivo el desbloqueo por huella o rostro y la resistencia contra agua y polvo.</p>
+      </div>
+
+      <div class="exp-grid-two">
+        <!-- Tarjeta A: Biometría Interactiva -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <span class="badge-pill">Biometría</span>
+            <h3 class="info-title">Huella Digital y Rostro</h3>
+          </div>
+
+          <!-- Escena de desbloqueo -->
+          <div class="bio-stage" id="bioStage">
+            <div class="bio-phone-mockup" id="bioPhone">
+              <!-- Candado Superior -->
+              <div class="lock-indicator" id="lockIndicator">
+                <svg id="lockSvg" viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+
+              <!-- Pantalla del Celular -->
+              <div class="bio-screen-content" id="bioScreenContent">
+                <div class="lock-screen-elements" id="lockElements">
+                  <div class="lock-clock">09:41</div>
+                  <div class="lock-date">Lunes, 12 de Octubre</div>
+                </div>
+
+                <div class="home-screen-elements hidden" id="homeElements">
+                  <div class="mini-app-grid">
+                    <div class="mini-app-icon color-1"></div>
+                    <div class="mini-app-icon color-2"></div>
+                    <div class="mini-app-icon color-3"></div>
+                    <div class="mini-app-icon color-4"></div>
+                  </div>
+                  <div class="unlocked-badge">Desbloqueado</div>
+                </div>
+
+                <!-- Sensor de Huella en Pantalla -->
+                <div class="fingerprint-zone" id="fpZone">
+                  <div class="fp-glow-ring"></div>
+                  <svg viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 11c0 3-1.5 5-3.5 5"/><path d="M12 7c2 0 4 1.5 4 4.5 0 3.5-2 6-4 7"/><path d="M7.5 13.5C7.2 12.5 7 11.5 7 10.5 7 7.5 9.2 5 12 5s5 2.5 5 5.5c0 1.5-.4 3-1 4.5"/><path d="M10 20c1-.5 2-1.5 2-3"/></svg>
+                </div>
+
+                <!-- Escáner Facial (Face ID) -->
+                <div class="face-mesh-overlay hidden" id="faceMesh">
+                  <div class="face-grid-lines"></div>
+                  <span class="face-scan-label">Reconociendo rostro...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controles de Prueba -->
+          <div class="bio-triggers">
+            <button class="btn btn-outline" id="btnTestFingerprint">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 11c0 3-1.5 5-3.5 5"/><path d="M7 10.5C7 7.5 9.2 5 12 5s5 2.5 5 5.5"/></svg>
+              <span>Probar Huella</span>
+            </button>
+            <button class="btn btn-outline" id="btnTestFace">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3"/><path d="M21 8V5a2 2 0 0 0-2-2h-3"/><path d="M3 16v3a2 2 0 0 0 2 2h3"/><path d="M16 21h3a2 2 0 0 0 2-2v-3"/><circle cx="12" cy="12" r="3"/></svg>
+              <span>Probar Rostro</span>
+            </button>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote">
+              “Desbloquea tu celular en menos de un segundo de forma segura, sin tener que teclear contraseñas largas frente a otras personas.”
             </p>
+          </div>
+        </div>
 
-            <div class="card-pitch-highlight">
-              <div class="pitch-label">Cómo explicárselo al cliente</div>
-              <div class="pitch-body" id="hotspotPitch">
-                "Abre todas sus aplicaciones de inmediato sin que el teléfono se caliente ni se trabe."
+        <!-- Tarjeta B: Certificación IP Interactiva -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <span class="badge-pill">Protección Física</span>
+            <h3 class="info-title">Certificación IP (Polvo y Agua)</h3>
+          </div>
+
+          <!-- Cámara de Prueba Ambiental -->
+          <div class="ip-chamber-stage" id="ipChamber">
+            <div class="ip-phone-mockup">
+              <div class="ip-shield-barrier" id="ipShield">
+                <svg viewBox="0 0 24 24" width="60" height="60" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                <span class="shield-rating" id="shieldRating">IP68</span>
+              </div>
+              <div class="ip-phone-screen">
+                <span id="ipStatusIndicator">Protección Sellada Activa</span>
+              </div>
+            </div>
+
+            <!-- Generador de Partículas de Polvo -->
+            <div class="dust-particles-container hidden" id="dustContainer"></div>
+
+            <!-- Generador de Gotas de Agua -->
+            <div class="water-drops-container hidden" id="waterContainer"></div>
+          </div>
+
+          <!-- Controles de Prueba Ambiental -->
+          <div class="ip-controls-row">
+            <button class="btn btn-outline" id="btnToggleDust">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/><circle cx="12" cy="19" r="1"/><circle cx="12" cy="5" r="1"/></svg>
+              <span>Simular Polvo</span>
+            </button>
+            <button class="btn btn-outline" id="btnToggleWater">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              <span>Simular Agua</span>
+            </button>
+          </div>
+
+          <!-- Selector de Grado IP -->
+          <div class="ip-selector-pills">
+            <button class="ip-level-btn" data-ip="ip54">IP54 (Salpicaduras / Lluvia)</button>
+            <button class="ip-level-btn active" data-ip="ip68">IP68 (Inmersión en Agua Dulce)</button>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote" id="ipPitchText">
+              “Con IP68 no tienes que preocuparte si te sorprende una tormenta o si se derrama un vaso de agua sobre la mesa.”
+            </p>
+          </div>
+          <div class="fine-disclaimer">
+            * Consulta siempre la certificación exacta del modelo. La garantía no cubre inmersión intencional en agua salada.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         EXPERIENCIA 4 — RENDIMIENTO Y MEMORIA (RAM, ALMACENAMIENTO, PROCESADOR, GB)
+         ========================================================================= -->
+    <section class="experience-section" id="rendimiento">
+      <div class="section-header">
+        <span class="section-tag">Experiencia 04</span>
+        <h2 class="section-title">Rendimiento y Memoria</h2>
+        <p class="section-subtitle">Comprende visualmente la diferencia entre RAM (multitarea), Almacenamiento (bodega) y Procesador (cerebro).</p>
+      </div>
+
+      <!-- Módulo 1: RAM (Multitarea Interactiva) -->
+      <div class="exp-card mb-32">
+        <div class="card-top-header">
+          <div>
+            <span class="badge-pill">Memoria RAM</span>
+            <h3 class="info-title">RAM = Multitarea y Fluidez</h3>
+            <p class="info-concept">Memoria temporal que ayuda a mantener varias aplicaciones abiertas al mismo tiempo.</p>
+          </div>
+          <!-- Selector de RAM -->
+          <div class="segmented-control" id="ramSelector">
+            <button class="seg-btn" data-ram="4">4 GB</button>
+            <button class="seg-btn active" data-ram="8">8 GB</button>
+            <button class="seg-btn" data-ram="12">12 GB</button>
+          </div>
+        </div>
+
+        <div class="exp-two-col">
+          <!-- Smartphone con Multitarea Viva -->
+          <div class="ram-phone-stage">
+            <div class="ram-mockup-frame">
+              <div class="ram-status-header">
+                <span id="ramActiveLabel">8 GB RAM • 6 Apps Activas</span>
+                <span class="ram-speed-badge">Fluido sin pausas</span>
+              </div>
+              <div class="ram-apps-carousel" id="ramAppsContainer">
+                <!-- Se llena dinámicamente con app cards -->
+              </div>
+            </div>
+          </div>
+
+          <!-- Explicación Visual y Argumento -->
+          <div class="exp-info-card">
+            <div class="metaphor-box">
+              <div class="metaphor-title">
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+                <span>La analogía de la mesa de trabajo</span>
+              </div>
+              <p class="metaphor-text">
+                La RAM es como el <strong>tamaño de tu mesa de trabajo</strong>: entre más grande sea la mesa, más carpetas y documentos puedes tener abiertos a la vez sin tener que guardar uno para abrir otro.
+              </p>
+            </div>
+
+            <div class="pitch-container">
+              <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+              <p class="pitch-quote" id="ramPitchText">
+                “Con 8 GB puedes cambiar entre WhatsApp, mapas y redes sociales al instante sin que ninguna aplicación se cierre ni se trabe.”
+              </p>
+            </div>
+
+            <div class="ram-bars-visual">
+              <div class="ram-spec-row">
+                <span>4 GB (Básico)</span>
+                <div class="progress-track"><div class="progress-fill" style="width: 35%;"></div></div>
+                <span class="row-note">2-3 apps</span>
+              </div>
+              <div class="ram-spec-row highlight">
+                <span>8 GB (Recomendado)</span>
+                <div class="progress-track"><div class="progress-fill" style="width: 68%;"></div></div>
+                <span class="row-note">6 apps</span>
+              </div>
+              <div class="ram-spec-row">
+                <span>12 GB (Pro / Gamer)</span>
+                <div class="progress-track"><div class="progress-fill" style="width: 100%;"></div></div>
+                <span class="row-note">10+ apps</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Módulo 2 y 3 en Rejilla: Almacenamiento y Procesador -->
+      <div class="exp-grid-two">
+        <!-- Tarjeta Almacenamiento -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Almacenamiento Interno</span>
+              <h3 class="info-title">Capacidad en GB</h3>
+            </div>
+            <div class="segmented-control" id="storageSelector">
+              <button class="seg-btn" data-storage="128">128 GB</button>
+              <button class="seg-btn active" data-storage="256">256 GB</button>
+              <button class="seg-btn" data-storage="512">512 GB</button>
+            </div>
+          </div>
+
+          <!-- Barra Visual Segmentada Dinámica -->
+          <div class="storage-stage">
+            <div class="storage-giant-bar" id="storageGiantBar">
+              <div class="seg-part seg-photos" id="segPhotos" style="width: 38%;">Fotos</div>
+              <div class="seg-part seg-videos" id="segVideos" style="width: 28%;">Videos</div>
+              <div class="seg-part seg-apps" id="segApps" style="width: 18%;">Apps</div>
+              <div class="seg-part seg-system" id="segSystem" style="width: 16%;">Sistema</div>
+            </div>
+
+            <!-- Métricas Reales Estimadas -->
+            <div class="storage-metrics-grid">
+              <div class="metric-chip">
+                <span class="metric-num" id="statPhotos">~60,000</span>
+                <span class="metric-desc">Fotos en alta resolución</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-num" id="statVideos">~60 hrs</span>
+                <span class="metric-desc">Video en 1080p FHD</span>
+              </div>
+              <div class="metric-chip">
+                <span class="metric-num" id="statApps">~90</span>
+                <span class="metric-desc">Apps y juegos instalados</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Diferencia clave entre RAM y Almacenamiento -->
+          <div class="distinction-banner">
+            <div class="dist-icon">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <div>
+              <strong>Diferencia clave para el cliente:</strong><br>
+              <strong>GB de Almacenamiento:</strong> Es el clóset donde guardas tus fotos para siempre.<br>
+              <strong>GB de RAM:</strong> Es la mesa donde trabajas en este momento.
+            </div>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote" id="storagePitchText">
+              “256 GB le da tranquilidad durante años para guardar todas sus fotos y videos familiares sin tener que borrar nada por falta de espacio.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Tarjeta Procesador (El Cerebro) -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">El Motor del Equipo</span>
+              <h3 class="info-title">Procesador (Chip)</h3>
+            </div>
+          </div>
+
+          <!-- Esquema Técnico del Chip y Tareas -->
+          <div class="cpu-stage" id="cpuStage">
+            <div class="chip-center-wrapper" id="mainChip">
+              <div class="chip-body">
+                <div class="chip-pins"></div>
+                <div class="chip-logo">OCTA-CORE</div>
+                <div class="chip-tech">6 nm • 5G</div>
+              </div>
+            </div>
+
+            <!-- Botones de Tareas Conectadas -->
+            <div class="chip-tasks-grid">
+              <button class="task-node-btn active" data-task="apps">
+                <span>Abrir Apps</span>
+              </button>
+              <button class="task-node-btn" data-task="camera">
+                <span>Procesar Fotos</span>
+              </button>
+              <button class="task-node-btn" data-task="gaming">
+                <span>Juegos 3D</span>
+              </button>
+              <button class="task-node-btn" data-task="ai">
+                <span>Inteligencia Artificial</span>
+              </button>
+            </div>
+
+            <div class="cpu-active-statement" id="cpuStatement">
+              “El procesador ejecuta todas las tareas y órdenes del celular.”
+            </div>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote">
+              “Es el motor del automóvil: un procesador más potente y moderno hace que todo abra más rápido y que la batería dure más tiempo sin calentarse.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         EXPERIENCIA 5 — PANTALLA (PULGADAS, RESOLUCIÓN, PÍXEL, HZ)
+         ========================================================================= -->
+    <section class="experience-section" id="pantalla">
+      <div class="section-header">
+        <span class="section-tag">Experiencia 05</span>
+        <h2 class="section-title">Pantalla y Experiencia Visual</h2>
+        <p class="section-subtitle">Interactúa con el tamaño diagonal, la nitidez, la cuadrícula de píxeles y la fluidez de 120 Hz.</p>
+      </div>
+
+      <!-- Cuatro Laboratorios de Pantalla -->
+      <div class="exp-grid-two mb-32">
+        <!-- Lab 1: Pulgadas (Diagonal) -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Tamaño</span>
+              <h3 class="info-title">Pulgadas (Diagonal)</h3>
+            </div>
+            <div class="segmented-control" id="screenSizeSelector">
+              <button class="seg-btn" data-size="6.1">6.1"</button>
+              <button class="seg-btn" data-size="6.5">6.5"</button>
+              <button class="seg-btn active" data-size="6.7">6.7"</button>
+            </div>
+          </div>
+
+          <!-- Mockup dinámico que escala físicamente -->
+          <div class="inches-stage">
+            <div class="phone-scale-frame" id="phoneScaleFrame">
+              <div class="diagonal-line">
+                <span class="diagonal-label" id="diagonalLabel">6.7 Pulgadas (17.0 cm)</span>
+              </div>
+              <div class="screen-preview-content">
+                <span>Área visible de pantalla</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote" id="inchesPitchText">
+              “Las pulgadas se miden de esquina a esquina en diagonal: 6.7 pulgadas le da espacio amplio para ver películas y leer sin forzar la vista.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Lab 2: Resolución (Nitidez) -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Nitidez</span>
+              <h3 class="info-title">Resolución (HD vs FHD+)</h3>
+            </div>
+          </div>
+
+          <!-- Imagen con Slider de Nitidez -->
+          <div class="resolution-stage">
+            <div class="resolution-img-box">
+              <img src="assets/images/screen-sample.webp" alt="Prueba de resolución" class="res-test-img" id="resTestImg">
+              <div class="res-overlay-label" id="resOverlayLabel">Full HD+ (Alta Definición Cristalina)</div>
+            </div>
+
+            <div class="slider-control-group">
+              <div class="slider-labels-row">
+                <span>Menos definición (HD)</span>
+                <span>Máxima definición (FHD+)</span>
+              </div>
+              <input type="range" class="apple-slider" id="resSlider" min="0" max="100" value="90">
+            </div>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote">
+              “Mayor resolución significa que las letras, fotos y videos se ven completamente nítidos y sin bordes borrosos.”
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lab 3 y 4: Píxeles y 120 Hz -->
+      <div class="exp-grid-two">
+        <!-- Lab 3: Píxeles con Zoom Extremo -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Estructura</span>
+              <h3 class="info-title">Píxel (Punto de Imagen)</h3>
+            </div>
+            <button class="btn btn-sm btn-outline" id="btnZoomPixel">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+              <span>Acercar / Zoom</span>
+            </button>
+          </div>
+
+          <div class="pixel-stage">
+            <div class="pixel-canvas-view" id="pixelCanvasView">
+              <!-- Cuadrícula de subpíxeles RGB que aparece al hacer zoom -->
+              <div class="pixel-subgrid hidden" id="pixelSubgrid">
+                <div class="rgb-pixel"><span class="r">R</span><span class="g">G</span><span class="b">B</span></div>
+                <div class="rgb-pixel"><span class="r">R</span><span class="g">G</span><span class="b">B</span></div>
+                <div class="rgb-pixel"><span class="r">R</span><span class="g">G</span><span class="b">B</span></div>
+                <div class="rgb-pixel"><span class="r">R</span><span class="g">G</span><span class="b">B</span></div>
+              </div>
+              <img src="assets/images/camera-sample.webp" alt="Foto para zoom" class="pixel-orig-img" id="pixelOrigImg">
+            </div>
+            <span class="stage-caption" id="pixelCaption">Toca 'Acercar' para ver los millones de diminutos puntos de luz</span>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote">
+              “Un píxel es cada uno de los millones de puntitos de color que juntos forman cualquier imagen en la pantalla.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Lab 4: Tasa de Refresco (60 Hz vs 120 Hz) -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Fluidez</span>
+              <h3 class="info-title">Tasa de Refresco (Hz)</h3>
+            </div>
+            <div class="segmented-control" id="hzSelector">
+              <button class="seg-btn" data-hz="60">60 Hz</button>
+              <button class="seg-btn" data-hz="90">90 Hz</button>
+              <button class="seg-btn active" data-hz="120">120 Hz</button>
+            </div>
+          </div>
+
+          <!-- Comparador Visual de Movimiento Dividido -->
+          <div class="hz-stage">
+            <div class="hz-split-view">
+              <!-- Columna 60 Hz -->
+              <div class="hz-col col-60">
+                <div class="hz-col-header">60 Hz (Estándar)</div>
+                <div class="hz-track">
+                  <div class="hz-ball ball-60" id="ball60">60 Hz</div>
+                </div>
+                <span class="hz-note">Tirones leves al deslizar</span>
+              </div>
+
+              <!-- Columna 120 Hz -->
+              <div class="hz-col col-120">
+                <div class="hz-col-header">120 Hz (Ultra Suave)</div>
+                <div class="hz-track">
+                  <div class="hz-ball ball-120" id="ball120">120 Hz</div>
+                </div>
+                <span class="hz-note">Sensación como seda</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote">
+              “Con 120 Hz la pantalla se actualiza el doble de rápido, logrando que todo se mueva suavemente y descanse mucho más la vista.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         EXPERIENCIA 6 — BATERÍA Y CARGA (BATERÍA, MAH, CARGA RÁPIDA)
+         ========================================================================= -->
+    <section class="experience-section" id="bateria">
+      <div class="section-header">
+        <span class="section-tag">Experiencia 06</span>
+        <h2 class="section-title">Batería y Carga</h2>
+        <p class="section-subtitle">Capacidad del tanque de energía (mAh) y velocidad de recarga en minutos (Watts).</p>
+      </div>
+
+      <div class="exp-grid-two">
+        <!-- Estación 1: Batería y mAh -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Autonomía</span>
+              <h3 class="info-title">Capacidad en mAh</h3>
+              <p class="info-concept">Miliamperios-hora: representan el tamaño del tanque de energía.</p>
+            </div>
+            <div class="segmented-control" id="mahSelector">
+              <button class="seg-btn" data-mah="4000">4000 mAh</button>
+              <button class="seg-btn active" data-mah="5000">5000 mAh</button>
+              <button class="seg-btn" data-mah="6000">6000 mAh</button>
+            </div>
+          </div>
+
+          <!-- Batería Gigante Animada -->
+          <div class="battery-giant-stage">
+            <div class="giant-battery-body">
+              <div class="battery-terminal"></div>
+              <div class="battery-inner-fill" id="batteryInnerFill" style="height: 85%;">
+                <div class="battery-liquid-wave"></div>
+                <span class="battery-val-text" id="batteryValDisplay">5000 mAh</span>
+              </div>
+            </div>
+            <div class="battery-use-estimate" id="batteryEstimateText">
+              Diseñada para cubrir toda la jornada habitual sin recargas intermedias.
+            </div>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote" id="mahPitchText">
+              “5000 mAh es la medida estándar que le asegura salir por la mañana y regresar en la noche con batería de sobra.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Estación 2: Simulador de Carga Rápida -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Potencia</span>
+              <h3 class="info-title">Carga Rápida (Watts)</h3>
+              <p class="info-concept">Horas de energía en minutos de conexión.</p>
+            </div>
+            <div class="segmented-control" id="wattSelector">
+              <button class="seg-btn" data-watt="18">18W</button>
+              <button class="seg-btn active" data-watt="33">33W</button>
+              <button class="seg-btn" data-watt="67">67W</button>
+            </div>
+          </div>
+
+          <!-- Simulador de Carga 0 a 100 -->
+          <div class="charge-sim-stage">
+            <div class="charge-circle-gauge">
+              <div class="charge-percentage-big" id="chargePercentBig">0%</div>
+              <div class="charge-bolt-icon" id="chargeBolt">
+                <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+              </div>
+              <span class="charge-time-est" id="chargeTimeEst">Tiempo sim.: 0 min</span>
+            </div>
+
+            <button class="btn btn-primary" id="btnStartCharge">
+              <span>Iniciar simulación de carga</span>
+            </button>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote" id="chargePitchText">
+              “Con carga rápida de 33W, en lo que desayuna o se baña ya recuperó más del 50% de batería para salir sin preocupaciones.”
+            </p>
+          </div>
+          <div class="fine-disclaimer">
+            * Ejemplo visual demostrativo. Los tiempos reales dependen del cargador original, el modelo y la temperatura.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         EXPERIENCIA 7 — CÁMARA (MEGAPÍXELES, PRINCIPAL, FRONTAL)
+         ========================================================================= -->
+    <section class="experience-section" id="camara">
+      <div class="section-header">
+        <span class="section-tag">Experiencia 07</span>
+        <h2 class="section-title">Cámaras y Fotografía</h2>
+        <p class="section-subtitle">Sensores principales, selfies y la verdad demostrada sobre los megapíxeles.</p>
+      </div>
+
+      <div class="exp-grid-two">
+        <!-- Módulo de Cámaras Trasera vs Frontal -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Módulo Óptico</span>
+              <h3 class="info-title">Cámara Principal y Frontal</h3>
+            </div>
+          </div>
+
+          <!-- Smartphone Trasero con Hotspots de Lentes -->
+          <div class="camera-lens-stage">
+            <div class="phone-back-mockup">
+              <img src="assets/images/phone-back.webp" alt="Cámara trasera" class="camera-module-img">
+
+              <!-- Hotspot Lente Principal -->
+              <button class="lens-pin pin-main active" data-lens="main" title="Cámara Principal">
+                <span class="pin-pulse"></span>
+                <span class="pin-tag">64 MP OIS</span>
+              </button>
+
+              <!-- Hotspot Frontal -->
+              <button class="lens-pin pin-front" data-lens="front" title="Cámara Frontal">
+                <span class="pin-pulse"></span>
+                <span class="pin-tag">Frontal 32 MP</span>
+              </button>
+            </div>
+
+            <!-- Ficha del Lente Activo -->
+            <div class="lens-info-box" id="lensInfoBox">
+              <strong id="lensTitle">Cámara Principal con Estabilizador OIS</strong>
+              <p id="lensDesc">Sensor principal de alta captación de luz con estabilizador óptico que compensa el pulso de la mano.</p>
+            </div>
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote" id="lensPitchText">
+              “El estabilizador óptico evita que las fotos salgan borrosas o movidas, incluso si tomas fotos de noche o caminando.”
+            </p>
+          </div>
+        </div>
+
+        <!-- Demostración de Megapíxeles (Detalle y Recorte) -->
+        <div class="exp-card">
+          <div class="card-top-header">
+            <div>
+              <span class="badge-pill">Detalle y Recorte</span>
+              <h3 class="info-title">Megapíxeles en la Práctica</h3>
+            </div>
+            <button class="btn btn-sm btn-primary" id="btnCropDemo">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2v14a2 2 0 0 0 2 2h14"/><path d="M18 22V8a2 2 0 0 0-2-2H2"/></svg>
+              <span>Recortar / Zoom al Detalle</span>
+            </button>
+          </div>
+
+          <!-- Escena de Recorte de Imagen -->
+          <div class="mp-crop-stage">
+            <div class="crop-viewer" id="cropViewer">
+              <img src="assets/images/camera-sample.webp" alt="Muestra de detalle en alta resolución" class="crop-target-img" id="cropTargetImg">
+              <div class="crop-box-indicator" id="cropBoxIndicator">
+                <span class="crop-box-text">Zona de recorte</span>
+              </div>
+            </div>
+            <span class="stage-caption" id="cropCaption">Toca 'Recortar' para ver cómo más megapíxeles permiten acercarse a un detalle lejano</span>
+          </div>
+
+          <div class="crucial-tip-box">
+            <strong>Regla clave para el vendedor:</strong><br>
+            Más megapíxeles permiten recortar o imprimir en grande, pero la nitidez general depende también del <strong>tamaño del sensor y la luz</strong>.
+          </div>
+
+          <div class="pitch-container compact">
+            <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+            <p class="pitch-quote">
+              “Con 64 megapíxeles puedes tomar una foto familiar amplia y luego recortar la cara de alguien sin que se pixelee.”
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         TELÉFONO INTERACTIVO PROTAGONISTA ("CONOCE TU EQUIPO")
+         ========================================================================= -->
+    <section class="experience-section" id="conoce-tu-equipo">
+      <div class="section-header">
+        <span class="section-tag">Explorador de Hardware</span>
+        <h2 class="section-title">Conoce tu Equipo en Vivo</h2>
+        <p class="section-subtitle">Toca los puntos en el smartphone para ver el argumento clave y cómo explicárselo al cliente.</p>
+      </div>
+
+      <div class="exp-card">
+        <div class="hardware-explorer-layout">
+          <!-- Smartphone Visual con Hotspots Reales -->
+          <div class="explorer-phone-wrapper">
+            <div class="explorer-phone-frame">
+              <img src="assets/images/phone-front.webp" alt="Smartphone en vivo" class="explorer-phone-img">
+
+              <!-- Hotspots con pulso suave -->
+              <button class="hw-hotspot spot-pantalla" data-spot="pantalla" title="Pantalla AMOLED">
+                <span class="hw-pulse"></span>
+                <span class="hw-dot"></span>
+                <span class="hw-chip-label">Pantalla 120Hz</span>
+              </button>
+
+              <button class="hw-hotspot spot-camara" data-spot="camara" title="Cámaras OIS">
+                <span class="hw-pulse"></span>
+                <span class="hw-dot"></span>
+                <span class="hw-chip-label">Cámara OIS</span>
+              </button>
+
+              <button class="hw-hotspot spot-procesador active" data-spot="procesador" title="Procesador Octa-Core">
+                <span class="hw-pulse"></span>
+                <span class="hw-dot"></span>
+                <span class="hw-chip-label">Chip 6nm</span>
+              </button>
+
+              <button class="hw-hotspot spot-bateria" data-spot="bateria" title="Batería 5000 mAh">
+                <span class="hw-pulse"></span>
+                <span class="hw-dot"></span>
+                <span class="hw-chip-label">5000 mAh</span>
+              </button>
+
+              <button class="hw-hotspot spot-sim" data-spot="sim" title="Bandeja Dual SIM / eSIM">
+                <span class="hw-pulse"></span>
+                <span class="hw-dot"></span>
+                <span class="hw-chip-label">Dual SIM</span>
+              </button>
+
+              <button class="hw-hotspot spot-conectividad" data-spot="conectividad" title="Antenas 5G">
+                <span class="hw-pulse"></span>
+                <span class="hw-dot"></span>
+                <span class="hw-chip-label">Módem 5G</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Ficha de Información Flotante del Hotspot -->
+          <div class="explorer-info-panel" id="explorerInfoPanel">
+            <div class="explorer-info-card">
+              <span class="badge-pill" id="expKeyFact">8 Núcleos de Alto Rendimiento</span>
+              <h3 class="info-title" id="expTitle">Procesador Octa-Core de 6 nm</h3>
+              <p class="info-concept" id="expOneLiner">El motor central que abre aplicaciones al instante y procesa fotos con agilidad.</p>
+
+              <div class="pitch-container">
+                <div class="pitch-label-bar">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                  <span>Cómo explicárselo al cliente</span>
+                </div>
+                <div class="pitch-box-content open">
+                  <p class="pitch-quote" id="expPitch">
+                    “Abre todas tus aplicaciones de inmediato sin que el teléfono se caliente ni se trabe al cambiar entre juegos y mensajes.”
+                  </p>
+                </div>
+              </div>
+
+              <div class="specs-mini-note" id="expSpecs">
+                Arquitectura de 6 nanómetros, 8 núcleos (2 de alto desempeño + 6 de ahorro energético), módem 5G integrado.
+              </div>
+
+              <div class="info-footer-actions">
+                <button class="btn btn-outline" id="btnExpFullDialog">
+                  <span>Ver diálogo guiado con cliente</span>
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
               </div>
             </div>
           </div>
@@ -124,94 +1169,189 @@
       </div>
     </section>
 
-    <!-- 4. COMPARADOR VISUAL DE EQUIPOS (BARRAS Y MÉTRICAS) -->
-    <section class="comparison-section-box" id="comparador-visual">
-      <div class="section-heading-row">
-        <div>
-          <h2 class="section-title">Comparador Visual de Modelos</h2>
-          <div class="section-subtitle">Diferencias gráficas de RAM, espacio, batería y precio en pesos mexicanos</div>
-        </div>
+    <!-- =========================================================================
+         COMPARADOR VISUAL DE EQUIPOS (NO TABLAS, BARRAS GRÁFICAS)
+         ========================================================================= -->
+    <section class="experience-section" id="comparador">
+      <div class="section-header">
+        <span class="section-tag">Herramienta de Piso</span>
+        <h2 class="section-title">Comparador Visual de Equipos</h2>
+        <p class="section-subtitle">Compara dos teléfonos frente a frente con barras gráficas de RAM, almacenamiento y batería.</p>
       </div>
 
-      <div class="comparison-grid" id="comparisonCardsGrid">
-        <!-- Rendered by app.js -->
-      </div>
-    </section>
-
-    <!-- 5. SIMULADOR DE CUOTAS (PESOS MEXICANOS) -->
-    <section id="simulador-cuotas">
-      <div class="section-heading-row">
-        <div>
-          <h2 class="section-title">Simulador de Cuotas Semanales</h2>
-          <div class="section-subtitle">Cálculo visual demostrativo en pesos mexicanos (MXN) para cotización en piso</div>
-        </div>
-      </div>
-
-      <div class="calculator-card-banner">
-        <div>
-          <div class="calc-input-group">
-            <div class="calc-label-bar">
-              <span>Precio del Dispositivo</span>
-              <span id="calcPriceVal" style="color:var(--accent);">$5,899 MXN</span>
-            </div>
-            <input type="range" class="calc-range-slider" id="calcPriceSlider" min="2000" max="15000" step="500" value="5899">
+      <div class="exp-card">
+        <!-- Selector Dual -->
+        <div class="compare-selectors-row">
+          <div class="compare-selector-side">
+            <label for="compareSelectA" class="compare-select-label">Equipo A:</label>
+            <select class="apple-select" id="compareSelectA">
+              <option value="nova-lite">Nova Lite ($3,499 MXN)</option>
+              <option value="nova-x1" selected>Nova X1 ($5,899 MXN)</option>
+              <option value="nova-x1-pro">Nova X1 Pro ($8,999 MXN)</option>
+            </select>
           </div>
 
-          <div class="calc-input-group">
-            <div class="calc-label-bar">
-              <span>Enganche Inicial</span>
-              <span id="calcDownVal">$1,000 MXN</span>
-            </div>
-            <input type="range" class="calc-range-slider" id="calcDownSlider" min="0" max="5000" step="200" value="1000">
-          </div>
+          <div class="compare-vs-badge">VS</div>
 
-          <div class="calc-input-group">
-            <div class="calc-label-bar">
-              <span>Plazo de Financiamiento</span>
-            </div>
-            <div class="term-pill-selector">
-              <button class="term-btn" data-weeks="8">8 semanas</button>
-              <button class="term-btn active" data-weeks="12">12 semanas</button>
-              <button class="term-btn" data-weeks="24">24 semanas</button>
-            </div>
+          <div class="compare-selector-side">
+            <label for="compareSelectB" class="compare-select-label">Equipo B:</label>
+            <select class="apple-select" id="compareSelectB">
+              <option value="nova-lite">Nova Lite ($3,499 MXN)</option>
+              <option value="nova-x1">Nova X1 ($5,899 MXN)</option>
+              <option value="nova-x1-pro" selected>Nova X1 Pro ($8,999 MXN)</option>
+            </select>
           </div>
         </div>
 
-        <div>
-          <div class="calc-result-box">
-            <div style="font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.5px; opacity:0.8;">Cuota Semanal Estimada</div>
-            <div class="calc-cuota-big" id="calcCuotaBig">$408 MXN / sem</div>
-            <div style="font-size:11.5px; opacity:0.85;">Accesible y sin descapitalizarse</div>
-
-            <div class="calc-breakdown-row">
-              <div>Precio: <strong id="calcTotalDisplay">$5,899 MXN</strong></div>
-              <div>Enganche: <strong id="calcDownDisplay">$1,000 MXN</strong></div>
-              <div>Saldo: <strong id="calcBalanceDisplay">$4,899 MXN</strong></div>
-            </div>
-          </div>
-
-          <div style="font-size:11px; color:var(--text-subtle); line-height:1.4; margin-top:12px; text-align:center;">
-            * Ejemplo visual demostrativo. Las condiciones reales de financiamiento y políticas dependen formalmente de la empresa.
-          </div>
+        <!-- Escenario de Comparación Visual -->
+        <div class="compare-stage" id="compareStage">
+          <!-- Renderizado dinámicamente por app.js -->
         </div>
       </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="manual-footer">
-      Manual Visual de Telefonía y Ventas • Gabriela Licona • Capacitación Comercial
-    </footer>
+    <!-- =========================================================================
+         SIMULADOR DE CUOTAS (PESOS MEXICANOS — MXN)
+         ========================================================================= -->
+    <section class="experience-section" id="cuotas-mxn">
+      <div class="section-header">
+        <span class="section-tag">Financiamiento en Piso de Venta</span>
+        <h2 class="section-title">Simulador de Cuotas en Pesos Mexicanos</h2>
+        <p class="section-subtitle">Calcula el pago semanal, quincenal o mensual para cotizar con el cliente sin descapitalizarse.</p>
+      </div>
+
+      <div class="exp-card">
+        <!-- Presets rápidos de equipos -->
+        <div class="calc-presets-row">
+          <span class="presets-label">Equipos de referencia:</span>
+          <button class="preset-pill" data-price="3499" data-down="600">Nova Lite ($3,499)</button>
+          <button class="preset-pill active" data-price="5899" data-down="1000">Nova X1 ($5,899)</button>
+          <button class="preset-pill" data-price="8999" data-down="1800">Nova X1 Pro ($8,999)</button>
+        </div>
+
+        <div class="exp-two-col">
+          <!-- Controles de Cotización -->
+          <div class="calc-inputs-pane">
+            <!-- Precio del Equipo -->
+            <div class="calc-field">
+              <div class="calc-field-header">
+                <label for="priceSlider">Precio del Teléfono</label>
+                <span class="calc-field-val" id="priceDisplay">$5,899 MXN</span>
+              </div>
+              <input type="range" class="apple-slider" id="priceSlider" min="2000" max="18000" step="500" value="5899">
+              <div class="slider-limits">
+                <span>$2,000 MXN</span>
+                <span>$18,000 MXN</span>
+              </div>
+            </div>
+
+            <!-- Enganche Inicial (Protegido para nunca superar precio) -->
+            <div class="calc-field">
+              <div class="calc-field-header">
+                <label for="downSlider">Enganche Inicial</label>
+                <span class="calc-field-val" id="downDisplay">$1,000 MXN</span>
+              </div>
+              <input type="range" class="apple-slider" id="downSlider" min="0" max="5899" step="200" value="1000">
+              <div class="slider-limits">
+                <span>$0 MXN</span>
+                <span id="maxDownLabel">Máx. $5,899 MXN</span>
+              </div>
+            </div>
+
+            <!-- Frecuencia y Plazo -->
+            <div class="calc-field">
+              <label>Frecuencia de Pago</label>
+              <div class="segmented-control" id="freqSelector">
+                <button class="seg-btn active" data-freq="semanal">Semanal</button>
+                <button class="seg-btn" data-freq="quincenal">Quincenal</button>
+                <button class="seg-btn" data-freq="mensual">Mensual</button>
+              </div>
+            </div>
+
+            <div class="calc-field">
+              <label>Plazo a Financiar</label>
+              <div class="term-pills-row" id="termPillsContainer">
+                <button class="term-pill" data-periods="8">8 semanas</button>
+                <button class="term-pill active" data-periods="12">12 semanas</button>
+                <button class="term-pill" data-periods="24">24 semanas</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Resultado Protagonista -->
+          <div class="calc-result-pane">
+            <div class="calc-hero-card">
+              <span class="calc-hero-label" id="calcHeroLabel">CUOTA SEMANAL ESTIMADA</span>
+              <div class="calc-hero-amount" id="calcHeroAmount">$408 MXN</div>
+              <span class="calc-hero-period" id="calcHeroPeriod">por semana</span>
+
+              <div class="calc-breakdown-box">
+                <div class="breakdown-row">
+                  <span>Precio de lista:</span>
+                  <strong id="summaryPrice">$5,899 MXN</strong>
+                </div>
+                <div class="breakdown-row">
+                  <span>Enganche pagado hoy:</span>
+                  <strong id="summaryDown">$1,000 MXN</strong>
+                </div>
+                <div class="breakdown-row highlight-saldo">
+                  <span>Saldo a liquidar:</span>
+                  <strong id="summaryBalance">$4,899 MXN</strong>
+                </div>
+              </div>
+
+              <div class="pitch-container compact mt-16">
+                <span class="pitch-tag-label">Cómo presentárselo al cliente</span>
+                <p class="pitch-quote" id="calcPitchText">
+                  “Se lleva su teléfono hoy estrenando con solo $1,000 de enganche y pagos semanales muy accesibles de $408 pesos.”
+                </p>
+              </div>
+            </div>
+
+            <div class="calc-disclaimer-note">
+              * Ejemplo demostrativo. Las condiciones reales de financiamiento, intereses aplicables y plazos dependen de las políticas de la empresa.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
-  <!-- Modal / Bottom Sheet para Ver Diálogo Completo -->
-  <div class="modal-overlay" id="detailModal">
-    <div class="modal-dialog-panel">
-      <div class="modal-drag-indicator"></div>
-      <div id="modalBodyContent"></div>
+  <!-- =========================================================================
+       FOOTER EDITORIAL
+       ========================================================================= -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand-row">
+        <span class="footer-monogram">GL</span>
+        <div>
+          <div class="footer-title">Gabriela Licona • Capacitación de Telefonía</div>
+          <div class="footer-sub">Manual Visual de Equipos • Diseñado para aprender viendo e interactuando</div>
+        </div>
+      </div>
+      <div class="footer-copy">
+        Desarrollado para capacitación en piso de venta. Material didáctico interactivo sin fines comerciales externos.
+      </div>
+    </div>
+  </footer>
+
+  <!-- =========================================================================
+       MODAL / BOTTOM SHEET (ESTILO APPLE LIGHT DRAWER)
+       ========================================================================= -->
+  <div class="modal-overlay" id="appModal" aria-hidden="true" role="dialog">
+    <div class="modal-card">
+      <div class="modal-drag-bar"></div>
+      <button class="modal-close-btn" id="modalCloseBtn" aria-label="Cerrar ventana">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+
+      <div class="modal-body" id="modalBody">
+        <!-- Renderizado dinámicamente -->
+      </div>
     </div>
   </div>
 
-  <script src="js/app.js"></script>
+  <script type="module" src="js/app.js"></script>
 </body>
 </html>

@@ -1,780 +1,1132 @@
-// MANUAL VISUAL DE TELEFONÍA — GABRIELA LICONA
-// Vanilla JavaScript con datos integrados para máxima compatibilidad (Local file://, GitHub Pages y Cloudflare Pages)
+/**
+ * MANUAL VISUAL DE EQUIPOS — GABRIELA LICONA
+ * Controlador de experiencias interactivas y visuales.
+ * Regla: Primero ver, luego entender, y solo si se desea, leer más.
+ */
 
-const APP_CONFIG = {
-  trainerName: "Gabriela Licona",
-  title: "Manual Visual de Telefonía",
-  subtitle: "Guía visual de consulta rápida para vendedores de piso",
-  currency: "MXN",
-  currencySymbol: "$"
-};
+import {
+  APP_CONFIG,
+  CONNECTIVITY_DATA,
+  SIM_EQUIPO_DATA,
+  HOTSPOTS_EXPLORER,
+  COMPARATOR_MODELS
+} from "./data.js";
 
-const CATEGORIES = [
-  { id: "all", name: "Todos", count: 8 },
-  { id: "rendimiento", name: "Rendimiento", count: 2 },
-  { id: "pantalla", name: "Pantalla", count: 1 },
-  { id: "bateria", name: "Batería y Carga", count: 2 },
-  { id: "camara", name: "Cámaras", count: 1 },
-  { id: "conectividad", name: "Conectividad", count: 1 },
-  { id: "seguridad", name: "Seguridad e IP", count: 1 },
-  { id: "sim-imei", name: "SIM e IMEI", count: 1 }
-];
-
-const VISUAL_CARDS = [
-  {
-    id: "card-ram",
-    category: "rendimiento",
-    layout: "featured-wide",
-    title: "Memoria RAM",
-    badge: "Multitarea y Fluidez",
-    keyFact: "4 GB • 8 GB • 12 GB",
-    oneLiner: "Permite mantener varias aplicaciones abiertas al mismo tiempo sin que se traben ni se reinicien.",
-    clientPitch: "Es como el tamaño de la mesa de trabajo: más RAM permite abrir WhatsApp, mapas y redes sin pausas.",
-    visualComponent: "ram-multitask",
-    detailModal: {
-      technicalNote: "La memoria de acceso aleatorio (RAM) aloja temporalmente los procesos activos del sistema.",
-      exampleDialog: {
-        client: "¿Por qué me conviene tener 8 GB de RAM en lugar de 4 GB?",
-        seller: "Con 8 GB puede cambiar entre varias aplicaciones al instante sin que se cierren o tenga que esperar a que vuelvan a cargar."
-      }
-    }
-  },
-  {
-    id: "card-storage",
-    category: "rendimiento",
-    layout: "standard",
-    title: "Almacenamiento Interno",
-    badge: "Capacidad de Archivos",
-    keyFact: "128 GB vs 256 GB",
-    oneLiner: "Espacio disponible para guardar fotos, videos, documentos, audios y aplicaciones.",
-    clientPitch: "256 GB le da tranquilidad durante años sin tener que borrar fotos ni mensajes por falta de espacio.",
-    visualComponent: "storage-meter",
-    detailModal: {
-      technicalNote: "Memoria flash interna UFS no volátil para almacenamiento permanente de datos y apps.",
-      exampleDialog: {
-        client: "¿Vale la pena pagar la diferencia por 256 GB?",
-        seller: "Sí, si toma fotos familiares o recibe muchos audios y videos de trabajo, 256 GB evitan el molesto aviso de memoria llena."
-      }
-    }
-  },
-  {
-    id: "card-120hz",
-    category: "pantalla",
-    layout: "featured-wide",
-    title: "Tasa de Refresco: 120 Hz vs 60 Hz",
-    badge: "Fluidez de Pantalla",
-    keyFact: "Hasta 120 actualizaciones por segundo",
-    oneLiner: "La pantalla se actualiza el doble de veces por segundo, logrando una sensación visual ultra suave.",
-    clientPitch: "Al deslizar menús, páginas o redes sociales todo se mueve sin tirones y descansa más la vista.",
-    visualComponent: "hz-interactive-demo",
-    detailModal: {
-      technicalNote: "Indica la frecuencia con que el panel renueva los cuadros visibles por segundo (Hertz).",
-      exampleDialog: {
-        client: "¿Qué diferencia práctica hay entre 60 Hz y 120 Hz?",
-        seller: "Al deslizar el dedo en pantalla el texto no se borra ni brinca; todo responde con inmediata suavidad."
-      }
-    }
-  },
-  {
-    id: "card-battery",
-    category: "bateria",
-    layout: "standard",
-    title: "Batería de 5000 mAh",
-    badge: "Autonomía de Energía",
-    keyFact: "Jornada completa de uso",
-    oneLiner: "Capacidad de energía diseñada para cubrir todo el día sin recargas intermedias bajo uso habitual.",
-    clientPitch: "Es como tener un tanque de energía grande: sale de casa y regresa con batería de sobra.",
-    visualComponent: "battery-gauge",
-    detailModal: {
-      technicalNote: "Miliamperios-hora: medida de la carga eléctrica acumulable en la celda de litio.",
-      exampleDialog: {
-        client: "¿Me durará todo el día sin conectarlo?",
-        seller: "Con 5000 mAh está diseñado para darle más de 24 horas de uso continuo en llamadas, mensajería y redes."
-      }
-    }
-  },
-  {
-    id: "card-fastcharge",
-    category: "bateria",
-    layout: "standard",
-    title: "Carga Rápida: 33W a 67W",
-    badge: "Tiempo de Recarga",
-    keyFact: "Horas de energía en 20 minutos",
-    oneLiner: "Potencia eléctrica que permite recuperar un porcentaje significativo de batería en lapsos breves.",
-    clientPitch: "Con solo conectarlo mientras desayuna o se baña, obtiene carga suficiente para varias horas.",
-    visualComponent: "fastcharge-anim",
-    detailModal: {
-      technicalNote: "Gestión inteligente de voltaje y amperaje con protocolos de disipación térmica segura.",
-      exampleDialog: {
-        client: "Siempre olvido cargar el celular en la noche, ¿qué hago?",
-        seller: "Con la carga rápida incluida, en lo que se prepara antes de salir ya recuperó más del 60% de energía."
-      }
-    }
-  },
-  {
-    id: "card-camera",
-    category: "camara",
-    layout: "featured-wide",
-    title: "Cámaras y Estabilización Óptica (OIS)",
-    badge: "Fotografía y Video",
-    keyFact: "Sensor Principal + OIS Antivibración",
-    oneLiner: "El sensor capta gran nivel de detalle y el estabilizador físico compensa el movimiento involuntario de la mano.",
-    clientPitch: "Tome fotos y videos nítidos que no salen borrosos aunque camine o le tiemble el pulso.",
-    visualComponent: "camera-lens-diagram",
-    detailModal: {
-      technicalNote: "OIS mueve micrométricamente el lente para contrarrestar la vibración en tomas con poca luz.",
-      exampleDialog: {
-        client: "¿Por qué salían borrosas las fotos en mi teléfono anterior?",
-        seller: "Porque no tenía estabilización óptica; este equipo compensa el pulso de su mano para tomas nítidas a la primera."
-      }
-    }
-  },
-  {
-    id: "card-5g",
-    category: "conectividad",
-    layout: "standard",
-    title: "Conectividad 5G",
-    badge: "Red Móvil de Alta Velocidad",
-    keyFact: "Transmisión y Descarga Veloz",
-    oneLiner: "Nueva generación de red móvil con mayor velocidad de descarga y menor tiempo de respuesta.",
-    clientPitch: "Descargue archivos al instante y disfrute videos en máxima calidad sin esperar a que carguen.",
-    visualComponent: "network-5g-visual",
-    detailModal: {
-      technicalNote: "Quinta generación de estándares de red móvil con mayor ancho de banda y menor latencia en zonas con cobertura.",
-      exampleDialog: {
-        client: "¿Realmente necesito 5G hoy?",
-        seller: "Sí, navega con gran fluidez y asegura que su equipo no quede obsoleto ante la expansión de las redes."
-      }
-    }
-  },
-  {
-    id: "card-ip68",
-    category: "seguridad",
-    layout: "standard",
-    title: "Protección IP (IP54 vs IP68)",
-    badge: "Resistencia Ambiental",
-    keyFact: "Protección contra lluvia y salpicaduras",
-    oneLiner: "Sellado del chasis que protege los componentes internos contra el polvo y accidentes con líquidos.",
-    clientPitch: "Le da tranquilidad ante lluvia imprevista o si se derrama un vaso de agua sobre el equipo.",
-    visualComponent: "ip-shield-visual",
-    detailModal: {
-      technicalNote: "Ingress Protection: norma internacional de hermeticidad contra sólidos y líquidos.",
-      exampleDialog: {
-        client: "¿Puedo responder llamadas si está lloviendo?",
-        seller: "Sí, cuenta con certificación contra salpicaduras para atender mensajes en exteriores sin riesgo."
-      }
-    }
-  },
-  {
-    id: "card-sim",
-    category: "sim-imei",
-    layout: "standard",
-    title: "SIM Física, eSIM y Código IMEI",
-    badge: "Líneas y Seguridad",
-    keyFact: "2 Líneas en 1 Celular • IMEI Único",
-    oneLiner: "Permite usar dos números telefónicos a la vez y cuenta con un código único de identificación para garantía.",
-    clientPitch: "Maneje su número de trabajo y el personal en el mismo equipo sin cargar dos teléfonos.",
-    visualComponent: "sim-imei-diagram",
-    detailModal: {
-      technicalNote: "Dual SIM activa concurrentemente dos números. El IMEI es la clave de registro mundial de 15 dígitos.",
-      exampleDialog: {
-        client: "¿Puedo separar mi WhatsApp de clientes del personal?",
-        seller: "Totalmente, gracias a Dual SIM / eSIM administra ambas líneas en este mismo dispositivo con total comodidad."
-      }
-    }
-  }
-];
-
-const HOTSPOTS_DATA = {
-  camera: {
-    title: "Módulo de Cámaras con OIS",
-    keyFact: "64 MP + Sensor Gran Angular",
-    oneLiner: "Sensor de alta resolución con estabilizador óptico que evita fotos movidas o borrosas.",
-    clientPitch: "Fotos claras y enfocadas a la primera, incluso de noche o con niños en movimiento."
-  },
-  screen: {
-    title: "Pantalla AMOLED 120 Hz",
-    keyFact: '6.67" FHD+ Cristalina',
-    oneLiner: "Panel que se actualiza hasta 120 veces por segundo para movimientos ultra suaves.",
-    clientPitch: "Al deslizar en redes o documentos todo se siente rápido, fluido y descansa la vista."
-  },
-  processor: {
-    title: "Procesador Octa-Core 5G",
-    keyFact: "Arquitectura 6 nm Eficiente",
-    oneLiner: "El motor central que abre aplicaciones al instante y procesa imágenes con agilidad.",
-    clientPitch: "Abre todas sus aplicaciones de inmediato sin que el teléfono se caliente ni se trabe."
-  },
-  battery: {
-    title: "Batería 5000 mAh + Carga Rápida",
-    keyFact: "33W Turbo Power",
-    oneLiner: "Celda de gran reserva energética que recupera horas de uso en solo 20 minutos de carga.",
-    clientPitch: "Batería para todo el día y carga ultra rápida antes de salir de casa."
-  },
-  sim: {
-    title: "Dual SIM y eSIM",
-    keyFact: "2 Líneas Activas",
-    oneLiner: "Doble ranura y soporte para chip digital integrado en el mismo terminal.",
-    clientPitch: "Lleve su número de trabajo y su número personal en el mismo celular."
-  },
-  network: {
-    title: "Módem 5G y Antenas",
-    keyFact: "Descargas Ultrarrápidas",
-    oneLiner: "Antenas de alta recepción para navegación a máxima velocidad y llamadas estables.",
-    clientPitch: "Descargas inmediatas de videos y videollamadas sin pausas ni cortes."
-  }
-};
-
-const PHONES_COMPARE_DATA = [
-  {
-    id: "nova-lite",
-    name: "Nova Lite",
-    image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=400&q=80",
-    priceMXN: 3499,
-    downPaymentMXN: 600,
-    weeklyMXN: 241,
-    tag: "Económico y Básico",
-    metrics: {
-      ramVal: 4,
-      ramMax: 12,
-      ramLabel: "4 GB RAM",
-      storageVal: 128,
-      storageMax: 512,
-      storageLabel: "128 GB",
-      batteryVal: 5000,
-      batteryMax: 6000,
-      batteryLabel: "5000 mAh",
-      screenHz: "90 Hz",
-      cameraMain: "50 MP Principal",
-      network: "4G LTE / Dual SIM"
-    },
-    idealFor: "Llamadas, WhatsApp, navegación y uso diario sin gastar de más."
-  },
-  {
-    id: "nova-x1",
-    name: "Nova X1",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80",
-    priceMXN: 5899,
-    downPaymentMXN: 1000,
-    weeklyMXN: 408,
-    tag: "El Más Vendido",
-    metrics: {
-      ramVal: 8,
-      ramMax: 12,
-      ramLabel: "8 GB RAM",
-      storageVal: 256,
-      storageMax: 512,
-      storageLabel: "256 GB",
-      batteryVal: 5000,
-      batteryMax: 6000,
-      batteryLabel: "5000 mAh",
-      screenHz: "120 Hz AMOLED",
-      cameraMain: "64 MP con OIS (Estabilizador)",
-      network: "5G Red Rápida / eSIM"
-    },
-    idealFor: "Multitarea fluida, redes sociales intensivas, trabajo y fotos nítidas."
-  },
-  {
-    id: "nova-x1-pro",
-    name: "Nova X1 Pro",
-    image: "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=400&q=80",
-    priceMXN: 8999,
-    downPaymentMXN: 1800,
-    weeklyMXN: 600,
-    tag: "Máxima Potencia",
-    metrics: {
-      ramVal: 12,
-      ramMax: 12,
-      ramLabel: "12 GB RAM LPDDR5",
-      storageVal: 512,
-      storageMax: 512,
-      storageLabel: "512 GB",
-      batteryVal: 5200,
-      batteryMax: 6000,
-      batteryLabel: "5200 mAh (67W Carga)",
-      screenHz: "120 Hz 1.5K AMOLED",
-      cameraMain: "108 MP + Video 4K Frontal",
-      network: "5G Ultra / Wi-Fi 6 / IP68"
-    },
-    idealFor: "Creadores de video, fotografía profesional y máxima velocidad."
-  }
-];
-
-// SVG Icons
-const SVG_ICONS = {
-  search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
-  chevronRight: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>`,
-  bolt: `<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>`,
-  close: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
-};
-
-const AppState = {
-  activeCategory: "all",
-  searchFilter: "",
-  activeHotspot: "processor",
+// Estado Global de la Aplicación
+const State = {
+  activeConn: "5g",
+  activeSim: "sim",
+  activeRam: 8,
+  activeStorage: 256,
+  activeScreenSize: 6.7,
+  activeHz: 120,
+  activeMah: 5000,
+  activeWatt: 33,
+  activeHotspot: "procesador",
+  compareModelA: "nova-x1",
+  compareModelB: "nova-x1-pro",
   calculator: {
     priceMXN: 5899,
     downPaymentMXN: 1000,
-    weeks: 12
+    frequency: "semanal", // semanal, quincenal, mensual
+    periods: 12
   }
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  renderCategoryFilter();
-  renderVisualEditorialCards();
-  setupInteractivePhoneHotspots();
-  renderVisualComparison();
-  setupCuotasCalculator();
-  setupHeroSearch();
-  setupNavLinks();
-  setupModalDismiss();
+  initNavigation();
+  initConnectivityExp();
+  initSimEquipoExp();
+  initSeguridadExp();
+  initRendimientoExp();
+  initPantallaExp();
+  initBateriaExp();
+  initCamaraExp();
+  initHardwareExplorer();
+  initComparatorExp();
+  initCuotasCalculator();
+  initModal();
 });
 
-// 1. FILTRO DE CATEGORÍAS (PILLS)
-function renderCategoryFilter() {
-  const container = document.getElementById("categoriesPillsContainer");
-  if (!container) return;
+/* ==========================================================================
+   1. NAVEGACIÓN Y MENÚ MÓVIL
+   ========================================================================== */
+function initNavigation() {
+  const header = document.getElementById("appHeader");
+  const navItems = document.querySelectorAll(".nav-item");
+  const mobileBtn = document.getElementById("mobileMenuBtn");
+  const mobileDrawer = document.getElementById("mobileNavDrawer");
+  const mobileClose = document.getElementById("mobileNavClose");
+  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
 
-  container.innerHTML = CATEGORIES.map(cat => `
-    <button class="category-chip-btn ${cat.id === 'all' ? 'active' : ''}" data-category="${cat.id}">
-      ${cat.name}
-    </button>
-  `).join('');
-
-  container.querySelectorAll(".category-chip-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      container.querySelectorAll(".category-chip-btn").forEach(b => b.classList.remove("active"));
-      btn.classList.add("active");
-      AppState.activeCategory = btn.getAttribute("data-category");
-      renderVisualEditorialCards();
+  // Mobile drawer toggles
+  if (mobileBtn && mobileDrawer) {
+    mobileBtn.addEventListener("click", () => {
+      mobileDrawer.classList.add("open");
+      mobileDrawer.setAttribute("aria-hidden", "false");
     });
-  });
-}
-
-// 2. FICHAS VISUALES EDITORIALES
-function renderVisualEditorialCards() {
-  const container = document.getElementById("visualCardsGrid");
-  if (!container) return;
-
-  const search = AppState.searchFilter.toLowerCase().trim();
-  const category = AppState.activeCategory;
-
-  const filtered = VISUAL_CARDS.filter(card => {
-    const matchCat = category === "all" || card.category === category;
-    const matchSearch = search === "" ||
-      card.title.toLowerCase().includes(search) ||
-      card.oneLiner.toLowerCase().includes(search) ||
-      card.clientPitch.toLowerCase().includes(search);
-    return matchCat && matchSearch;
-  });
-
-  if (filtered.length === 0) {
-    container.innerHTML = `
-      <div style="grid-column:1/-1; text-align:center; padding:40px; color:var(--text-muted); font-size:14px;">
-        No se encontraron conceptos para "${AppState.searchFilter}".
-      </div>
-    `;
-    return;
   }
 
-  container.innerHTML = filtered.map(card => `
-    <article class="visual-card ${card.layout === 'featured-wide' ? 'featured-wide' : ''}">
-      <div class="card-visual-stage">
-        ${getVisualComponentHtml(card.visualComponent)}
-      </div>
+  if (mobileClose && mobileDrawer) {
+    mobileClose.addEventListener("click", () => {
+      mobileDrawer.classList.remove("open");
+      mobileDrawer.setAttribute("aria-hidden", "true");
+    });
+  }
 
-      <div class="card-content-pane">
-        <span class="card-badge-tag">${card.badge}</span>
-        <h3 class="card-title-text">${card.title}</h3>
-        <span class="card-keyfact-chip">${card.keyFact}</span>
-        <p class="card-oneliner-text">${card.oneLiner}</p>
-
-        <div class="card-pitch-highlight">
-          <div class="pitch-label">Cómo decírselo al cliente</div>
-          <div class="pitch-body">"${card.clientPitch}"</div>
-        </div>
-
-        <button class="btn-open-detail" data-card-id="${card.id}">
-          <span>Ver ejemplo de diálogo</span>
-          ${SVG_ICONS.chevronRight}
-        </button>
-      </div>
-    </article>
-  `).join('');
-
-  container.querySelectorAll(".btn-open-detail").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const cardId = btn.getAttribute("data-card-id");
-      openCardDetailModal(cardId);
+  mobileLinks.forEach(link => {
+    link.addEventListener("click", () => {
+      mobileDrawer.classList.remove("open");
+      mobileDrawer.setAttribute("aria-hidden", "true");
     });
   });
+
+  // IntersectionObserver para resaltar navegación activa al hacer scroll
+  const sections = document.querySelectorAll("section[id]");
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute("id");
+        navItems.forEach(item => {
+          if (item.getAttribute("href") === `#${id}`) {
+            item.classList.add("active");
+          } else {
+            item.classList.remove("active");
+          }
+        });
+      }
+    });
+  }, { threshold: 0.25 });
+
+  sections.forEach(sec => observer.observe(sec));
 }
 
-function getVisualComponentHtml(type) {
-  switch (type) {
-    case "ram-multitask":
-      return `
-        <div class="ram-visual-box">
-          <div class="ram-apps-row">
-            <span class="ram-app-pill">WhatsApp</span>
-            <span class="ram-app-pill">Facebook</span>
-            <span class="ram-app-pill">Mapas GPS</span>
-            <span class="ram-app-pill">Cámara</span>
-          </div>
-          <div class="ram-bars-compare">
-            <div class="ram-bar-row">
-              <span>4 GB</span>
-              <div class="ram-bar-fill-track"><div class="ram-bar-fill" style="width: 33%;"></div></div>
-            </div>
-            <div class="ram-bar-row">
-              <span>8 GB</span>
-              <div class="ram-bar-fill-track"><div class="ram-bar-fill" style="width: 66%;"></div></div>
-            </div>
-            <div class="ram-bar-row">
-              <span>12 GB</span>
-              <div class="ram-bar-fill-track"><div class="ram-bar-fill" style="width: 100%;"></div></div>
-            </div>
-          </div>
-        </div>
-      `;
+/* ==========================================================================
+   2. EXPERIENCIA 1: CONECTIVIDAD
+   ========================================================================== */
+function initConnectivityExp() {
+  const segButtons = document.querySelectorAll("#connSelector .seg-btn");
+  const nodeTower = document.getElementById("nodeTower");
+  const nodeRouter = document.getElementById("nodeRouter");
+  const nodeAccessories = document.getElementById("nodeAccessories");
+  const towerLabel = document.getElementById("towerLabel");
+  const phoneSignalIcon = document.getElementById("phoneSignalIcon");
+  const phoneSpeedMeter = document.getElementById("phoneSpeedMeter");
+  const phoneStatusText = document.getElementById("phoneStatusText");
 
-    case "storage-meter":
-      return `
-        <div class="storage-meter-box">
-          <div class="storage-segmented-bar">
-            <div class="seg-photos" title="Fotos y Videos"></div>
-            <div class="seg-video" title="Descargas"></div>
-            <div class="seg-apps" title="Aplicaciones"></div>
-            <div class="seg-system" title="Sistema"></div>
-          </div>
-          <div class="storage-legend-grid">
-            <span>Fotos: 45%</span>
-            <span>Apps: 25%</span>
-            <span>Sistema: 12%</span>
-          </div>
-        </div>
-      `;
+  const connBadge = document.getElementById("connBadge");
+  const connSpeed = document.getElementById("connSpeed");
+  const connTitle = document.getElementById("connTitle");
+  const connConcept = document.getElementById("connConcept");
+  const connPitchText = document.getElementById("connPitchText");
+  const connPitchToggle = document.getElementById("connPitchToggle");
+  const connPitchBox = document.getElementById("connPitchBox");
+  const btnConnDetails = document.getElementById("btnConnDetails");
 
-    case "hz-interactive-demo":
-      return `
-        <div class="hz-demo-stage">
-          <div class="hz-screen-box hz-60">
-            <span style="font-size:11px; font-weight:700; color:var(--text-muted);">60 Hz</span>
-            <div class="hz-ball-track"><div class="hz-ball"></div></div>
-          </div>
-          <div class="hz-screen-box hz-120">
-            <span style="font-size:11px; font-weight:700; color:var(--accent);">120 Hz Ultra Suave</span>
-            <div class="hz-ball-track"><div class="hz-ball"></div></div>
-          </div>
-        </div>
-      `;
-
-    case "battery-gauge":
-      return `
-        <div class="battery-gauge-stage">
-          <div class="battery-icon-huge">
-            <div class="battery-fill-level"></div>
-          </div>
-          <span style="font-size:13px; font-weight:800; color:var(--text-main);">5000 mAh • 100% Energía</span>
-        </div>
-      `;
-
-    case "fastcharge-anim":
-      return `
-        <div class="fastcharge-stage">
-          <div class="charge-bolt-icon">${SVG_ICONS.bolt}</div>
-          <div style="font-size:12px; font-weight:700; color:var(--text-main); margin-top:6px;">
-            0% → 60% en 20 minutos
-          </div>
-        </div>
-      `;
-
-    case "camera-lens-diagram":
-      return `
-        <div class="camera-diagram-stage">
-          <div class="camera-module-render">
-            <div class="lens-circle"></div>
-            <div class="lens-circle" style="width:26px; height:26px;"></div>
-          </div>
-          <div class="ois-badge-render">
-            Estabilizador Óptico (OIS)<br>
-            <span style="font-size:10px; color:var(--text-muted);">Compensación de pulso</span>
-          </div>
-        </div>
-      `;
-
-    case "network-5g-visual":
-      return `
-        <div style="display:flex; flex-direction:column; align-items:center; gap:8px;">
-          <div style="font-size:32px; font-weight:800; color:var(--accent); letter-spacing:-1px;">5G ULTRA</div>
-          <span style="font-size:12px; font-weight:700; color:var(--text-muted);">Descargas y streaming inmediato</span>
-        </div>
-      `;
-
-    case "ip-shield-visual":
-      return `
-        <div style="display:flex; align-items:center; gap:12px;">
-          <div style="width:48px; height:48px; border-radius:12px; background:rgba(0,102,204,0.1); display:flex; align-items:center; justify-content:center; color:var(--accent); font-weight:800; font-size:14px;">
-            IP68
-          </div>
-          <div style="font-size:12px; font-weight:600; color:var(--text-main); line-height:1.4;">
-            Sellado hermético<br>
-            <span style="color:var(--text-muted);">Lluvia, salpicaduras y polvo</span>
-          </div>
-        </div>
-      `;
-
-    case "sim-imei-diagram":
-      return `
-        <div style="display:flex; gap:12px; align-items:center;">
-          <div style="background:#FFFFFF; border:1px solid var(--border-light); padding:8px 12px; border-radius:var(--radius-sm); font-size:11px; font-weight:700;">
-            SIM 1 + eSIM
-          </div>
-          <div style="background:#FFFFFF; border:1px solid var(--border-light); padding:8px 12px; border-radius:var(--radius-sm); font-size:11px; font-weight:700;">
-            IMEI: 15 Dígitos
-          </div>
-        </div>
-      `;
-
-    default:
-      return ``;
-  }
-}
-
-// 3. TELÉFONO INTERACTIVO
-function setupInteractivePhoneHotspots() {
-  const pins = document.querySelectorAll(".phone-hotspot-pin");
-  const titleEl = document.getElementById("hotspotTitle");
-  const factEl = document.getElementById("hotspotKeyFact");
-  const onelinerEl = document.getElementById("hotspotOneLiner");
-  const pitchEl = document.getElementById("hotspotPitch");
-
-  function loadSpot(key) {
-    const data = HOTSPOTS_DATA[key];
+  function updateConn(mode) {
+    State.activeConn = mode;
+    const data = CONNECTIVITY_DATA[mode];
     if (!data) return;
 
-    pins.forEach(p => {
-      if (p.getAttribute("data-pin") === key) p.classList.add("active");
-      else p.classList.remove("active");
+    // Actualizar botones
+    segButtons.forEach(btn => {
+      const active = btn.getAttribute("data-conn") === mode;
+      btn.classList.toggle("active", active);
+      btn.setAttribute("aria-selected", active ? "true" : "false");
     });
 
-    if (titleEl) titleEl.textContent = data.title;
-    if (factEl) factEl.textContent = data.keyFact;
-    if (onelinerEl) onelinerEl.textContent = data.oneLiner;
-    if (pitchEl) pitchEl.textContent = `"${data.clientPitch}"`;
+    // Actualizar nodos en escena
+    nodeTower.classList.remove("active");
+    nodeRouter.classList.remove("active");
+    nodeAccessories.classList.remove("active");
+
+    if (mode === "5g") {
+      nodeTower.classList.add("active");
+      towerLabel.textContent = "Antena 5G";
+      phoneSignalIcon.textContent = "5G";
+      phoneSpeedMeter.textContent = "1,200 Mbps";
+      phoneStatusText.textContent = "Conectado a Red 5G Ultra";
+    } else if (mode === "4g") {
+      nodeTower.classList.add("active");
+      towerLabel.textContent = "Antena 4G LTE";
+      phoneSignalIcon.textContent = "4G";
+      phoneSpeedMeter.textContent = "65 Mbps";
+      phoneStatusText.textContent = "Conectado a Red 4G LTE";
+    } else if (mode === "wifi") {
+      nodeRouter.classList.add("active");
+      phoneSignalIcon.textContent = "Wi-Fi";
+      phoneSpeedMeter.textContent = "350 Mbps";
+      phoneStatusText.textContent = "Conectado a Wi-Fi Hogar";
+    } else if (mode === "bluetooth") {
+      nodeAccessories.classList.add("active");
+      phoneSignalIcon.textContent = "BT 5.3";
+      phoneSpeedMeter.textContent = "10m Alcance";
+      phoneStatusText.textContent = "3 Accesorios Enlazados";
+    }
+
+    // Actualizar panel de información
+    connBadge.textContent = data.badge;
+    connSpeed.textContent = data.speedLabel;
+    connTitle.textContent = data.name;
+    connConcept.textContent = data.concept;
+    connPitchText.textContent = `“${data.pitch}”`;
   }
 
-  pins.forEach(pin => {
-    pin.addEventListener("click", () => {
-      const key = pin.getAttribute("data-pin");
-      loadSpot(key);
+  segButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const mode = btn.getAttribute("data-conn");
+      updateConn(mode);
     });
   });
 
-  loadSpot("processor");
-}
-
-// 4. COMPARADOR VISUAL
-function renderVisualComparison() {
-  const container = document.getElementById("comparisonCardsGrid");
-  if (!container) return;
-
-  container.innerHTML = PHONES_COMPARE_DATA.map(phone => `
-    <div class="compare-phone-card ${phone.id === 'nova-x1' ? 'active-choice' : ''}">
-      <div class="compare-phone-img-wrap">
-        <img src="${phone.image}" alt="${phone.name}" loading="lazy">
-      </div>
-
-      <h3 class="compare-model-name">${phone.name}</h3>
-      <div class="compare-price-tag">
-        $${phone.priceMXN.toLocaleString('es-MX')} <span>MXN</span>
-      </div>
-
-      <div class="compare-metric-group">
-        <div class="compare-metric-item">
-          <div class="metric-label-row">
-            <span>RAM</span>
-            <span>${phone.metrics.ramLabel}</span>
-          </div>
-          <div class="metric-bar-track">
-            <div class="metric-bar-progress" style="width: ${(phone.metrics.ramVal / phone.metrics.ramMax) * 100}%;"></div>
-          </div>
-        </div>
-
-        <div class="compare-metric-item">
-          <div class="metric-label-row">
-            <span>Espacio</span>
-            <span>${phone.metrics.storageLabel}</span>
-          </div>
-          <div class="metric-bar-track">
-            <div class="metric-bar-progress" style="width: ${(phone.metrics.storageVal / phone.metrics.storageMax) * 100}%;"></div>
-          </div>
-        </div>
-
-        <div class="compare-metric-item">
-          <div class="metric-label-row">
-            <span>Batería</span>
-            <span>${phone.metrics.batteryLabel}</span>
-          </div>
-          <div class="metric-bar-track">
-            <div class="metric-bar-progress" style="width: ${(phone.metrics.batteryVal / phone.metrics.batteryMax) * 100}%;"></div>
-          </div>
-        </div>
-
-        <div style="font-size:11.5px; color:var(--text-main); font-weight:600; margin-top:4px;">
-          • Pantalla: ${phone.metrics.screenHz}<br>
-          • Cámara: ${phone.metrics.cameraMain}
-        </div>
-      </div>
-
-      <div class="compare-ideal-for">
-        <strong>Ideal para:</strong> ${phone.idealFor}
-      </div>
-    </div>
-  `).join('');
-}
-
-// 5. SIMULADOR DE CUOTAS
-function setupCuotasCalculator() {
-  const priceSlider = document.getElementById("calcPriceSlider");
-  const downSlider = document.getElementById("calcDownSlider");
-  const priceVal = document.getElementById("calcPriceVal");
-  const downVal = document.getElementById("calcDownVal");
-  const cuotaBig = document.getElementById("calcCuotaBig");
-  const termButtons = document.querySelectorAll(".term-btn");
-  const totalDisplay = document.getElementById("calcTotalDisplay");
-  const downDisplay = document.getElementById("calcDownDisplay");
-  const balanceDisplay = document.getElementById("calcBalanceDisplay");
-
-  function recalculate() {
-    let price = parseInt(priceSlider?.value || 5899);
-    let down = parseInt(downSlider?.value || 1000);
-
-    if (down > price) {
-      down = price;
-      if (downSlider) downSlider.value = price;
-    }
-
-    const weeks = AppState.calculator.weeks;
-    const balance = Math.max(0, price - down);
-    const weeklyPayment = Math.round(balance / weeks);
-
-    if (priceVal) priceVal.textContent = `$${price.toLocaleString('es-MX')} MXN`;
-    if (downVal) downVal.textContent = `$${down.toLocaleString('es-MX')} MXN`;
-    if (cuotaBig) cuotaBig.textContent = `$${weeklyPayment.toLocaleString('es-MX')} MXN / sem`;
-    if (totalDisplay) totalDisplay.textContent = `$${price.toLocaleString('es-MX')} MXN`;
-    if (downDisplay) downDisplay.textContent = `$${down.toLocaleString('es-MX')} MXN`;
-    if (balanceDisplay) balanceDisplay.textContent = `$${balance.toLocaleString('es-MX')} MXN`;
+  if (connPitchToggle && connPitchBox) {
+    connPitchToggle.addEventListener("click", () => {
+      connPitchBox.classList.toggle("open");
+      connPitchToggle.classList.toggle("open");
+    });
   }
 
+  if (btnConnDetails) {
+    btnConnDetails.addEventListener("click", () => {
+      const data = CONNECTIVITY_DATA[State.activeConn];
+      openModal(`
+        <span class="badge-pill">${data.badge}</span>
+        <h3 class="info-title" style="margin-top:10px;">${data.name} — Diálogo en Piso de Venta</h3>
+        <p class="info-concept">${data.details}</p>
+        <div class="dialog-speech-box">
+          <div class="dialog-bubble client">
+            <span class="bubble-author">Cliente pregunta</span>
+            ${data.clientDialog.client}
+          </div>
+          <div class="dialog-bubble seller">
+            <span class="bubble-author">Tú respondes</span>
+            ${data.clientDialog.seller}
+          </div>
+        </div>
+      `);
+    });
+  }
+}
+
+/* ==========================================================================
+   3. EXPERIENCIA 2: SIM Y EQUIPO
+   ========================================================================== */
+function initSimEquipoExp() {
+  const segButtons = document.querySelectorAll("#simSelector .seg-btn");
+  const views = {
+    sim: document.getElementById("viewSimPhysical"),
+    esim: document.getElementById("viewEsim"),
+    dualsim: document.getElementById("viewDualSim"),
+    imei: document.getElementById("viewImei"),
+    so: document.getElementById("viewSo")
+  };
+
+  const simBadge = document.getElementById("simBadge");
+  const simTitle = document.getElementById("simTitle");
+  const simConcept = document.getElementById("simConcept");
+  const simPitchText = document.getElementById("simPitchText");
+  const btnSimDetails = document.getElementById("btnSimDetails");
+
+  // Interacción SIM física
+  const btnToggleSimInsert = document.getElementById("btnToggleSimInsert");
+  const trayEjected = document.getElementById("trayEjected");
+  const simInsertStatus = document.getElementById("simInsertStatus");
+  let isInserted = false;
+
+  if (btnToggleSimInsert && trayEjected) {
+    btnToggleSimInsert.addEventListener("click", () => {
+      isInserted = !isInserted;
+      trayEjected.classList.toggle("inserted", isInserted);
+      btnToggleSimInsert.textContent = isInserted ? "Expulsar SIM" : "Insertar SIM al Teléfono";
+      simInsertStatus.textContent = isInserted ? "SIM colocada dentro del teléfono correctamente" : "Bandeja afuera lista para colocar el chip";
+    });
+  }
+
+  // Interacción IMEI
+  const btnDialImei = document.getElementById("btnDialImei");
+  const imeiDisplay = document.getElementById("imeiDisplay");
+  const imeiDialNote = document.getElementById("imeiDialNote");
+  if (btnDialImei && imeiDisplay) {
+    btnDialImei.addEventListener("click", () => {
+      imeiDisplay.style.color = "var(--accent)";
+      imeiDialNote.textContent = "¡Código verificado en pantalla marcando *#06#!";
+      setTimeout(() => {
+        imeiDisplay.style.color = "var(--text-primary)";
+      }, 1500);
+    });
+  }
+
+  // Interacción SO
+  const btnSoAndroid = document.getElementById("btnSoAndroid");
+  const btnSoIos = document.getElementById("btnSoIos");
+  const soNameLabel = document.getElementById("soNameLabel");
+
+  if (btnSoAndroid && btnSoIos && soNameLabel) {
+    btnSoAndroid.addEventListener("click", () => {
+      btnSoAndroid.classList.add("active");
+      btnSoIos.classList.remove("active");
+      soNameLabel.textContent = "Sistema Operativo (Android 14)";
+    });
+    btnSoIos.addEventListener("click", () => {
+      btnSoIos.classList.add("active");
+      btnSoAndroid.classList.remove("active");
+      soNameLabel.textContent = "Sistema Operativo (iOS 18)";
+    });
+  }
+
+  function updateSim(mode) {
+    State.activeSim = mode;
+    const data = SIM_EQUIPO_DATA[mode];
+    if (!data) return;
+
+    segButtons.forEach(btn => {
+      btn.classList.toggle("active", btn.getAttribute("data-sim") === mode);
+    });
+
+    Object.keys(views).forEach(key => {
+      if (views[key]) {
+        views[key].classList.toggle("active", key === mode);
+      }
+    });
+
+    simBadge.textContent = data.tag;
+    simTitle.textContent = data.title;
+    simConcept.textContent = data.oneLiner;
+    simPitchText.textContent = `“${data.pitch}”`;
+  }
+
+  segButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const mode = btn.getAttribute("data-sim");
+      updateSim(mode);
+    });
+  });
+
+  if (btnSimDetails) {
+    btnSimDetails.addEventListener("click", () => {
+      const data = SIM_EQUIPO_DATA[State.activeSim];
+      openModal(`
+        <span class="badge-pill">${data.tag}</span>
+        <h3 class="info-title" style="margin-top:10px;">${data.title} — Cómo Explicarlo</h3>
+        <p class="info-concept">${data.oneLiner}</p>
+        <div class="dialog-speech-box">
+          <div class="dialog-bubble client">
+            <span class="bubble-author">Cliente pregunta</span>
+            ${data.dialog.client}
+          </div>
+          <div class="dialog-bubble seller">
+            <span class="bubble-author">Tú respondes</span>
+            ${data.dialog.seller}
+          </div>
+        </div>
+      `);
+    });
+  }
+}
+
+/* ==========================================================================
+   4. EXPERIENCIA 3: SEGURIDAD (BIOMETRÍA Y CERTIFICACIÓN IP)
+   ========================================================================== */
+function initSeguridadExp() {
+  // Biometría
+  const btnTestFingerprint = document.getElementById("btnTestFingerprint");
+  const btnTestFace = document.getElementById("btnTestFace");
+  const lockIndicator = document.getElementById("lockIndicator");
+  const lockSvg = document.getElementById("lockSvg");
+  const lockElements = document.getElementById("lockElements");
+  const homeElements = document.getElementById("homeElements");
+  const fpZone = document.getElementById("fpZone");
+  const faceMesh = document.getElementById("faceMesh");
+
+  function unlockDevice() {
+    lockIndicator.classList.add("unlocked");
+    lockSvg.innerHTML = `<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 9.9-1"/><polyline points="9 16 11 18 15 14"/>`;
+    lockElements.classList.add("hidden");
+    homeElements.classList.remove("hidden");
+
+    setTimeout(() => {
+      lockIndicator.classList.remove("unlocked");
+      lockSvg.innerHTML = `<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>`;
+      lockElements.classList.remove("hidden");
+      homeElements.classList.add("hidden");
+      faceMesh.classList.add("hidden");
+    }, 2400);
+  }
+
+  if (btnTestFingerprint) {
+    btnTestFingerprint.addEventListener("click", () => {
+      unlockDevice();
+    });
+  }
+
+  if (fpZone) {
+    fpZone.addEventListener("click", () => {
+      unlockDevice();
+    });
+  }
+
+  if (btnTestFace) {
+    btnTestFace.addEventListener("click", () => {
+      faceMesh.classList.remove("hidden");
+      setTimeout(() => {
+        unlockDevice();
+      }, 600);
+    });
+  }
+
+  // Certificación IP
+  const btnToggleDust = document.getElementById("btnToggleDust");
+  const btnToggleWater = document.getElementById("btnToggleWater");
+  const dustContainer = document.getElementById("dustContainer");
+  const waterContainer = document.getElementById("waterContainer");
+  const ipPills = document.querySelectorAll(".ip-level-btn");
+  const shieldRating = document.getElementById("shieldRating");
+  const ipStatusIndicator = document.getElementById("ipStatusIndicator");
+  const ipPitchText = document.getElementById("ipPitchText");
+
+  let dustActive = false;
+  let waterActive = false;
+
+  function createParticles() {
+    dustContainer.innerHTML = "";
+    waterContainer.innerHTML = "";
+
+    for (let i = 0; i < 25; i++) {
+      const dust = document.createElement("div");
+      dust.className = "dust-particle";
+      dust.style.left = `${Math.random() * 90 + 5}%`;
+      dust.style.top = `${Math.random() * 80 + 10}%`;
+      dust.style.animationDelay = `${Math.random() * 2}s`;
+      dustContainer.appendChild(dust);
+
+      const drop = document.createElement("div");
+      drop.className = "water-drop";
+      drop.style.left = `${Math.random() * 85 + 7}%`;
+      drop.style.animationDelay = `${Math.random() * 0.8}s`;
+      waterContainer.appendChild(drop);
+    }
+  }
+
+  createParticles();
+
+  if (btnToggleDust && dustContainer) {
+    btnToggleDust.addEventListener("click", () => {
+      dustActive = !dustActive;
+      dustContainer.classList.toggle("hidden", !dustActive);
+      btnToggleDust.classList.toggle("btn-primary", dustActive);
+      btnToggleDust.classList.toggle("btn-outline", !dustActive);
+    });
+  }
+
+  if (btnToggleWater && waterContainer) {
+    btnToggleWater.addEventListener("click", () => {
+      waterActive = !waterActive;
+      waterContainer.classList.toggle("hidden", !waterActive);
+      btnToggleWater.classList.toggle("btn-primary", waterActive);
+      btnToggleWater.classList.toggle("btn-outline", !waterActive);
+    });
+  }
+
+  ipPills.forEach(pill => {
+    pill.addEventListener("click", () => {
+      ipPills.forEach(p => p.classList.remove("active"));
+      pill.classList.add("active");
+      const ip = pill.getAttribute("data-ip");
+      if (ip === "ip54") {
+        shieldRating.textContent = "IP54";
+        ipStatusIndicator.textContent = "Protegido contra Salpicaduras y Lluvia";
+        ipPitchText.textContent = "“Con IP54 puede contestar mensajes bajo lluvia ligera o si le caen salpicaduras de la cocina sin dañarse.”";
+      } else {
+        shieldRating.textContent = "IP68";
+        ipStatusIndicator.textContent = "Protección Total Sellada contra Polvo y Agua";
+        ipPitchText.textContent = "“Con IP68 no tienes que preocuparte si te sorprende una tormenta o si se derrama un vaso de agua sobre la mesa.”";
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   5. EXPERIENCIA 4: RENDIMIENTO Y MEMORIA
+   ========================================================================== */
+function initRendimientoExp() {
+  // RAM Multitask
+  const ramButtons = document.querySelectorAll("#ramSelector .seg-btn");
+  const ramAppsContainer = document.getElementById("ramAppsContainer");
+  const ramActiveLabel = document.getElementById("ramActiveLabel");
+  const ramPitchText = document.getElementById("ramPitchText");
+
+  const appsList = [
+    { name: "WhatsApp", icon: "WA" },
+    { name: "Facebook", icon: "FB" },
+    { name: "Chrome", icon: "CH" },
+    { name: "Instagram", icon: "IG" },
+    { name: "Mapas GPS", icon: "MP" },
+    { name: "YouTube", icon: "YT" },
+    { name: "Spotify", icon: "SP" },
+    { name: "App Banco", icon: "BC" },
+    { name: "Juego 3D", icon: "3D" }
+  ];
+
+  function renderRamApps(ram) {
+    State.activeRam = ram;
+    ramButtons.forEach(btn => {
+      btn.classList.toggle("active", parseInt(btn.getAttribute("data-ram")) === ram);
+    });
+
+    let allowed = 3;
+    let label = "4 GB RAM • 3 Apps Básicas";
+    let pitch = "Con 4 GB puede usar WhatsApp y redes, pero si abre muchas apps al mismo tiempo algunas tendrán que recargar.";
+
+    if (ram === 8) {
+      allowed = 6;
+      label = "8 GB RAM • 6 Apps Activas Simultáneas";
+      pitch = "Con 8 GB puedes cambiar entre WhatsApp, mapas y redes sociales al instante sin que ninguna aplicación se cierre ni se trabe.";
+    } else if (ram === 12) {
+      allowed = 9;
+      label = "12 GB RAM • 9+ Apps y Juegos Sin Pausas";
+      pitch = "Con 12 GB obtienes la máxima fluidez: edición de video, juegos pesados y multitarea extrema sin el menor retraso.";
+    }
+
+    ramActiveLabel.textContent = label;
+    ramPitchText.textContent = `“${pitch}”`;
+
+    ramAppsContainer.innerHTML = appsList.slice(0, 9).map((app, index) => {
+      const isActive = index < allowed;
+      return `
+        <div class="ram-app-card ${isActive ? 'active' : 'reloaded'}">
+          <span style="font-size:16px; font-weight:700;">${app.icon}</span>
+          <span>${app.name}</span>
+          <span style="font-size:9.5px; opacity:0.8;">${isActive ? 'En memoria' : 'Cerrada'}</span>
+        </div>
+      `;
+    }).join("");
+  }
+
+  ramButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      renderRamApps(parseInt(btn.getAttribute("data-ram")));
+    });
+  });
+
+  renderRamApps(8);
+
+  // Almacenamiento Interno
+  const storageButtons = document.querySelectorAll("#storageSelector .seg-btn");
+  const segPhotos = document.getElementById("segPhotos");
+  const segVideos = document.getElementById("segVideos");
+  const segApps = document.getElementById("segApps");
+  const segSystem = document.getElementById("segSystem");
+
+  const statPhotos = document.getElementById("statPhotos");
+  const statVideos = document.getElementById("statVideos");
+  const statApps = document.getElementById("statApps");
+  const storagePitchText = document.getElementById("storagePitchText");
+
+  function updateStorage(gb) {
+    State.activeStorage = gb;
+    storageButtons.forEach(btn => {
+      btn.classList.toggle("active", parseInt(btn.getAttribute("data-storage")) === gb);
+    });
+
+    if (gb === 128) {
+      segPhotos.style.width = "40%";
+      segVideos.style.width = "25%";
+      segApps.style.width = "17%";
+      segSystem.style.width = "18%";
+      statPhotos.textContent = "~32,000";
+      statVideos.textContent = "~30 hrs";
+      statApps.textContent = "~45";
+      storagePitchText.textContent = "“128 GB es suficiente para un uso estándar con fotos familiares, mensajes de WhatsApp y tus aplicaciones indispensables.”";
+    } else if (gb === 256) {
+      segPhotos.style.width = "38%";
+      segVideos.style.width = "28%";
+      segApps.style.width = "18%";
+      segSystem.style.width = "16%";
+      statPhotos.textContent = "~65,000";
+      statVideos.textContent = "~65 hrs";
+      statApps.textContent = "~90";
+      storagePitchText.textContent = "“256 GB le da tranquilidad durante años para guardar todas sus fotos y videos familiares sin tener que borrar nada por falta de espacio.”";
+    } else if (gb === 512) {
+      segPhotos.style.width = "35%";
+      segVideos.style.width = "32%";
+      segApps.style.width = "21%";
+      segSystem.style.width = "12%";
+      statPhotos.textContent = "~135,000";
+      statVideos.textContent = "~130 hrs";
+      statApps.textContent = "~180+";
+      storagePitchText.textContent = "“512 GB es ideal para creadores de video en 4K y usuarios profesionales que nunca quieren preocuparse por la memoria llena.”";
+    }
+  }
+
+  storageButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      updateStorage(parseInt(btn.getAttribute("data-storage")));
+    });
+  });
+
+  // Procesador
+  const taskButtons = document.querySelectorAll(".task-node-btn");
+  const cpuStatement = document.getElementById("cpuStatement");
+  const mainChip = document.getElementById("mainChip");
+
+  const taskStatements = {
+    apps: "“El chip abre y administra tus aplicaciones de inmediato.”",
+    camera: "“El procesador de imagen (ISP) enfoca y mejora la luz de cada foto en milisegundos.”",
+    gaming: "“El chip gráfico (GPU) procesa los efectos visuales y la velocidad de cuadros en juegos.”",
+    ai: "“El motor neuronal optimiza el consumo de batería y el reconocimiento de voz.”"
+  };
+
+  taskButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      taskButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const task = btn.getAttribute("data-task");
+      cpuStatement.textContent = taskStatements[task];
+
+      // Animación de pulso
+      mainChip.style.transform = "scale(1.08)";
+      setTimeout(() => {
+        mainChip.style.transform = "scale(1)";
+      }, 200);
+    });
+  });
+}
+
+/* ==========================================================================
+   6. EXPERIENCIA 5: PANTALLA (PULGADAS, RESOLUCIÓN, PÍXEL, HZ)
+   ========================================================================== */
+function initPantallaExp() {
+  // Pulgadas
+  const sizeButtons = document.querySelectorAll("#screenSizeSelector .seg-btn");
+  const phoneScaleFrame = document.getElementById("phoneScaleFrame");
+  const diagonalLabel = document.getElementById("diagonalLabel");
+  const inchesPitchText = document.getElementById("inchesPitchText");
+
+  const sizeConfigs = {
+    6.1: { width: "148px", height: "220px", label: '6.1 Pulgadas (15.5 cm)', pitch: "“6.1 pulgadas es un tamaño compacto ideal para manejar cómodamente con una sola mano y guardar en cualquier bolsillo.”" },
+    6.5: { width: "162px", height: "238px", label: '6.5 Pulgadas (16.5 cm)', pitch: "“6.5 pulgadas es el equilibrio perfecto entre comodidad de agarre y buen espacio para leer y ver videos.”" },
+    6.7: { width: "176px", height: "258px", label: '6.7 Pulgadas (17.0 cm)', pitch: "“6.7 pulgadas le da espacio amplio para ver películas, jugar y leer mensajes grandes sin forzar la vista.”" }
+  };
+
+  sizeButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      sizeButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const size = parseFloat(btn.getAttribute("data-size"));
+      const config = sizeConfigs[size];
+      if (config) {
+        phoneScaleFrame.style.width = config.width;
+        phoneScaleFrame.style.height = config.height;
+        diagonalLabel.textContent = config.label;
+        inchesPitchText.textContent = config.pitch;
+      }
+    });
+  });
+
+  // Resolución
+  const resSlider = document.getElementById("resSlider");
+  const resTestImg = document.getElementById("resTestImg");
+  const resOverlayLabel = document.getElementById("resOverlayLabel");
+
+  if (resSlider && resTestImg && resOverlayLabel) {
+    resSlider.addEventListener("input", (e) => {
+      const val = parseInt(e.target.value);
+      if (val < 40) {
+        resTestImg.style.filter = "blur(4px) contrast(0.85)";
+        resOverlayLabel.textContent = "Definición Baja (720p HD - Bordes suaves)";
+      } else if (val < 75) {
+        resTestImg.style.filter = "blur(1.5px) contrast(0.95)";
+        resOverlayLabel.textContent = "Definición Media (FHD Estándar)";
+      } else {
+        resTestImg.style.filter = "none";
+        resOverlayLabel.textContent = "Full HD+ Cristalino (Alta Definición Nítida)";
+      }
+    });
+  }
+
+  // Píxel Zoom
+  const btnZoomPixel = document.getElementById("btnZoomPixel");
+  const pixelOrigImg = document.getElementById("pixelOrigImg");
+  const pixelSubgrid = document.getElementById("pixelSubgrid");
+  const pixelCaption = document.getElementById("pixelCaption");
+  let isPixelZoomed = false;
+
+  if (btnZoomPixel && pixelOrigImg && pixelSubgrid) {
+    btnZoomPixel.addEventListener("click", () => {
+      isPixelZoomed = !isPixelZoomed;
+      pixelOrigImg.classList.toggle("zoomed", isPixelZoomed);
+      pixelSubgrid.classList.toggle("hidden", !isPixelZoomed);
+      pixelCaption.textContent = isPixelZoomed ? "¡Acercamiento extremo: observa cómo los subpíxeles Rojo, Verde y Azul forman la imagen!" : "Toca 'Acercar' para ver los millones de diminutos puntos de luz";
+      btnZoomPixel.querySelector("span").textContent = isPixelZoomed ? "Alejar Zoom" : "Acercar / Zoom";
+    });
+  }
+
+  // Tasa de Refresco (Hz)
+  const hzButtons = document.querySelectorAll("#hzSelector .seg-btn");
+  const ball120 = document.getElementById("ball120");
+
+  hzButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      hzButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const hz = parseInt(btn.getAttribute("data-hz"));
+
+      if (hz === 60) {
+        ball120.style.animation = "moveBall60 2s steps(8) infinite alternate";
+        ball120.textContent = "60 Hz";
+      } else if (hz === 90) {
+        ball120.style.animation = "moveBall120 1.5s steps(18) infinite alternate";
+        ball120.textContent = "90 Hz";
+      } else {
+        ball120.style.animation = "moveBall120 2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate";
+        ball120.textContent = "120 Hz";
+      }
+    });
+  });
+}
+
+/* ==========================================================================
+   7. EXPERIENCIA 6: BATERÍA Y CARGA
+   ========================================================================== */
+function initBateriaExp() {
+  // mAh
+  const mahButtons = document.querySelectorAll("#mahSelector .seg-btn");
+  const batteryInnerFill = document.getElementById("batteryInnerFill");
+  const batteryValDisplay = document.getElementById("batteryValDisplay");
+  const batteryEstimateText = document.getElementById("batteryEstimateText");
+  const mahPitchText = document.getElementById("mahPitchText");
+
+  const mahData = {
+    4000: { fill: "65%", label: "4000 mAh", est: "Diseñada para jornada estándar de llamadas y mensajería en equipos delgados.", pitch: "“4000 mAh le da ligereza al equipo manteniendo suficiente energía para su jornada normal de trabajo.”" },
+    5000: { fill: "85%", label: "5000 mAh", est: "Medida estándar recomendada para cubrir todo el día sin recargas intermedias bajo uso continuo.", pitch: "“5000 mAh es la medida estándar que le asegura salir por la mañana y regresar en la noche con batería de sobra.”" },
+    6000: { fill: "100%", label: "6000 mAh", est: "Batería masiva de larga duración para hasta 2 días sin necesidad de buscar un enchufe.", pitch: "“6000 mAh es un tanque gigante de energía ideal para repartidores, conductores de aplicación o viajes largos.”" }
+  };
+
+  mahButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      mahButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      const mah = parseInt(btn.getAttribute("data-mah"));
+      const config = mahData[mah];
+      if (config) {
+        batteryInnerFill.style.height = config.fill;
+        batteryValDisplay.textContent = config.label;
+        batteryEstimateText.textContent = config.est;
+        mahPitchText.textContent = config.pitch;
+      }
+    });
+  });
+
+  // Carga Rápida
+  const wattButtons = document.querySelectorAll("#wattSelector .seg-btn");
+  const btnStartCharge = document.getElementById("btnStartCharge");
+  const chargePercentBig = document.getElementById("chargePercentBig");
+  const chargeTimeEst = document.getElementById("chargeTimeEst");
+  const chargePitchText = document.getElementById("chargePitchText");
+
+  let activeWatt = 33;
+  let chargeInterval = null;
+
+  const wattPitches = {
+    18: "“Con 18W carga de forma segura y completa su teléfono en aproximadamente una hora y media.”",
+    33: "“Con carga rápida de 33W, en lo que desayuna o se baña ya recuperó más del 50% de batería para salir sin preocupaciones.”",
+    67: "“Con 67W Turbo Power recupera carga para todo el día en solo 20 a 25 minutos conectado.”"
+  };
+
+  wattButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      wattButtons.forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      activeWatt = parseInt(btn.getAttribute("data-watt"));
+      chargePitchText.textContent = wattPitches[activeWatt];
+    });
+  });
+
+  if (btnStartCharge && chargePercentBig) {
+    btnStartCharge.addEventListener("click", () => {
+      clearInterval(chargeInterval);
+      btnStartCharge.disabled = true;
+      let pct = 0;
+      const speed = activeWatt === 67 ? 25 : activeWatt === 33 ? 40 : 65;
+
+      chargeInterval = setInterval(() => {
+        pct += 2;
+        if (pct > 100) pct = 100;
+        chargePercentBig.textContent = `${pct}%`;
+
+        const minEst = Math.round((pct / 100) * (activeWatt === 67 ? 28 : activeWatt === 33 ? 55 : 85));
+        chargeTimeEst.textContent = `Tiempo sim.: ${minEst} min`;
+
+        if (pct >= 100) {
+          clearInterval(chargeInterval);
+          btnStartCharge.disabled = false;
+        }
+      }, speed);
+    });
+  }
+}
+
+/* ==========================================================================
+   8. EXPERIENCIA 7: CÁMARA (LENTES Y MEGAPÍXELES)
+   ========================================================================== */
+function initCamaraExp() {
+  const lensPins = document.querySelectorAll(".lens-pin");
+  const lensTitle = document.getElementById("lensTitle");
+  const lensDesc = document.getElementById("lensDesc");
+  const lensPitchText = document.getElementById("lensPitchText");
+
+  lensPins.forEach(pin => {
+    pin.addEventListener("click", () => {
+      lensPins.forEach(p => p.classList.remove("active"));
+      pin.classList.add("active");
+      const lens = pin.getAttribute("data-lens");
+
+      if (lens === "main") {
+        lensTitle.textContent = "Cámara Principal con Estabilizador OIS";
+        lensDesc.textContent = "Sensor principal de alta captación de luz con estabilizador óptico que compensa el pulso natural de la mano.";
+        lensPitchText.textContent = "“El estabilizador óptico evita que las fotos salgan borrosas o movidas, incluso si tomas fotos de noche o caminando.”";
+      } else {
+        lensTitle.textContent = "Cámara Frontal para Selfies y Videollamadas";
+        lensDesc.textContent = "Ubicada en la parte delantera de la pantalla, optimizada para tonos de piel naturales y videollamadas claras.";
+        lensPitchText.textContent = "“Cámara frontal de alta claridad para que sus videollamadas familiares y selfies se vean impecables sin sombras oscuras.”";
+      }
+    });
+  });
+
+  // Megapíxeles Crop
+  const btnCropDemo = document.getElementById("btnCropDemo");
+  const cropTargetImg = document.getElementById("cropTargetImg");
+  const cropCaption = document.getElementById("cropCaption");
+  let isCropped = false;
+
+  if (btnCropDemo && cropTargetImg) {
+    btnCropDemo.addEventListener("click", () => {
+      isCropped = !isCropped;
+      cropTargetImg.classList.toggle("cropped", isCropped);
+      cropCaption.textContent = isCropped ? "¡Observa cómo los 64 MP permiten acercarse y recortar sin perder nitidez!" : "Toca 'Recortar' para ver cómo más megapíxeles permiten acercarse a un detalle lejano";
+      btnCropDemo.querySelector("span").textContent = isCropped ? "Restaurar Imagen" : "Recortar / Zoom al Detalle";
+    });
+  }
+}
+
+/* ==========================================================================
+   9. TELÉFONO INTERACTIVO PROTAGONISTA ("CONOCE TU EQUIPO")
+   ========================================================================== */
+function initHardwareExplorer() {
+  const hotspots = document.querySelectorAll(".hw-hotspot");
+  const expKeyFact = document.getElementById("expKeyFact");
+  const expTitle = document.getElementById("expTitle");
+  const expOneLiner = document.getElementById("expOneLiner");
+  const expPitch = document.getElementById("expPitch");
+  const expSpecs = document.getElementById("expSpecs");
+  const btnExpFullDialog = document.getElementById("btnExpFullDialog");
+
+  function updateHotspot(spotId) {
+    State.activeHotspot = spotId;
+    const data = HOTSPOTS_EXPLORER[spotId];
+    if (!data) return;
+
+    hotspots.forEach(spot => {
+      spot.classList.toggle("active", spot.getAttribute("data-spot") === spotId);
+    });
+
+    expKeyFact.textContent = data.keyFact;
+    expTitle.textContent = data.title;
+    expOneLiner.textContent = data.oneLiner;
+    expPitch.textContent = `“${data.pitch}”`;
+    expSpecs.textContent = data.specs;
+  }
+
+  hotspots.forEach(spot => {
+    spot.addEventListener("click", () => {
+      const spotId = spot.getAttribute("data-spot");
+      updateHotspot(spotId);
+    });
+  });
+
+  if (btnExpFullDialog) {
+    btnExpFullDialog.addEventListener("click", () => {
+      const data = HOTSPOTS_EXPLORER[State.activeHotspot];
+      openModal(`
+        <span class="badge-pill">${data.keyFact}</span>
+        <h3 class="info-title" style="margin-top:10px;">${data.title}</h3>
+        <p class="info-concept">${data.oneLiner}</p>
+        <div class="pitch-container">
+          <span class="pitch-tag-label">Cómo explicárselo al cliente</span>
+          <p class="pitch-quote">“${data.pitch}”</p>
+        </div>
+        <div style="font-size:14.5px; color:var(--text-secondary); line-height:1.5;">
+          <strong>Ficha de especificaciones para el vendedor:</strong><br>
+          ${data.specs}
+        </div>
+      `);
+    });
+  }
+}
+
+/* ==========================================================================
+   10. COMPARADOR VISUAL DE EQUIPOS
+   ========================================================================== */
+function initComparatorExp() {
+  const selectA = document.getElementById("compareSelectA");
+  const selectB = document.getElementById("compareSelectB");
+  const stage = document.getElementById("compareStage");
+
+  function renderPhoneCard(phone) {
+    const ramPct = Math.round((phone.metrics.ramVal / phone.metrics.ramMax) * 100);
+    const storagePct = Math.round((phone.metrics.storageVal / phone.metrics.storageMax) * 100);
+    const batteryPct = Math.round((phone.metrics.batteryVal / phone.metrics.batteryMax) * 100);
+
+    return `
+      <div class="compare-phone-card">
+        <div class="compare-card-header">
+          <img src="${phone.image}" alt="${phone.name}" class="compare-img-thumb">
+          <div>
+            <span class="badge-pill">${phone.tag}</span>
+            <div class="compare-phone-name">${phone.name}</div>
+            <div class="compare-phone-price">$${phone.priceMXN.toLocaleString('es-MX')} MXN</div>
+          </div>
+        </div>
+
+        <div class="compare-metrics-list">
+          <div class="compare-metric-row">
+            <div class="compare-metric-label-row">
+              <span>Memoria RAM</span>
+              <strong>${phone.metrics.ramLabel}</strong>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width: ${ramPct}%;"></div></div>
+          </div>
+
+          <div class="compare-metric-row">
+            <div class="compare-metric-label-row">
+              <span>Almacenamiento</span>
+              <strong>${phone.metrics.storageLabel}</strong>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width: ${storagePct}%;"></div></div>
+          </div>
+
+          <div class="compare-metric-row">
+            <div class="compare-metric-label-row">
+              <span>Batería</span>
+              <strong>${phone.metrics.batteryLabel}</strong>
+            </div>
+            <div class="progress-track"><div class="progress-fill" style="width: ${batteryPct}%;"></div></div>
+          </div>
+
+          <div class="compare-metric-row">
+            <div class="compare-metric-label-row">
+              <span>Pantalla</span>
+              <strong>${phone.metrics.screenHz}</strong>
+            </div>
+          </div>
+
+          <div class="compare-metric-row">
+            <div class="compare-metric-label-row">
+              <span>Cámara</span>
+              <strong>${phone.metrics.cameraMain}</strong>
+            </div>
+          </div>
+
+          <div class="compare-metric-row">
+            <div class="compare-metric-label-row">
+              <span>Conectividad</span>
+              <strong>${phone.metrics.network}</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="compare-ideal-box">
+          <strong style="color:var(--accent); display:block; margin-bottom:4px;">¿Para quién es ideal?</strong>
+          ${phone.idealFor}
+        </div>
+      </div>
+    `;
+  }
+
+  function updateComparator() {
+    const idA = selectA.value;
+    const idB = selectB.value;
+    const phoneA = COMPARATOR_MODELS.find(m => m.id === idA) || COMPARATOR_MODELS[0];
+    const phoneB = COMPARATOR_MODELS.find(m => m.id === idB) || COMPARATOR_MODELS[1];
+
+    stage.innerHTML = renderPhoneCard(phoneA) + renderPhoneCard(phoneB);
+  }
+
+  if (selectA && selectB) {
+    selectA.addEventListener("change", updateComparator);
+    selectB.addEventListener("change", updateComparator);
+    updateComparator();
+  }
+}
+
+/* ==========================================================================
+   11. SIMULADOR DE CUOTAS (PESOS MEXICANOS — MXN)
+   ========================================================================== */
+function initCuotasCalculator() {
+  const presets = document.querySelectorAll(".preset-pill");
+  const priceSlider = document.getElementById("priceSlider");
+  const downSlider = document.getElementById("downSlider");
+  const priceDisplay = document.getElementById("priceDisplay");
+  const downDisplay = document.getElementById("downDisplay");
+  const maxDownLabel = document.getElementById("maxDownLabel");
+
+  const freqButtons = document.querySelectorAll("#freqSelector .seg-btn");
+  const termPillsContainer = document.getElementById("termPillsContainer");
+
+  const calcHeroAmount = document.getElementById("calcHeroAmount");
+  const calcHeroPeriod = document.getElementById("calcHeroPeriod");
+  const calcHeroLabel = document.getElementById("calcHeroLabel");
+  const summaryPrice = document.getElementById("summaryPrice");
+  const summaryDown = document.getElementById("summaryDown");
+  const summaryBalance = document.getElementById("summaryBalance");
+  const calcPitchText = document.getElementById("calcPitchText");
+
+  const termsByFreq = {
+    semanal: [
+      { label: "8 semanas", periods: 8 },
+      { label: "12 semanas", periods: 12 },
+      { label: "24 semanas", periods: 24 }
+    ],
+    quincenal: [
+      { label: "4 quincenas", periods: 4 },
+      { label: "6 quincenas", periods: 6 },
+      { label: "12 quincenas", periods: 12 }
+    ],
+    mensual: [
+      { label: "3 meses", periods: 3 },
+      { label: "6 meses", periods: 6 },
+      { label: "12 meses", periods: 12 }
+    ]
+  };
+
+  function renderTerms(freq) {
+    const list = termsByFreq[freq];
+    termPillsContainer.innerHTML = list.map((item, idx) => `
+      <button class="term-pill ${idx === 1 ? 'active' : ''}" data-periods="${item.periods}">
+        ${item.label}
+      </button>
+    `).join("");
+
+    termPillsContainer.querySelectorAll(".term-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        termPillsContainer.querySelectorAll(".term-pill").forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        State.calculator.periods = parseInt(pill.getAttribute("data-periods"));
+        calculate();
+      });
+    });
+
+    State.calculator.periods = list[1].periods;
+  }
+
+  function calculate() {
+    let price = parseInt(priceSlider.value);
+    let down = parseInt(downSlider.value);
+
+    // REGLA CRÍTICA: El enganche NUNCA debe superar el precio
+    if (down > price) {
+      down = price;
+      downSlider.value = price;
+    }
+    downSlider.max = price;
+    maxDownLabel.textContent = `Máx. $${price.toLocaleString('es-MX')} MXN`;
+
+    const balance = Math.max(0, price - down);
+    const periods = State.calculator.periods || 12;
+    const cuota = periods > 0 ? Math.round(balance / periods) : 0;
+
+    priceDisplay.textContent = `$${price.toLocaleString('es-MX')} MXN`;
+    downDisplay.textContent = `$${down.toLocaleString('es-MX')} MXN`;
+
+    summaryPrice.textContent = `$${price.toLocaleString('es-MX')} MXN`;
+    summaryDown.textContent = `$${down.toLocaleString('es-MX')} MXN`;
+    summaryBalance.textContent = `$${balance.toLocaleString('es-MX')} MXN`;
+
+    calcHeroAmount.textContent = `$${cuota.toLocaleString('es-MX')} MXN`;
+
+    const freqName = State.calculator.frequency;
+    const periodLabel = freqName === "semanal" ? "por semana" : freqName === "quincenal" ? "por quincena" : "por mes";
+    calcHeroPeriod.textContent = periodLabel;
+    calcHeroLabel.textContent = `CUOTA ${freqName.toUpperCase()} ESTIMADA`;
+
+    calcPitchText.textContent = `“Se lleva su teléfono hoy estrenando con solo $${down.toLocaleString('es-MX')} de enganche y pagos accesibles de $${cuota.toLocaleString('es-MX')} pesos ${periodLabel}.”`;
+  }
+
+  // Event Listeners
   if (priceSlider) {
-    priceSlider.addEventListener("input", (e) => {
-      AppState.calculator.priceMXN = parseInt(e.target.value);
-      if (downSlider) downSlider.max = e.target.value;
-      recalculate();
+    priceSlider.addEventListener("input", () => {
+      calculate();
     });
   }
 
   if (downSlider) {
-    downSlider.addEventListener("input", (e) => {
-      AppState.calculator.downPaymentMXN = parseInt(e.target.value);
-      recalculate();
+    downSlider.addEventListener("input", () => {
+      calculate();
     });
   }
 
-  termButtons.forEach(btn => {
+  presets.forEach(preset => {
+    preset.addEventListener("click", () => {
+      presets.forEach(p => p.classList.remove("active"));
+      preset.classList.add("active");
+      priceSlider.value = preset.getAttribute("data-price");
+      downSlider.value = preset.getAttribute("data-down");
+      calculate();
+    });
+  });
+
+  freqButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      termButtons.forEach(b => b.classList.remove("active"));
+      freqButtons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      AppState.calculator.weeks = parseInt(btn.getAttribute("data-weeks") || 12);
-      recalculate();
+      State.calculator.frequency = btn.getAttribute("data-freq");
+      renderTerms(State.calculator.frequency);
+      calculate();
     });
   });
 
-  recalculate();
+  renderTerms("semanal");
+  calculate();
 }
 
-// 6. MODAL
-function openCardDetailModal(cardId) {
-  const card = VISUAL_CARDS.find(c => c.id === cardId);
-  if (!card) return;
+/* ==========================================================================
+   12. MODAL / BOTTOM SHEET
+   ========================================================================== */
+function initModal() {
+  const modal = document.getElementById("appModal");
+  const modalCloseBtn = document.getElementById("modalCloseBtn");
 
-  const modal = document.getElementById("detailModal");
-  const modalBody = document.getElementById("modalBodyContent");
-
-  if (modalBody) {
-    modalBody.innerHTML = `
-      <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:14px;">
-        <div>
-          <span style="font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase;">${card.badge}</span>
-          <h2 style="font-size:20px; font-weight:800; color:var(--text-main); margin-top:2px;">${card.title}</h2>
-        </div>
-        <button id="btnCloseModal" style="background:none; border:none; cursor:pointer; padding:6px; color:var(--text-muted);">
-          ${SVG_ICONS.close}
-        </button>
-      </div>
-
-      <div style="background:var(--bg-subtle); padding:14px; border-radius:var(--radius-sm); margin-bottom:16px;">
-        <div style="font-size:10.5px; font-weight:700; text-transform:uppercase; color:var(--text-muted); margin-bottom:4px;">Definición Técnica Precisa</div>
-        <div style="font-size:13px; color:var(--text-main); line-height:1.45;">${card.detailModal.technicalNote}</div>
-      </div>
-
-      <div style="border:1px solid var(--border-light); border-radius:var(--radius-sm); padding:16px; margin-bottom:18px;">
-        <div style="font-size:11px; font-weight:700; color:var(--accent); text-transform:uppercase; margin-bottom:8px;">Ejemplo de Diálogo en Piso de Venta</div>
-        <div style="font-size:13px; color:var(--text-muted); line-height:1.45; margin-bottom:8px;">
-          <strong>Cliente:</strong> "${card.detailModal.exampleDialog.client}"
-        </div>
-        <div style="font-size:13px; color:var(--text-main); line-height:1.45;">
-          <strong>Asesor:</strong> "${card.detailModal.exampleDialog.seller}"
-        </div>
-      </div>
-
-      <button id="btnDismissModalAction" class="btn-open-detail" style="padding:10px; background:var(--bg-dark); color:#fff; border:none;">
-        Entendido
-      </button>
-    `;
-
-    modalBody.querySelector("#btnCloseModal")?.addEventListener("click", closeModal);
-    modalBody.querySelector("#btnDismissModalAction")?.addEventListener("click", closeModal);
+  if (modalCloseBtn && modal) {
+    modalCloseBtn.addEventListener("click", closeModal);
   }
 
-  modal?.classList.add("active");
-}
-
-function closeModal() {
-  const modal = document.getElementById("detailModal");
-  modal?.classList.remove("active");
-}
-
-function setupModalDismiss() {
-  const modal = document.getElementById("detailModal");
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) closeModal();
-  });
-}
-
-// 7. BÚSQUEDA Y NAVEGACIÓN
-function setupHeroSearch() {
-  const searchInput = document.getElementById("heroSearchInput");
-  if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      AppState.searchFilter = e.target.value;
-      renderVisualEditorialCards();
+  if (modal) {
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
     });
   }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeModal();
+  });
 }
 
-function setupNavLinks() {
-  const navLinks = document.querySelectorAll(".nav-link");
-  navLinks.forEach(link => {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      const targetId = link.getAttribute("href");
-      const targetEl = document.querySelector(targetId);
-      if (targetEl) {
-        targetEl.scrollIntoView({ behavior: "smooth", block: "start" });
-        navLinks.forEach(l => l.classList.remove("active"));
-        link.classList.add("active");
-      }
-    });
-  });
+export function openModal(htmlContent) {
+  const modal = document.getElementById("appModal");
+  const modalBody = document.getElementById("modalBody");
+  if (!modal || !modalBody) return;
+
+  modalBody.innerHTML = htmlContent;
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+  document.body.style.overflow = "hidden";
+}
+
+export function closeModal() {
+  const modal = document.getElementById("appModal");
+  if (!modal) return;
+
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+  document.body.style.overflow = "";
 }

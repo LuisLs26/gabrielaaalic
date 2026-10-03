@@ -1,258 +1,189 @@
 /**
- * MANUAL VISUAL INTERACTIVO — GABRIELA LICONA
- * Datos enriquecidos con componentes interactivos y visuales directos.
- * Explicaciones de 1 sola frase. Cero afirmaciones técnicas dudosas.
+ * MANUAL VISUAL DE EQUIPOS — GABRIELA LICONA
+ * Datos estructurados para experiencias visuales e interactivas.
+ * Filosofía: Primero ver, luego entender, y solo si se desea, leer más.
+ * Sin emojis. Enfoque editorial Apple Light. Moneda: Pesos Mexicanos (MXN).
  */
 
 export const APP_CONFIG = {
   trainerName: "Gabriela Licona",
-  title: "Manual Visual de Telefonía",
-  subtitle: "Guía visual de consulta rápida para vendedores de piso",
+  title: "Manual Visual de Equipos",
+  subtitle: "Aprende a entenderlos. Aprende a explicarlos.",
   currency: "MXN",
   currencySymbol: "$"
 };
 
-export const CATEGORIES = [
-  { id: "all", name: "Todos", count: 8 },
-  { id: "rendimiento", name: "Rendimiento", count: 2 },
-  { id: "pantalla", name: "Pantalla", count: 1 },
-  { id: "bateria", name: "Batería y Carga", count: 2 },
-  { id: "camara", name: "Cámaras", count: 1 },
-  { id: "conectividad", name: "Conectividad", count: 1 },
-  { id: "seguridad", name: "Seguridad e IP", count: 1 },
-  { id: "sim-imei", name: "SIM e IMEI", count: 1 }
+export const CATEGORIES_NAV = [
+  { id: "conectividad", name: "Conectividad", icon: "network" },
+  { id: "sim-equipo", name: "SIM y Equipo", icon: "sim" },
+  { id: "seguridad", name: "Seguridad e IP", icon: "shield" },
+  { id: "rendimiento", name: "Rendimiento", icon: "cpu" },
+  { id: "pantalla", name: "Pantalla", icon: "screen" },
+  { id: "bateria", name: "Batería y Carga", icon: "battery" },
+  { id: "camara", name: "Cámaras", icon: "camera" },
+  { id: "explorador-equipo", name: "Conoce tu Equipo", icon: "phone" },
+  { id: "comparador", name: "Comparador", icon: "compare" },
+  { id: "cuotas-mxn", name: "Cuotas MXN", icon: "calc" }
 ];
 
-export const VISUAL_CARDS = [
-  // 1. RAM (GRANDE / EDITORIAL)
-  {
-    id: "card-ram",
-    category: "rendimiento",
-    layout: "featured-wide",
-    title: "Memoria RAM",
-    badge: "Multitarea y Fluidez",
-    keyFact: "4 GB • 8 GB • 12 GB",
-    oneLiner: "Permite mantener varias aplicaciones abiertas al mismo tiempo sin que se traben ni se reinicien.",
-    clientPitch: "Es como el tamaño de la mesa de trabajo: más RAM permite abrir WhatsApp, mapas y redes sin pausas.",
-    visualComponent: "ram-multitask",
-    detailModal: {
-      technicalNote: "La memoria de acceso aleatorio (RAM) aloja temporalmente los procesos activos del sistema.",
-      exampleDialog: {
-        client: "¿Por qué me conviene tener 8 GB de RAM en lugar de 4 GB?",
-        seller: "Con 8 GB puede cambiar entre varias aplicaciones al instante sin que se cierren o tenga que esperar a que vuelvan a cargar."
-      }
+export const CONNECTIVITY_DATA = {
+  "5g": {
+    name: "5G",
+    badge: "Red Móvil Ultrarrápida",
+    speedLabel: "Hasta 1,200 Mbps",
+    concept: "Datos móviles de mayor velocidad cuando existe cobertura compatible.",
+    pitch: "Con 5G puedes descargar películas y navegar a máxima velocidad en zonas con cobertura, asegurando que tu equipo esté preparado para los próximos años.",
+    details: "La quinta generación de redes móviles ofrece anchos de banda muy superiores y latencias de menos de 10 milisegundos en áreas metropolitanas equipadas con antenas 5G.",
+    clientDialog: {
+      client: "¿Realmente necesito que mi teléfono tenga 5G hoy en día?",
+      seller: "Sí, porque cada semana hay más antenas 5G. Su teléfono navegará mucho más rápido y no quedará rezagado en los próximos 3 a 4 años."
     }
   },
-
-  // 2. ALMACENAMIENTO (BARRA VISUAL)
-  {
-    id: "card-storage",
-    category: "rendimiento",
-    layout: "standard",
-    title: "Almacenamiento Interno",
-    badge: "Capacidad de Archivos",
-    keyFact: "128 GB vs 256 GB",
-    oneLiner: "Espacio disponible para guardar fotos, videos, documentos, audios y aplicaciones.",
-    clientPitch: "256 GB le da tranquilidad durante años sin tener que borrar fotos ni mensajes por falta de espacio.",
-    visualComponent: "storage-meter",
-    detailModal: {
-      technicalNote: "Memoria flash interna UFS no volátil para almacenamiento permanente de datos y apps.",
-      exampleDialog: {
-        client: "¿Vale la pena pagar la diferencia por 256 GB?",
-        seller: "Sí, si toma fotos familiares o recibe muchos audios y videos de trabajo, 256 GB evitan el molesto aviso de memoria llena."
-      }
+  "4g": {
+    name: "4G / LTE",
+    badge: "Red Móvil Convencional",
+    speedLabel: "40 - 100 Mbps",
+    concept: "Conexión móvil estable con amplia cobertura para mensajería, redes y llamadas.",
+    pitch: "La red 4G es confiable en casi cualquier parte del país, ideal para WhatsApp, mapas y llamadas continuas.",
+    details: "4G LTE es el estándar maduro mundial con cobertura geográfica nacional completa para transmisión de datos y llamadas VoLTE.",
+    clientDialog: {
+      client: "¿El 4G me sirve para ver videos y trabajar?",
+      seller: "Totalmente. El 4G reproduce video en alta definición y permite enviar documentos y fotos sin ningún contratiempo."
     }
   },
-
-  // 3. TASA DE REFRESCO 120 HZ (ANIMACIÓN / COMPARADOR VISUAL)
-  {
-    id: "card-120hz",
-    category: "pantalla",
-    layout: "featured-wide",
-    title: "Tasa de Refresco: 120 Hz vs 60 Hz",
-    badge: "Fluidez de Pantalla",
-    keyFact: "Hasta 120 actualizaciones por segundo",
-    oneLiner: "La pantalla se actualiza el doble de veces por segundo, logrando una sensación visual ultra suave.",
-    clientPitch: "Al deslizar menús, páginas o redes sociales todo se mueve sin tirones y descansa más la vista.",
-    visualComponent: "hz-interactive-demo",
-    detailModal: {
-      technicalNote: "Indica la frecuencia con que el panel renueva los cuadros visibles por segundo (Hertz).",
-      exampleDialog: {
-        client: "¿Qué diferencia práctica hay entre 60 Hz y 120 Hz?",
-        seller: "Al deslizar el dedo en pantalla el texto no se borra ni brinca; todo responde con inmediata suavidad."
-      }
+  "wifi": {
+    name: "Wi-Fi",
+    badge: "Conexión Inalámbrica Local",
+    speedLabel: "Red Hogar / Oficina",
+    concept: "Conexión inalámbrica a un módem local; no consume tus datos móviles.",
+    pitch: "Al conectar el teléfono al Wi-Fi de tu casa o trabajo, ahorras por completo tus datos del paquete celular.",
+    details: "Los estándares Wi-Fi 5 y Wi-Fi 6 enrutan datos por frecuencias de 2.4 GHz y 5 GHz para navegación doméstica sin consumir saldo telefónico.",
+    clientDialog: {
+      client: "¿Si estoy en Wi-Fi se gastan mis megas de saldo?",
+      seller: "No, para nada. En Wi-Fi su teléfono se conecta directamente al módem de casa u oficina y sus datos celulares se quedan intactos."
     }
   },
-
-  // 4. BATERÍA 5000 mAh (GAUGE VISUAL)
-  {
-    id: "card-battery",
-    category: "bateria",
-    layout: "standard",
-    title: "Batería de 5000 mAh",
-    badge: "Autonomía de Energía",
-    keyFact: "Jornada completa de uso",
-    oneLiner: "Capacidad de energía diseñada para cubrir todo el día sin recargas intermedias bajo uso habitual.",
-    clientPitch: "Es como tener un tanque de energía grande: sale de casa y regresa con batería de sobra.",
-    visualComponent: "battery-gauge",
-    detailModal: {
-      technicalNote: "Miliamperios-hora: medida de la carga eléctrica acumulable en la celda de litio.",
-      exampleDialog: {
-        client: "¿Me durará todo el día sin conectarlo?",
-        seller: "Con 5000 mAh está diseñado para darle más de 24 horas de uso continuo en llamadas, mensajería y redes."
-      }
+  "bluetooth": {
+    name: "Bluetooth",
+    badge: "Enlace Inalámbrico de Corto Alcance",
+    speedLabel: "Hasta 10 metros",
+    concept: "Conecta accesorios inalámbricos como audífonos, bocinas y relojes inteligentes.",
+    pitch: "Enlaza tus audífonos sin cables, el estéreo del auto o tu reloj para escuchar música y recibir notificaciones.",
+    details: "Tecnología de radiofrecuencia de 2.4 GHz diseñada para emparejar periféricos de bajo consumo de energía a distancias de hasta 10 metros.",
+    clientDialog: {
+      client: "¿El Bluetooth gasta mucho la batería del celular?",
+      seller: "Los teléfonos modernos usan Bluetooth de bajo consumo, así que puede traer sus audífonos conectados todo el día sin agotar su batería."
     }
-  },
-
-  // 5. CARGA RÁPIDA (ANIMACIÓN DE BATERÍA 0-100)
-  {
-    id: "card-fastcharge",
-    category: "bateria",
-    layout: "standard",
-    title: "Carga Rápida: 33W a 67W",
-    badge: "Tiempo de Recarga",
-    keyFact: "Horas de energía en 20 minutos",
-    oneLiner: "Potencia eléctrica que permite recuperar un porcentaje significativo de batería en lapsos breves.",
-    clientPitch: "Con solo conectarlo mientras desayuna o se baña, obtiene carga suficiente para varias horas.",
-    visualComponent: "fastcharge-anim",
-    detailModal: {
-      technicalNote: "Gestión inteligente de voltaje y amperaje con protocolos de disipación térmica segura.",
-      exampleDialog: {
-        client: "Siempre olvido cargar el celular en la noche, ¿qué hago?",
-        seller: "Con la carga rápida incluida, en lo que se prepara antes de salir ya recuperó más del 60% de energía."
-      }
-    }
-  },
-
-  // 6. CÁMARAS Y ESTABILIZADOR OIS (ESQUEMA ÓPTICO)
-  {
-    id: "card-camera",
-    category: "camara",
-    layout: "featured-wide",
-    title: "Cámaras y Estabilización Óptica (OIS)",
-    badge: "Fotografía y Video",
-    keyFact: "Sensor Principal + OIS Antivibración",
-    oneLiner: "El sensor capta gran nivel de detalle y el estabilizador físico compensa el movimiento involuntario de la mano.",
-    clientPitch: "Tome fotos y videos nítidos que no salen borrosos aunque camine o le tiemble el pulso.",
-    visualComponent: "camera-lens-diagram",
-    detailModal: {
-      technicalNote: "OIS mueve micrométricamente el lente para contrarrestar la vibración en tomas con poca luz.",
-      exampleDialog: {
-        client: "¿Por qué salían borrosas las fotos en mi teléfono anterior?",
-        seller: "Porque no tenía estabilización óptica; este equipo compensa el pulso de su mano para tomas nítidas a la primera."
-      }
-    }
-  },
-
-  // 7. 5G Y CONECTIVIDAD
-  {
-    id: "card-5g",
-    category: "conectividad",
-    layout: "standard",
-    title: "Conectividad 5G",
-    badge: "Red Móvil de Alta Velocidad",
-    keyFact: "Transmisión y Descarga Veloz",
-    oneLiner: "Nueva generación de red móvil con mayor velocidad de descarga y menor tiempo de respuesta.",
-    clientPitch: "Descargue archivos al instante y disfrute videos en máxima calidad sin esperar a que carguen.",
-    visualComponent: "network-5g-visual",
-    detailModal: {
-      technicalNote: "Quinta generación de estándares de red móvil con mayor ancho de banda y menor latencia en zonas con cobertura.",
-      exampleDialog: {
-        client: "¿Realmente necesito 5G hoy?",
-        seller: "Sí, navega con gran fluidez y asegura que su equipo no quede obsoleto ante la expansión de las redes."
-      }
-    }
-  },
-
-  // 8. CERTIFICACIÓN IP68 (AGUA Y POLVO)
-  {
-    id: "card-ip68",
-    category: "seguridad",
-    layout: "standard",
-    title: "Protección IP (IP54 vs IP68)",
-    badge: "Resistencia Ambiental",
-    keyFact: "Protección contra lluvia y salpicaduras",
-    oneLiner: "Sellado del chasis que protege los componentes internos contra el polvo y accidentes con líquidos.",
-    clientPitch: "Le da tranquilidad ante lluvia imprevista o si se derrama un vaso de agua sobre el equipo.",
-    visualComponent: "ip-shield-visual",
-    detailModal: {
-      technicalNote: "Ingress Protection: norma internacional de hermeticidad contra sólidos (ej. 6) y líquidos (ej. 4 u 8).",
-      exampleDialog: {
-        client: "¿Puedo responder llamadas si está lloviendo?",
-        seller: "Sí, cuenta con certificación contra salpicaduras para atender mensajes en exteriores sin riesgo."
-      }
-    }
-  },
-
-  // 9. DUAL SIM Y ESIM
-  {
-    id: "card-sim",
-    category: "sim-imei",
-    layout: "standard",
-    title: "SIM Física, eSIM y Código IMEI",
-    badge: "Líneas y Seguridad",
-    keyFact: "2 Líneas en 1 Celular • IMEI Único",
-    oneLiner: "Permite usar dos números telefónicos a la vez y cuenta con un código único de identificación para garantía.",
-    clientPitch: "Maneje su número de trabajo y el personal en el mismo equipo sin cargar dos teléfonos.",
-    visualComponent: "sim-imei-diagram",
-    detailModal: {
-      technicalNote: "Dual SIM activa concurrentemente dos números. El IMEI es la clave de registro mundial de 15 dígitos.",
-      exampleDialog: {
-        client: "¿Puedo separar mi WhatsApp de clientes del personal?",
-        seller: "Totalmente, gracias a Dual SIM / eSIM administra ambas líneas en este mismo dispositivo con total comodidad."
-      }
-    }
-  }
-];
-
-export const HOTSPOTS_DATA = {
-  camera: {
-    title: "Módulo de Cámaras con OIS",
-    keyFact: "64 MP + Sensor Gran Angular",
-    oneLiner: "Sensor de alta resolución con estabilizador óptico que evita fotos movidas o borrosas.",
-    clientPitch: "Fotos claras y enfocadas a la primera, incluso de noche o con niños en movimiento."
-  },
-  screen: {
-    title: "Pantalla AMOLED 120 Hz",
-    keyFact: '6.67" FHD+ Cristalina',
-    oneLiner: "Panel que se actualiza hasta 120 veces por segundo para movimientos ultra suaves.",
-    clientPitch: "Al deslizar en redes o documentos todo se siente rápido, fluido y descansa la vista."
-  },
-  processor: {
-    title: "Procesador Octa-Core 5G",
-    keyFact: "Arquitectura 6 nm Eficiente",
-    oneLiner: "El motor central que abre aplicaciones al instante y procesa imágenes con agilidad.",
-    clientPitch: "Abre todas sus aplicaciones de inmediato sin que el teléfono se caliente ni se trabe."
-  },
-  battery: {
-    title: "Batería 5000 mAh + Carga Rápida",
-    keyFact: "33W Turbo Power",
-    oneLiner: "Celda de gran reserva energética que recupera horas de uso en solo 20 minutos de carga.",
-    clientPitch: "Batería para todo el día y carga ultra rápida antes de salir de casa."
-  },
-  sim: {
-    title: "Dual SIM y eSIM",
-    keyFact: "2 Líneas Activas",
-    oneLiner: "Doble ranura y soporte para chip digital integrado en el mismo terminal.",
-    clientPitch: "Lleve su número de trabajo y su número personal en el mismo celular."
-  },
-  network: {
-    title: "Módem 5G y Antenas",
-    keyFact: "Descargas Ultrarrápidas",
-    oneLiner: "Antenas de alta recepción para navegación a máxima velocidad y llamadas estables.",
-    clientPitch: "Descargas inmediatas de videos y videollamadas sin pausas ni cortes."
   }
 };
 
-export const PHONES_COMPARE_DATA = [
+export const SIM_EQUIPO_DATA = {
+  sim: {
+    title: "SIM Física",
+    tag: "Chip Plástico Tradicional",
+    oneLiner: "Tarjeta física con chip que se introduce en la bandeja lateral del equipo.",
+    pitch: "Es la tarjeta clásica que compras en cualquier tienda y pasas de un teléfono a otro.",
+    dialog: {
+      client: "¿Qué pasa con mis contactos si cambio de SIM física?",
+      seller: "Hoy en día sus contactos se respaldan en su cuenta de Google o iCloud, así que puede cambiar de SIM sin perder ningún número."
+    }
+  },
+  esim: {
+    title: "eSIM Digital",
+    tag: "Chip Virtual Integrado",
+    oneLiner: "Chip electrónico soldado dentro del equipo; se activa escaneando un código QR.",
+    pitch: "No necesitas comprar plásticos: tu operador te manda un código QR y tu línea queda lista al instante.",
+    dialog: {
+      client: "¿Qué ventaja tiene la eSIM frente a la tarjeta normal?",
+      seller: "Si llega a extraviar el teléfono nadie puede sacarle el chip para robarse su línea, y activa planes de viaje en el extranjero al instante."
+    }
+  },
+  dualsim: {
+    title: "Dual SIM (Dos Líneas)",
+    tag: "Trabajo y Personal en 1 Celular",
+    oneLiner: "Permite tener dos números telefónicos funcionando a la vez en el mismo dispositivo.",
+    pitch: "Lleva tu número de trabajo y tu número personal en el mismo celular sin cargar dos teléfonos.",
+    dialog: {
+      client: "¿Puedo tener dos WhatsApp diferentes con Dual SIM?",
+      seller: "Sí, puede tener WhatsApp personal con una línea y WhatsApp Business con la otra, todo en este mismo teléfono."
+    }
+  },
+  imei: {
+    title: "Código IMEI (15 Dígitos)",
+    tag: "Identidad Única Mundial",
+    oneLiner: "Número de serie exclusivo de 15 dígitos que identifica a este equipo en todo el mundo.",
+    pitch: "Es como el CURP o acta de nacimiento de tu celular: sirve para hacer válida tu garantía o bloquearlo si se extravía.",
+    dialog: {
+      client: "¿Dónde consulto el IMEI de mi teléfono si me lo piden?",
+      seller: "Solo entra a la app de teléfono, marca *#06# y de inmediato aparece en pantalla su código IMEI de 15 dígitos."
+    }
+  },
+  so: {
+    title: "Sistema Operativo",
+    tag: "Android / iOS",
+    oneLiner: "El software maestro que coordina las aplicaciones, la cámara y la seguridad.",
+    pitch: "Es el cerebro de software que hace que tus apps favoritas funcionen de forma fácil, segura y protegida.",
+    dialog: {
+      client: "¿Por qué es importante actualizar el sistema operativo?",
+      seller: "Las actualizaciones le dan nuevas funciones a su cámara, hacen que la batería rinda mejor y protegen sus cuentas contra virus."
+    }
+  }
+};
+
+export const HOTSPOTS_EXPLORER = {
+  pantalla: {
+    title: "Pantalla AMOLED Crystal 120 Hz",
+    keyFact: '6.67" FHD+ con tasa fluida',
+    oneLiner: "Panel de alta nitidez que se actualiza 120 veces por segundo con colores vivos.",
+    pitch: "Al deslizar en Facebook, WhatsApp o navegar por internet todo se siente como seda, y descansa mucho más la vista bajo la luz del sol.",
+    specs: "Resolución 2400 x 1080 píxeles, brillo pico de 1,200 nits, cristal templado Gorilla Glass."
+  },
+  camara: {
+    title: "Módulo Triple con Estabilizador OIS",
+    keyFact: "64 MP Principal + Estabilización Óptica",
+    oneLiner: "Sensor de alta resolución que compensa el movimiento natural de la mano al disparar.",
+    pitch: "Fotos claras y enfocadas a la primera, sin salir borrosas aunque camines o tomes fotos con poca luz.",
+    specs: "Sensor principal 64 MP f/1.8 OIS + Gran angular 8 MP 118° + Macro 2 MP + Grabación 4K."
+  },
+  procesador: {
+    title: "Procesador Octa-Core de 6 nm",
+    keyFact: "8 Núcleos de Alto Rendimiento",
+    oneLiner: "El motor central que abre aplicaciones al instante y procesa fotos con agilidad.",
+    pitch: "Abre todas tus aplicaciones de inmediato sin que el teléfono se caliente ni se trabe al cambiar entre juegos y mensajes.",
+    specs: "Arquitectura de 6 nanómetros, 8 núcleos (2 de alto desempeño + 6 de ahorro energético), módem 5G integrado."
+  },
+  bateria: {
+    title: "Batería de 5000 mAh + Carga Rápida",
+    keyFact: "Autonomía de día y medio + 33W Turbo",
+    oneLiner: "Gran celda de energía que recupera horas de uso en unos pocos minutos conectado.",
+    pitch: "Sal de casa en la mañana y regresa en la noche con batería de sobra. Si olvidaste cargarlo, en 20 minutos recuperas energía para horas.",
+    specs: "Celda de polímero de litio de 5000 mAh, disipación de calor multicapa, carga inteligente a 33W."
+  },
+  sim: {
+    title: "Bandeja Dual SIM + Soporte eSIM",
+    keyFact: "2 Líneas Activas Simultáneas",
+    oneLiner: "Flexibilidad total para usar dos números telefónicos en el mismo dispositivo.",
+    pitch: "Maneja tu número de trabajo y tu número de casa en el mismo celular sin cargar dos equipos pesados en el bolsillo.",
+    specs: "Bandeja nano-SIM doble + módulo eSIM virtual con cambio de datos y llamadas configurable."
+  },
+  conectividad: {
+    title: "Módem 5G y Antenas Omnidireccionales",
+    keyFact: "Navegación Móvil de Próxima Generación",
+    oneLiner: "Antenas de alta sensibilidad para descargas ultra rápidas y llamadas estables.",
+    pitch: "Descarga videos en segundos y disfruta llamadas sin cortes aun en lugares cerrados o concurridos.",
+    specs: "Compatible con bandas 5G Sub-6, Wi-Fi 6 de doble banda (2.4 GHz y 5 GHz) y Bluetooth 5.3."
+  }
+};
+
+export const COMPARATOR_MODELS = [
   {
     id: "nova-lite",
     name: "Nova Lite",
-    image: "https://images.unsplash.com/photo-1598327105666-5b89351aff97?auto=format&fit=crop&w=400&q=80",
+    image: "assets/images/phone-lite.webp",
     priceMXN: 3499,
     downPaymentMXN: 600,
     weeklyMXN: 241,
-    tag: "Económico y Básico",
+    tag: "Económico y Confiable",
     metrics: {
       ramVal: 4,
       ramMax: 12,
@@ -263,20 +194,20 @@ export const PHONES_COMPARE_DATA = [
       batteryVal: 5000,
       batteryMax: 6000,
       batteryLabel: "5000 mAh",
-      screenHz: "90 Hz",
+      screenHz: "90 Hz Fluido",
       cameraMain: "50 MP Principal",
       network: "4G LTE / Dual SIM"
     },
-    idealFor: "Llamadas, WhatsApp, navegación y uso diario sin gastar de más."
+    idealFor: "Ideal para usuarios que buscan llamadas, WhatsApp, YouTube y redes sociales con excelente batería sin gastar de más."
   },
   {
     id: "nova-x1",
     name: "Nova X1",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80",
+    image: "assets/images/phone-front.webp",
     priceMXN: 5899,
     downPaymentMXN: 1000,
     weeklyMXN: 408,
-    tag: "El Más Vendido",
+    tag: "El Más Vendido / Equilibrado",
     metrics: {
       ramVal: 8,
       ramMax: 12,
@@ -286,17 +217,17 @@ export const PHONES_COMPARE_DATA = [
       storageLabel: "256 GB",
       batteryVal: 5000,
       batteryMax: 6000,
-      batteryLabel: "5000 mAh",
+      batteryLabel: "5000 mAh (33W)",
       screenHz: "120 Hz AMOLED",
-      cameraMain: "64 MP con OIS (Estabilizador)",
-      network: "5G Red Rápida / eSIM"
+      cameraMain: "64 MP con OIS Antivibración",
+      network: "5G Ultra / eSIM + Dual SIM"
     },
-    idealFor: "Multitarea fluida, redes sociales intensivas, trabajo y fotos nítidas."
+    idealFor: "Ideal para quienes trabajan con el teléfono, manejan varias apps a la vez y quieren fotos nítidas sin gastar en gama alta."
   },
   {
     id: "nova-x1-pro",
     name: "Nova X1 Pro",
-    image: "https://images.unsplash.com/photo-1580910051074-3eb694886505?auto=format&fit=crop&w=400&q=80",
+    image: "assets/images/phone-pro.webp",
     priceMXN: 8999,
     downPaymentMXN: 1800,
     weeklyMXN: 600,
@@ -310,11 +241,11 @@ export const PHONES_COMPARE_DATA = [
       storageLabel: "512 GB",
       batteryVal: 5200,
       batteryMax: 6000,
-      batteryLabel: "5200 mAh (67W Carga)",
-      screenHz: "120 Hz 1.5K AMOLED",
-      cameraMain: "108 MP + Video 4K Frontal",
+      batteryLabel: "5200 mAh (67W Turbo)",
+      screenHz: "120 Hz 1.5K HDR10+",
+      cameraMain: "108 MP + Video 4K 60fps",
       network: "5G Ultra / Wi-Fi 6 / IP68"
     },
-    idealFor: "Creadores de video, fotografía profesional y máxima velocidad."
+    idealFor: "Ideal para creadores de contenido, videojuegos pesados, grabación 4K y usuarios exigentes que buscan lo mejor."
   }
 ];
